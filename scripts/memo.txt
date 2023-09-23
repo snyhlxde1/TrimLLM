@@ -1,0 +1,3 @@
+transformer init versioning check: enable pytorch >= 1.10 check
+transformers/trainer_pt_utils.py: line 841 --> deepspeed_enabled --> deepspeed
+transformer model modeling: modify LLaMA, BERT to enable layer dropping
