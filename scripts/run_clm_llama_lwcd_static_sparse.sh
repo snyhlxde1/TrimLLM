@@ -6,7 +6,7 @@ trial=$4              # trial number: 1, 2, 3, ... etc.
 export WANDB_DISABLED=true
 
 ### baseline ft
-torchrun --nproc_per_node=8 \
+torchrun --nproc_per_node=2 \
     --master_port 20688 \
     run_clm_llama_lwcd_static_sparse.py \
     --bf16 True \

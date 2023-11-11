@@ -814,24 +814,25 @@ class Condensation_Trainer:
             raise NotImplementedError()
         
         frozen_targets  = []
-        targets = total_frozen_mask_str[1:-1].split(',')
-        for layer in targets:
-            if layer.isdigit():
-                layer_ind = int(layer) - 1
-                frozen_targets.append(layer_ind)
-            
-        str_matches = []
-        for layer in frozen_targets:
-            match = 'model\.layers\.' + str(layer) + '\..+$'
-            str_matches.append(match)
-        logger.info('string matches:')
-        logger.info(str_matches)
-        if self.args.local_rank == 0:
-            print('string matches:')
-            print(str_matches)
-        self.frozen_str_matches = str_matches
+        if total_frozen_mask_str != None:
+            targets = total_frozen_mask_str[1:-1].split(',')
+            for layer in targets:
+                if layer.isdigit():
+                    layer_ind = int(layer) - 1
+                    frozen_targets.append(layer_ind)
+                
+            str_matches = []
+            for layer in frozen_targets:
+                match = 'model\.layers\.' + str(layer) + '\..+$'
+                str_matches.append(match)
+            logger.info('string matches:')
+            logger.info(str_matches)
+            if self.args.local_rank == 0:
+                print('string matches:')
+                print(str_matches)
+            self.frozen_str_matches = str_matches
 
-        self.missing_keys = None
+            self.missing_keys = None
         # ------------------------------------------------------------ #
 
         self.fsdp_wrapped = False
@@ -3356,7 +3357,7 @@ class Condensation_Trainer:
         arguments, depending on the situation.
         """
         if self.use_cuda_amp or self.use_cpu_amp:
-            if is_torch_greater_or_equal_than_1_10:
+            if is_torch_greater_or_equal_than_1_11:
                 ctx_manager = (
                     torch.cpu.amp.autocast(cache_enabled=cache_enabled, dtype=self.amp_dtype)
                     if self.use_cpu_amp
@@ -5083,3 +5084,4 @@ class Condensation_Trainer:
         if not self.repo.is_repo_clean():
             self.repo.git_commit("Add *.sagemaker patterns to .gitignore.")
             self.repo.git_push()
+
