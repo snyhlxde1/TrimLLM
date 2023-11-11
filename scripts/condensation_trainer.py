@@ -167,7 +167,7 @@ from transformers.utils import (
 from transformers.utils.generic import ContextManagers
 
 
-_is_native_cpu_amp_available = is_torch_greater_or_equal_than_1_10
+_is_native_cpu_amp_available = is_torch_greater_or_equal_than_1_11
 
 DEFAULT_CALLBACKS = [DefaultFlowCallback]
 DEFAULT_PROGRESS_CALLBACK = ProgressCallback
