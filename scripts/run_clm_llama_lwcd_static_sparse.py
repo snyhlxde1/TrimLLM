@@ -456,6 +456,7 @@ def main():
         "use_auth_token": True if model_args.use_auth_token else None,
         "padding_side": "right",
         "use_cache": False if data_args.max_budget else True,
+        "output_hidden_states": True,
     }
     if model_args.config_name:
         config = AutoConfig.from_pretrained(model_args.config_name, **config_kwargs)

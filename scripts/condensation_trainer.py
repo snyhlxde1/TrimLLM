@@ -409,6 +409,7 @@ class Condensation_Trainer:
         total_layer_count=None,
         tie_breaker_strategy='activation',
         total_frozen_mask_str=None,
+        fast_eval=True,
         args: TrainingArguments = None,
         data_collator: Optional[DataCollator] = None,
         train_dataset: Optional[Dataset] = None,
@@ -770,6 +771,8 @@ class Condensation_Trainer:
         self._train_batch_size = args.train_batch_size
 
         # ------------------------------ layerwise condensation related fields ------------------------------ #
+        self.fast_eval = fast_eval
+        
         self.static_sparse_update = False
         self.dynamic_sparse_update = False
         if sparse_update == 'static':
@@ -836,7 +839,6 @@ class Condensation_Trainer:
 
             self.missing_keys = None
         # ------------------------------------------------------------ #
-
         self.fsdp_wrapped = False
 
         self.layer_dropping_iter = 0
@@ -3983,6 +3985,7 @@ class Condensation_Trainer:
 
             observed_num_examples = 0
             # Main evaluation loop
+            i = 0
             for step, inputs in enumerate(dataloader):
                 # Update the observed num examples
                 observed_batch_size = find_batch_size(inputs)
@@ -3996,6 +3999,10 @@ class Condensation_Trainer:
                 loss, logits, labels = self.prediction_step(model, inputs, prediction_loss_only, ignore_keys=ignore_keys)
                 inputs_decode = self._prepare_input(inputs["input_ids"]) if args.include_inputs_for_metrics else None
 
+                # fast eval
+                i += 1
+                if self.fast_eval and i == 20:
+                    break
                 ##########################################################################
                 #             after the prediction step, profile activation              #
                 ##########################################################################
