@@ -7,8 +7,10 @@ trial=$5              # trial number: 1, 2, 3, ... etc.
 export WANDB_DISABLED=true
 #export NCCL_P2P_LEVEL=NVL
 
+mkdir -p logs/train/
+
 ### baseline ft
-torchrun --nproc_per_node=2 \
+torchrun --nproc_per_node=8 \
     --master_port 20688 \
     run_clm_llama_lwcd_static_sparse.py \
     --bf16 True \
