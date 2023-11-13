@@ -831,6 +831,8 @@ class Condensation_Trainer:
                 print('string matches:')
                 print(str_matches)
             self.frozen_str_matches = str_matches
+        else:
+            self.frozen_str_matches = []
 
             self.missing_keys = None
         # ------------------------------------------------------------ #
@@ -1641,7 +1643,7 @@ class Condensation_Trainer:
                 auto_wrap_policy = None
 
                 if FSDPOption.AUTO_WRAP in self.args.fsdp:
-                    if self.args.fsdp_config["fsdp_min_num_params"] > 0:
+                    if self.args.fsdp_config["min_num_params"] > 0:
                         auto_wrap_policy = functools.partial(
                             size_based_auto_wrap_policy, min_num_params=self.args.fsdp_config["fsdp_min_num_params"]
                         )
