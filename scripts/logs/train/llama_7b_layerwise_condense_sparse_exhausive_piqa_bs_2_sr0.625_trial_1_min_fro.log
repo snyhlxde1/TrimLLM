@@ -1,0 +1,1230 @@
+[2023-11-14 22:47:40,890] torch.distributed.run: [WARNING] 
+[2023-11-14 22:47:40,890] torch.distributed.run: [WARNING] *****************************************
+[2023-11-14 22:47:40,890] torch.distributed.run: [WARNING] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+[2023-11-14 22:47:40,890] torch.distributed.run: [WARNING] *****************************************
+/usr/local/lib/python3.8/dist-packages/transformers/deepspeed.py:23: FutureWarning: transformers.deepspeed module is deprecated and will be removed in a future version. Please import deepspeed modules directly from transformers.integrations
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/transformers/deepspeed.py:23: FutureWarning: transformers.deepspeed module is deprecated and will be removed in a future version. Please import deepspeed modules directly from transformers.integrations
+  warnings.warn(
+Using the `WANDB_DISABLED` environment variable is deprecated and will be removed in v5. Use the --report_to flag to control the integrations used for logging result (for instance --report_to none).
+Using the `WANDB_DISABLED` environment variable is deprecated and will be removed in v5. Use the --report_to flag to control the integrations used for logging result (for instance --report_to none).
+/usr/local/lib/python3.8/dist-packages/transformers/training_args.py:1598: FutureWarning: using `--fsdp_transformer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead 
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/transformers/training_args.py:1598: FutureWarning: using `--fsdp_transformer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead 
+  warnings.warn(
+11/14/2023 22:47:43 - WARNING - __main__ - Process rank: 0, device: cuda:0, n_gpu: 1distributed training: True, 16-bits training: False
+11/14/2023 22:47:43 - INFO - __main__ - Training/evaluation parameters TrainingArguments(
+_n_gpu=1,
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+bf16=True,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_pin_memory=True,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_tqdm=False,
+dispatch_batches=None,
+do_eval=True,
+do_predict=False,
+do_train=True,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_steps=None,
+evaluation_strategy=epoch,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[<FSDPOption.FULL_SHARD: 'full_shard'>, <FSDPOption.AUTO_WRAP: 'auto_wrap'>],
+fsdp_config={'min_num_params': 0, 'transformer_layer_cls_to_wrap': ['LlamaDecoderLayer'], 'xla': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=LlamaDecoderLayer,
+full_determinism=False,
+gradient_accumulation_steps=1,
+gradient_checkpointing=False,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_inputs_for_metrics=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=2e-05,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=0,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=outputs/baffo32/decapoda-research-llama-7B-hf/piqa_bs_2/layerwise_condense_sparse_exhausive_sr0.625_trial_1_min_fro/runs/Nov14_22-47-43_llama-container-2a6000,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=500,
+logging_strategy=steps,
+lr_scheduler_type=linear,
+max_grad_norm=1.0,
+max_steps=-1,
+metric_for_best_model=None,
+mp_parameters=,
+no_cuda=False,
+num_train_epochs=49.0,
+optim=adamw_torch,
+optim_args=None,
+output_dir=outputs/baffo32/decapoda-research-llama-7B-hf/piqa_bs_2/layerwise_condense_sparse_exhausive_sr0.625_trial_1_min_fro,
+overwrite_output_dir=False,
+past_index=-1,
+per_device_eval_batch_size=2,
+per_device_train_batch_size=2,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=[],
+resume_from_checkpoint=None,
+run_name=outputs/baffo32/decapoda-research-llama-7B-hf/piqa_bs_2/layerwise_condense_sparse_exhausive_sr0.625_trial_1_min_fro,
+save_on_each_node=False,
+save_safetensors=False,
+save_steps=50000,
+save_strategy=steps,
+save_total_limit=1,
+seed=42,
+sharded_ddp=[],
+skip_memory_metrics=True,
+tf32=None,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_mps_device=False,
+warmup_ratio=0.0,
+warmup_steps=0,
+weight_decay=0.0,
+)
+11/14/2023 22:47:43 - WARNING - __main__ - Process rank: 1, device: cuda:1, n_gpu: 1distributed training: True, 16-bits training: False
+Downloading (…)lve/main/config.json:   0%|          | 0.00/428 [00:00<?, ?B/s]Downloading (…)lve/main/config.json: 100%|██████████| 428/428 [00:00<00:00, 161kB/s]
+[INFO|configuration_utils.py:715] 2023-11-14 22:47:44,239 >> loading configuration file config.json from cache at /root/.cache/huggingface/hub/models--baffo32--decapoda-research-llama-7B-hf/snapshots/aa18b48a1330572a6dd5f5d5619ed19838ca285c/config.json
+[INFO|configuration_utils.py:775] 2023-11-14 22:47:44,240 >> Model config LlamaConfig {
+  "_name_or_path": "baffo32/decapoda-research-llama-7B-hf",
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "attention_bias": false,
+  "bos_token_id": 0,
+  "eos_token_id": 1,
+  "hidden_act": "silu",
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 11008,
+  "max_position_embeddings": 2048,
+  "max_sequence_length": 2048,
+  "model_type": "llama",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 32,
+  "num_key_value_heads": 32,
+  "output_hidden_states": true,
+  "pad_token_id": -1,
+  "pretraining_tp": 1,
+  "rms_norm_eps": 1e-06,
+  "rope_scaling": null,
+  "rope_theta": 10000.0,
+  "tie_word_embeddings": false,
+  "torch_dtype": "float16",
+  "transformers_version": "4.34.0",
+  "use_cache": false,
+  "vocab_size": 32000
+}
+
+Downloading (…)okenizer_config.json:   0%|          | 0.00/142 [00:00<?, ?B/s]Downloading (…)okenizer_config.json: 100%|██████████| 142/142 [00:00<00:00, 68.3kB/s]
+Downloading tokenizer.model:   0%|          | 0.00/500k [00:00<?, ?B/s]Downloading tokenizer.model: 100%|██████████| 500k/500k [00:00<00:00, 2.77MB/s]Downloading tokenizer.model: 100%|██████████| 500k/500k [00:00<00:00, 2.76MB/s]
+Downloading (…)cial_tokens_map.json:   0%|          | 0.00/2.00 [00:00<?, ?B/s]Downloading (…)cial_tokens_map.json: 100%|██████████| 2.00/2.00 [00:00<00:00, 2.99kB/s]
+[INFO|tokenization_utils_base.py:2043] 2023-11-14 22:47:45,625 >> loading file tokenizer.model from cache at /root/.cache/huggingface/hub/models--baffo32--decapoda-research-llama-7B-hf/snapshots/aa18b48a1330572a6dd5f5d5619ed19838ca285c/tokenizer.model
+[INFO|tokenization_utils_base.py:2043] 2023-11-14 22:47:45,625 >> loading file added_tokens.json from cache at None
+[INFO|tokenization_utils_base.py:2043] 2023-11-14 22:47:45,625 >> loading file special_tokens_map.json from cache at /root/.cache/huggingface/hub/models--baffo32--decapoda-research-llama-7B-hf/snapshots/aa18b48a1330572a6dd5f5d5619ed19838ca285c/special_tokens_map.json
+[INFO|tokenization_utils_base.py:2043] 2023-11-14 22:47:45,625 >> loading file tokenizer_config.json from cache at /root/.cache/huggingface/hub/models--baffo32--decapoda-research-llama-7B-hf/snapshots/aa18b48a1330572a6dd5f5d5619ed19838ca285c/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2043] 2023-11-14 22:47:45,625 >> loading file tokenizer.json from cache at None
+[WARNING|logging.py:305] 2023-11-14 22:47:45,626 >> You are using the default legacy behaviour of the <class 'transformers.models.llama.tokenization_llama.LlamaTokenizer'>. This is expected, and simply means that the `legacy` (previous) behavior will be used so nothing changes for you. If you want to use the new behaviour, set `legacy=False`. This should only be set if you understand what it means, and thouroughly read the reason why this was added as explained in https://github.com/huggingface/transformers/pull/24565
+[WARNING|logging.py:305] 2023-11-14 22:47:45,645 >> You are using the default legacy behaviour of the <class 'transformers.models.llama.tokenization_llama.LlamaTokenizer'>. This is expected, and simply means that the `legacy` (previous) behavior will be used so nothing changes for you. If you want to use the new behaviour, set `legacy=False`. This should only be set if you understand what it means, and thouroughly read the reason why this was added as explained in https://github.com/huggingface/transformers/pull/24565
+Downloading (…)model.bin.index.json:   0%|          | 0.00/25.5k [00:00<?, ?B/s]Downloading (…)model.bin.index.json: 100%|██████████| 25.5k/25.5k [00:00<00:00, 6.22MB/s]
+[INFO|modeling_utils.py:2993] 2023-11-14 22:47:46,420 >> loading weights file pytorch_model.bin from cache at /root/.cache/huggingface/hub/models--baffo32--decapoda-research-llama-7B-hf/snapshots/aa18b48a1330572a6dd5f5d5619ed19838ca285c/pytorch_model.bin.index.json
+Downloading shards:   0%|          | 0/33 [00:00<?, ?it/s]Downloading shards:   0%|          | 0/33 [00:00<?, ?it/s]
+Downloading (…)l-00001-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00001-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:07, 50.5MB/s][A
+Downloading (…)l-00001-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:05, 71.4MB/s][A
+Downloading (…)l-00001-of-00033.bin:  10%|█         | 41.9M/405M [00:00<00:03, 98.2MB/s][A
+Downloading (…)l-00001-of-00033.bin:  16%|█▌        | 62.9M/405M [00:00<00:02, 119MB/s] [A
+Downloading (…)l-00001-of-00033.bin:  23%|██▎       | 94.4M/405M [00:00<00:01, 157MB/s][A
+Downloading (…)l-00001-of-00033.bin:  31%|███       | 126M/405M [00:00<00:01, 180MB/s] [A
+Downloading (…)l-00001-of-00033.bin:  39%|███▉      | 157M/405M [00:01<00:01, 206MB/s][A
+Downloading (…)l-00001-of-00033.bin:  47%|████▋     | 189M/405M [00:01<00:00, 219MB/s][A
+Downloading (…)l-00001-of-00033.bin:  54%|█████▍    | 220M/405M [00:01<00:00, 220MB/s][A
+Downloading (…)l-00001-of-00033.bin:  62%|██████▏   | 252M/405M [00:01<00:00, 228MB/s][A
+Downloading (…)l-00001-of-00033.bin:  70%|██████▉   | 283M/405M [00:01<00:00, 234MB/s][A
+Downloading (…)l-00001-of-00033.bin:  78%|███████▊  | 315M/405M [00:01<00:00, 233MB/s][A
+Downloading (…)l-00001-of-00033.bin:  85%|████████▌ | 346M/405M [00:01<00:00, 216MB/s][A
+Downloading (…)l-00001-of-00033.bin:  93%|█████████▎| 377M/405M [00:01<00:00, 231MB/s][A
+Downloading (…)l-00001-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 237MB/s][ADownloading (…)l-00001-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 197MB/s]
+Downloading shards:   3%|▎         | 1/33 [00:02<01:20,  2.52s/it]Downloading shards:   3%|▎         | 1/33 [00:02<01:21,  2.56s/it]
+Downloading (…)l-00002-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00002-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:14, 27.5MB/s][A
+Downloading (…)l-00002-of-00033.bin:   8%|▊         | 31.5M/405M [00:00<00:05, 65.5MB/s][A
+Downloading (…)l-00002-of-00033.bin:  13%|█▎        | 52.4M/405M [00:00<00:04, 87.4MB/s][A
+Downloading (…)l-00002-of-00033.bin:  18%|█▊        | 73.4M/405M [00:00<00:03, 109MB/s] [A
+Downloading (…)l-00002-of-00033.bin:  23%|██▎       | 94.4M/405M [00:00<00:02, 132MB/s][A
+Downloading (…)l-00002-of-00033.bin:  31%|███       | 126M/405M [00:01<00:01, 160MB/s] [A
+Downloading (…)l-00002-of-00033.bin:  39%|███▉      | 157M/405M [00:01<00:01, 177MB/s][A
+Downloading (…)l-00002-of-00033.bin:  44%|████▍     | 178M/405M [00:01<00:01, 184MB/s][A
+Downloading (…)l-00002-of-00033.bin:  52%|█████▏    | 210M/405M [00:01<00:00, 197MB/s][A
+Downloading (…)l-00002-of-00033.bin:  60%|█████▉    | 241M/405M [00:01<00:00, 200MB/s][A
+Downloading (…)l-00002-of-00033.bin:  65%|██████▍   | 262M/405M [00:01<00:00, 196MB/s][A
+Downloading (…)l-00002-of-00033.bin:  73%|███████▎  | 294M/405M [00:01<00:00, 206MB/s][A
+Downloading (…)l-00002-of-00033.bin:  78%|███████▊  | 315M/405M [00:01<00:00, 205MB/s][A
+Downloading (…)l-00002-of-00033.bin:  85%|████████▌ | 346M/405M [00:02<00:00, 210MB/s][A
+Downloading (…)l-00002-of-00033.bin:  93%|█████████▎| 377M/405M [00:02<00:00, 213MB/s][A
+Downloading (…)l-00002-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 215MB/s][ADownloading (…)l-00002-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 169MB/s]
+Downloading shards:   6%|▌         | 2/33 [00:05<01:26,  2.78s/it]Downloading shards:   6%|▌         | 2/33 [00:05<01:26,  2.80s/it]
+Downloading (…)l-00003-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00003-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:02, 131MB/s][A
+Downloading (…)l-00003-of-00033.bin:  10%|█         | 41.9M/405M [00:00<00:02, 152MB/s][A
+Downloading (…)l-00003-of-00033.bin:  16%|█▌        | 62.9M/405M [00:00<00:02, 169MB/s][A
+Downloading (…)l-00003-of-00033.bin:  23%|██▎       | 94.4M/405M [00:00<00:01, 187MB/s][A
+Downloading (…)l-00003-of-00033.bin:  28%|██▊       | 115M/405M [00:00<00:01, 192MB/s] [A
+Downloading (…)l-00003-of-00033.bin:  36%|███▋      | 147M/405M [00:00<00:01, 198MB/s][A
+Downloading (…)l-00003-of-00033.bin:  44%|████▍     | 178M/405M [00:00<00:01, 201MB/s][A
+Downloading (…)l-00003-of-00033.bin:  52%|█████▏    | 210M/405M [00:01<00:00, 204MB/s][A
+Downloading (…)l-00003-of-00033.bin:  60%|█████▉    | 241M/405M [00:01<00:00, 205MB/s][A
+Downloading (…)l-00003-of-00033.bin:  67%|██████▋   | 273M/405M [00:01<00:00, 209MB/s][A
+Downloading (…)l-00003-of-00033.bin:  75%|███████▌  | 304M/405M [00:01<00:00, 208MB/s][A
+Downloading (…)l-00003-of-00033.bin:  80%|████████  | 325M/405M [00:01<00:00, 208MB/s][A
+Downloading (…)l-00003-of-00033.bin:  85%|████████▌ | 346M/405M [00:01<00:00, 205MB/s][A
+Downloading (…)l-00003-of-00033.bin:  93%|█████████▎| 377M/405M [00:01<00:00, 211MB/s][A
+Downloading (…)l-00003-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 213MB/s][ADownloading (…)l-00003-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 200MB/s]
+Downloading shards:   9%|▉         | 3/33 [00:07<01:15,  2.52s/it]Downloading shards:   9%|▉         | 3/33 [00:07<01:16,  2.55s/it]
+Downloading (…)l-00004-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00004-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:09, 42.1MB/s][A
+Downloading (…)l-00004-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:06, 60.5MB/s][A
+Downloading (…)l-00004-of-00033.bin:  10%|█         | 41.9M/405M [00:00<00:04, 89.1MB/s][A
+Downloading (…)l-00004-of-00033.bin:  16%|█▌        | 62.9M/405M [00:00<00:03, 113MB/s] [A
+Downloading (…)l-00004-of-00033.bin:  21%|██        | 83.9M/405M [00:00<00:02, 137MB/s][A
+Downloading (…)l-00004-of-00033.bin:  26%|██▌       | 105M/405M [00:00<00:01, 153MB/s] [A
+Downloading (…)l-00004-of-00033.bin:  34%|███▎      | 136M/405M [00:01<00:01, 183MB/s][A
+Downloading (…)l-00004-of-00033.bin:  39%|███▉      | 157M/405M [00:01<00:01, 189MB/s][A
+Downloading (…)l-00004-of-00033.bin:  47%|████▋     | 189M/405M [00:01<00:01, 203MB/s][A
+Downloading (…)l-00004-of-00033.bin:  54%|█████▍    | 220M/405M [00:01<00:00, 209MB/s][A
+Downloading (…)l-00004-of-00033.bin:  62%|██████▏   | 252M/405M [00:01<00:00, 209MB/s][A
+Downloading (…)l-00004-of-00033.bin:  70%|██████▉   | 283M/405M [00:01<00:00, 212MB/s][A
+Downloading (…)l-00004-of-00033.bin:  78%|███████▊  | 315M/405M [00:01<00:00, 210MB/s][A
+Downloading (…)l-00004-of-00033.bin:  85%|████████▌ | 346M/405M [00:01<00:00, 211MB/s][A
+Downloading (…)l-00004-of-00033.bin:  93%|█████████▎| 377M/405M [00:02<00:00, 209MB/s][A
+Downloading (…)l-00004-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 215MB/s][ADownloading (…)l-00004-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 179MB/s]
+Downloading shards:  12%|█▏        | 4/33 [00:10<01:12,  2.50s/it]Downloading shards:  12%|█▏        | 4/33 [00:10<01:12,  2.52s/it]
+Downloading (…)l-00005-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00005-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:09, 41.8MB/s][A
+Downloading (…)l-00005-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:06, 60.4MB/s][A
+Downloading (…)l-00005-of-00033.bin:  10%|█         | 41.9M/405M [00:00<00:04, 84.5MB/s][A
+Downloading (…)l-00005-of-00033.bin:  16%|█▌        | 62.9M/405M [00:00<00:03, 107MB/s] [A
+Downloading (…)l-00005-of-00033.bin:  21%|██        | 83.9M/405M [00:00<00:02, 129MB/s][A
+Downloading (…)l-00005-of-00033.bin:  26%|██▌       | 105M/405M [00:00<00:02, 141MB/s] [A
+Downloading (…)l-00005-of-00033.bin:  31%|███       | 126M/405M [00:01<00:01, 155MB/s][A
+Downloading (…)l-00005-of-00033.bin:  36%|███▋      | 147M/405M [00:01<00:01, 167MB/s][A
+Downloading (…)l-00005-of-00033.bin:  44%|████▍     | 178M/405M [00:01<00:01, 184MB/s][A
+Downloading (…)l-00005-of-00033.bin:  49%|████▉     | 199M/405M [00:01<00:01, 187MB/s][A
+Downloading (…)l-00005-of-00033.bin:  54%|█████▍    | 220M/405M [00:01<00:00, 187MB/s][A
+Downloading (…)l-00005-of-00033.bin:  62%|██████▏   | 252M/405M [00:01<00:00, 188MB/s][A
+Downloading (…)l-00005-of-00033.bin:  67%|██████▋   | 273M/405M [00:01<00:00, 185MB/s][A
+Downloading (…)l-00005-of-00033.bin:  75%|███████▌  | 304M/405M [00:01<00:00, 197MB/s][A
+Downloading (…)l-00005-of-00033.bin:  80%|████████  | 325M/405M [00:02<00:00, 200MB/s][A
+Downloading (…)l-00005-of-00033.bin:  88%|████████▊ | 357M/405M [00:02<00:00, 203MB/s][A
+Downloading (…)l-00005-of-00033.bin:  93%|█████████▎| 377M/405M [00:02<00:00, 204MB/s][A
+Downloading (…)l-00005-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 207MB/s][ADownloading (…)l-00005-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 167MB/s]
+Downloading shards:  15%|█▌        | 5/33 [00:12<01:11,  2.55s/it]Downloading shards:  15%|█▌        | 5/33 [00:12<01:11,  2.54s/it]
+Downloading (…)l-00006-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00006-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:06, 56.6MB/s][A
+Downloading (…)l-00006-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:05, 67.6MB/s][A
+Downloading (…)l-00006-of-00033.bin:  10%|█         | 41.9M/405M [00:00<00:03, 93.0MB/s][A
+Downloading (…)l-00006-of-00033.bin:  16%|█▌        | 62.9M/405M [00:00<00:03, 111MB/s] [A
+Downloading (…)l-00006-of-00033.bin:  21%|██        | 83.9M/405M [00:00<00:02, 131MB/s][A
+Downloading (…)l-00006-of-00033.bin:  28%|██▊       | 115M/405M [00:00<00:01, 160MB/s] [A
+Downloading (…)l-00006-of-00033.bin:  36%|███▋      | 147M/405M [00:01<00:01, 176MB/s][A
+Downloading (…)l-00006-of-00033.bin:  41%|████▏     | 168M/405M [00:01<00:01, 184MB/s][A
+Downloading (…)l-00006-of-00033.bin:  47%|████▋     | 189M/405M [00:01<00:01, 189MB/s][A
+Downloading (…)l-00006-of-00033.bin:  52%|█████▏    | 210M/405M [00:01<00:01, 112MB/s][A
+Downloading (…)l-00006-of-00033.bin:  60%|█████▉    | 241M/405M [00:01<00:01, 144MB/s][A
+Downloading (…)l-00006-of-00033.bin:  67%|██████▋   | 273M/405M [00:01<00:00, 162MB/s][A
+Downloading (…)l-00006-of-00033.bin:  73%|███████▎  | 294M/405M [00:02<00:00, 170MB/s][A
+Downloading (…)l-00006-of-00033.bin:  78%|███████▊  | 315M/405M [00:02<00:00, 178MB/s][A
+Downloading (…)l-00006-of-00033.bin:  85%|████████▌ | 346M/405M [00:02<00:00, 188MB/s][A
+Downloading (…)l-00006-of-00033.bin:  91%|█████████ | 367M/405M [00:02<00:00, 193MB/s][A
+Downloading (…)l-00006-of-00033.bin:  98%|█████████▊| 398M/405M [00:02<00:00, 199MB/s][ADownloading (…)l-00006-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 159MB/s]
+Downloading shards:  18%|█▊        | 6/33 [00:15<01:10,  2.61s/it]Downloading shards:  18%|█▊        | 6/33 [00:15<01:10,  2.62s/it]
+Downloading (…)l-00007-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00007-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:04, 81.2MB/s][A
+Downloading (…)l-00007-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:04, 88.8MB/s][A
+Downloading (…)l-00007-of-00033.bin:  10%|█         | 41.9M/405M [00:00<00:03, 110MB/s] [A
+Downloading (…)l-00007-of-00033.bin:  16%|█▌        | 62.9M/405M [00:00<00:02, 130MB/s][A
+Downloading (…)l-00007-of-00033.bin:  21%|██        | 83.9M/405M [00:00<00:02, 150MB/s][A
+Downloading (…)l-00007-of-00033.bin:  28%|██▊       | 115M/405M [00:00<00:01, 169MB/s] [A
+Downloading (…)l-00007-of-00033.bin:  34%|███▎      | 136M/405M [00:00<00:01, 167MB/s][A
+Downloading (…)l-00007-of-00033.bin:  39%|███▉      | 157M/405M [00:01<00:01, 161MB/s][A
+Downloading (…)l-00007-of-00033.bin:  47%|████▋     | 189M/405M [00:01<00:01, 187MB/s][A
+Downloading (…)l-00007-of-00033.bin:  54%|█████▍    | 220M/405M [00:01<00:00, 195MB/s][A
+Downloading (…)l-00007-of-00033.bin:  60%|█████▉    | 241M/405M [00:01<00:00, 196MB/s][A
+Downloading (…)l-00007-of-00033.bin:  67%|██████▋   | 273M/405M [00:01<00:00, 203MB/s][A
+Downloading (…)l-00007-of-00033.bin:  73%|███████▎  | 294M/405M [00:01<00:00, 203MB/s][A
+Downloading (…)l-00007-of-00033.bin:  78%|███████▊  | 315M/405M [00:01<00:00, 204MB/s][A
+Downloading (…)l-00007-of-00033.bin:  83%|████████▎ | 336M/405M [00:01<00:00, 205MB/s][A
+Downloading (…)l-00007-of-00033.bin:  88%|████████▊ | 357M/405M [00:02<00:00, 205MB/s][A
+Downloading (…)l-00007-of-00033.bin:  96%|█████████▌| 388M/405M [00:02<00:00, 209MB/s][ADownloading (…)l-00007-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 181MB/s]
+Downloading shards:  21%|██        | 7/33 [00:18<01:06,  2.56s/it]Downloading shards:  21%|██        | 7/33 [00:18<01:06,  2.55s/it]
+Downloading (…)l-00008-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00008-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:12, 32.4MB/s][A
+Downloading (…)l-00008-of-00033.bin:   8%|▊         | 31.5M/405M [00:00<00:04, 79.7MB/s][A
+Downloading (…)l-00008-of-00033.bin:  13%|█▎        | 52.4M/405M [00:00<00:03, 109MB/s] [A
+Downloading (…)l-00008-of-00033.bin:  18%|█▊        | 73.4M/405M [00:00<00:02, 136MB/s][A
+Downloading (…)l-00008-of-00033.bin:  26%|██▌       | 105M/405M [00:00<00:01, 169MB/s] [A
+Downloading (…)l-00008-of-00033.bin:  34%|███▎      | 136M/405M [00:00<00:01, 194MB/s][A
+Downloading (…)l-00008-of-00033.bin:  41%|████▏     | 168M/405M [00:01<00:01, 194MB/s][A
+Downloading (…)l-00008-of-00033.bin:  49%|████▉     | 199M/405M [00:01<00:00, 216MB/s][A
+Downloading (…)l-00008-of-00033.bin:  57%|█████▋    | 231M/405M [00:01<00:00, 206MB/s][A
+Downloading (…)l-00008-of-00033.bin:  65%|██████▍   | 262M/405M [00:01<00:00, 218MB/s][A
+Downloading (…)l-00008-of-00033.bin:  73%|███████▎  | 294M/405M [00:01<00:00, 209MB/s][A
+Downloading (…)l-00008-of-00033.bin:  80%|████████  | 325M/405M [00:01<00:00, 214MB/s][A
+Downloading (…)l-00008-of-00033.bin:  88%|████████▊ | 357M/405M [00:01<00:00, 204MB/s][A
+Downloading (…)l-00008-of-00033.bin:  96%|█████████▌| 388M/405M [00:02<00:00, 216MB/s][ADownloading (…)l-00008-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 185MB/s]
+Downloading shards:  24%|██▍       | 8/33 [00:20<01:04,  2.59s/it]Downloading shards:  24%|██▍       | 8/33 [00:20<01:05,  2.61s/it]
+Downloading (…)l-00009-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00009-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:10, 38.9MB/s][A
+Downloading (…)l-00009-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:06, 56.5MB/s][A
+Downloading (…)l-00009-of-00033.bin:  10%|█         | 41.9M/405M [00:00<00:04, 83.3MB/s][A
+Downloading (…)l-00009-of-00033.bin:  16%|█▌        | 62.9M/405M [00:00<00:03, 104MB/s] [A
+Downloading (…)l-00009-of-00033.bin:  21%|██        | 83.9M/405M [00:00<00:02, 128MB/s][A
+Downloading (…)l-00009-of-00033.bin:  26%|██▌       | 105M/405M [00:00<00:02, 130MB/s] [A
+Downloading (…)l-00009-of-00033.bin:  34%|███▎      | 136M/405M [00:01<00:01, 171MB/s][A
+Downloading (…)l-00009-of-00033.bin:  41%|████▏     | 168M/405M [00:01<00:01, 195MB/s][A
+Downloading (…)l-00009-of-00033.bin:  49%|████▉     | 199M/405M [00:01<00:01, 199MB/s][A
+Downloading (…)l-00009-of-00033.bin:  57%|█████▋    | 231M/405M [00:01<00:00, 215MB/s][A
+Downloading (…)l-00009-of-00033.bin:  65%|██████▍   | 262M/405M [00:01<00:00, 209MB/s][A
+Downloading (…)l-00009-of-00033.bin:  73%|███████▎  | 294M/405M [00:01<00:00, 208MB/s][A
+Downloading (…)l-00009-of-00033.bin:  80%|████████  | 325M/405M [00:01<00:00, 216MB/s][A
+Downloading (…)l-00009-of-00033.bin:  88%|████████▊ | 357M/405M [00:02<00:00, 223MB/s][A
+Downloading (…)l-00009-of-00033.bin:  96%|█████████▌| 388M/405M [00:02<00:00, 217MB/s][ADownloading (…)l-00009-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 176MB/s]
+Downloading shards:  27%|██▋       | 9/33 [00:23<01:03,  2.66s/it]Downloading shards:  27%|██▋       | 9/33 [00:23<01:04,  2.67s/it]
+Downloading (…)l-00010-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00010-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:11, 33.1MB/s][A
+Downloading (…)l-00010-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:08, 47.1MB/s][A
+Downloading (…)l-00010-of-00033.bin:   8%|▊         | 31.5M/405M [00:00<00:06, 60.6MB/s][A
+Downloading (…)l-00010-of-00033.bin:  13%|█▎        | 52.4M/405M [00:00<00:04, 84.4MB/s][A
+Downloading (…)l-00010-of-00033.bin:  18%|█▊        | 73.4M/405M [00:00<00:02, 113MB/s] [A
+Downloading (…)l-00010-of-00033.bin:  26%|██▌       | 105M/405M [00:01<00:02, 144MB/s] [A
+Downloading (…)l-00010-of-00033.bin:  34%|███▎      | 136M/405M [00:01<00:01, 171MB/s][A
+Downloading (…)l-00010-of-00033.bin:  41%|████▏     | 168M/405M [00:01<00:01, 191MB/s][A
+Downloading (…)l-00010-of-00033.bin:  49%|████▉     | 199M/405M [00:01<00:00, 206MB/s][A
+Downloading (…)l-00010-of-00033.bin:  57%|█████▋    | 231M/405M [00:01<00:00, 215MB/s][A
+Downloading (…)l-00010-of-00033.bin:  65%|██████▍   | 262M/405M [00:01<00:00, 226MB/s][A
+Downloading (…)l-00010-of-00033.bin:  73%|███████▎  | 294M/405M [00:01<00:00, 231MB/s][A
+Downloading (…)l-00010-of-00033.bin:  80%|████████  | 325M/405M [00:01<00:00, 235MB/s][A
+Downloading (…)l-00010-of-00033.bin:  88%|████████▊ | 357M/405M [00:02<00:00, 230MB/s][A
+Downloading (…)l-00010-of-00033.bin:  96%|█████████▌| 388M/405M [00:02<00:00, 234MB/s][ADownloading (…)l-00010-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 178MB/s]
+Downloading shards:  30%|███       | 10/33 [00:25<00:59,  2.60s/it]Downloading shards:  30%|███       | 10/33 [00:25<00:59,  2.60s/it]
+Downloading (…)l-00011-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00011-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:10, 38.7MB/s][A
+Downloading (…)l-00011-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:07, 51.5MB/s][A
+Downloading (…)l-00011-of-00033.bin:   8%|▊         | 31.5M/405M [00:00<00:06, 62.1MB/s][A
+Downloading (…)l-00011-of-00033.bin:  13%|█▎        | 52.4M/405M [00:00<00:04, 87.3MB/s][A
+Downloading (…)l-00011-of-00033.bin:  18%|█▊        | 73.4M/405M [00:00<00:02, 115MB/s] [A
+Downloading (…)l-00011-of-00033.bin:  23%|██▎       | 94.4M/405M [00:00<00:02, 136MB/s][A
+Downloading (…)l-00011-of-00033.bin:  31%|███       | 126M/405M [00:01<00:01, 167MB/s] [A
+Downloading (…)l-00011-of-00033.bin:  39%|███▉      | 157M/405M [00:01<00:01, 192MB/s][A
+Downloading (…)l-00011-of-00033.bin:  47%|████▋     | 189M/405M [00:01<00:01, 211MB/s][A
+Downloading (…)l-00011-of-00033.bin:  54%|█████▍    | 220M/405M [00:01<00:00, 223MB/s][A
+Downloading (…)l-00011-of-00033.bin:  62%|██████▏   | 252M/405M [00:01<00:00, 233MB/s][A
+Downloading (…)l-00011-of-00033.bin:  70%|██████▉   | 283M/405M [00:01<00:00, 241MB/s][A
+Downloading (…)l-00011-of-00033.bin:  78%|███████▊  | 315M/405M [00:01<00:00, 242MB/s][A
+Downloading (…)l-00011-of-00033.bin:  85%|████████▌ | 346M/405M [00:01<00:00, 233MB/s][A
+Downloading (…)l-00011-of-00033.bin:  93%|█████████▎| 377M/405M [00:02<00:00, 236MB/s][A
+Downloading (…)l-00011-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 242MB/s][ADownloading (…)l-00011-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 183MB/s]
+Downloading shards:  33%|███▎      | 11/33 [00:28<00:56,  2.55s/it]Downloading shards:  33%|███▎      | 11/33 [00:28<00:56,  2.55s/it]
+Downloading (…)l-00012-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00012-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:03, 118MB/s][A
+Downloading (…)l-00012-of-00033.bin:  10%|█         | 41.9M/405M [00:00<00:02, 150MB/s][A
+Downloading (…)l-00012-of-00033.bin:  18%|█▊        | 73.4M/405M [00:00<00:01, 186MB/s][A
+Downloading (…)l-00012-of-00033.bin:  26%|██▌       | 105M/405M [00:00<00:01, 207MB/s] [A
+Downloading (…)l-00012-of-00033.bin:  34%|███▎      | 136M/405M [00:00<00:01, 219MB/s][A
+Downloading (…)l-00012-of-00033.bin:  41%|████▏     | 168M/405M [00:00<00:01, 227MB/s][A
+Downloading (…)l-00012-of-00033.bin:  49%|████▉     | 199M/405M [00:00<00:00, 220MB/s][A
+Downloading (…)l-00012-of-00033.bin:  57%|█████▋    | 231M/405M [00:01<00:01, 141MB/s][A
+Downloading (…)l-00012-of-00033.bin:  65%|██████▍   | 262M/405M [00:01<00:00, 165MB/s][A
+Downloading (…)l-00012-of-00033.bin:  73%|███████▎  | 294M/405M [00:01<00:00, 178MB/s][A
+Downloading (…)l-00012-of-00033.bin:  78%|███████▊  | 315M/405M [00:01<00:00, 184MB/s][A
+Downloading (…)l-00012-of-00033.bin:  85%|████████▌ | 346M/405M [00:01<00:00, 199MB/s][A
+Downloading (…)l-00012-of-00033.bin:  93%|█████████▎| 377M/405M [00:01<00:00, 211MB/s][A
+Downloading (…)l-00012-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 219MB/s][ADownloading (…)l-00012-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 193MB/s]
+Downloading shards:  36%|███▋      | 12/33 [00:30<00:51,  2.47s/it]Downloading shards:  36%|███▋      | 12/33 [00:30<00:51,  2.47s/it]
+Downloading (…)l-00013-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00013-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:14, 26.7MB/s][A
+Downloading (…)l-00013-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:09, 39.1MB/s][A
+Downloading (…)l-00013-of-00033.bin:   8%|▊         | 31.5M/405M [00:00<00:07, 51.6MB/s][A
+Downloading (…)l-00013-of-00033.bin:  10%|█         | 41.9M/405M [00:00<00:05, 63.8MB/s][A
+Downloading (…)l-00013-of-00033.bin:  16%|█▌        | 62.9M/405M [00:00<00:03, 87.9MB/s][A
+Downloading (…)l-00013-of-00033.bin:  21%|██        | 83.9M/405M [00:01<00:02, 114MB/s] [A
+Downloading (…)l-00013-of-00033.bin:  28%|██▊       | 115M/405M [00:01<00:01, 149MB/s] [A
+Downloading (…)l-00013-of-00033.bin:  36%|███▋      | 147M/405M [00:01<00:01, 175MB/s][A
+Downloading (…)l-00013-of-00033.bin:  44%|████▍     | 178M/405M [00:01<00:01, 192MB/s][A
+Downloading (…)l-00013-of-00033.bin:  52%|█████▏    | 210M/405M [00:01<00:00, 206MB/s][A
+Downloading (…)l-00013-of-00033.bin:  60%|█████▉    | 241M/405M [00:01<00:00, 211MB/s][A
+Downloading (…)l-00013-of-00033.bin:  67%|██████▋   | 273M/405M [00:01<00:00, 218MB/s][A
+Downloading (…)l-00013-of-00033.bin:  75%|███████▌  | 304M/405M [00:02<00:00, 225MB/s][A
+Downloading (…)l-00013-of-00033.bin:  83%|████████▎ | 336M/405M [00:02<00:00, 227MB/s][A
+Downloading (…)l-00013-of-00033.bin:  91%|█████████ | 367M/405M [00:02<00:00, 230MB/s][A
+Downloading (…)l-00013-of-00033.bin:  98%|█████████▊| 398M/405M [00:02<00:00, 229MB/s][ADownloading (…)l-00013-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 165MB/s]
+Downloading shards:  39%|███▉      | 13/33 [00:33<00:50,  2.53s/it]Downloading shards:  39%|███▉      | 13/33 [00:33<00:50,  2.53s/it]
+Downloading (…)l-00014-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00014-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:15, 26.1MB/s][A
+Downloading (…)l-00014-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:10, 36.3MB/s][A
+Downloading (…)l-00014-of-00033.bin:   8%|▊         | 31.5M/405M [00:00<00:07, 48.0MB/s][A
+Downloading (…)l-00014-of-00033.bin:  10%|█         | 41.9M/405M [00:00<00:06, 60.2MB/s][A
+Downloading (…)l-00014-of-00033.bin:  16%|█▌        | 62.9M/405M [00:01<00:03, 86.1MB/s][A
+Downloading (…)l-00014-of-00033.bin:  21%|██        | 83.9M/405M [00:01<00:02, 111MB/s] [A
+Downloading (…)l-00014-of-00033.bin:  28%|██▊       | 115M/405M [00:01<00:01, 151MB/s] [A
+Downloading (…)l-00014-of-00033.bin:  36%|███▋      | 147M/405M [00:01<00:01, 175MB/s][A
+Downloading (…)l-00014-of-00033.bin:  44%|████▍     | 178M/405M [00:01<00:01, 199MB/s][A
+Downloading (…)l-00014-of-00033.bin:  52%|█████▏    | 210M/405M [00:01<00:00, 197MB/s][A
+Downloading (…)l-00014-of-00033.bin:  57%|█████▋    | 231M/405M [00:01<00:00, 182MB/s][A
+Downloading (…)l-00014-of-00033.bin:  65%|██████▍   | 262M/405M [00:01<00:00, 205MB/s][A
+Downloading (…)l-00014-of-00033.bin:  73%|███████▎  | 294M/405M [00:02<00:00, 216MB/s][A
+Downloading (…)l-00014-of-00033.bin:  80%|████████  | 325M/405M [00:02<00:00, 219MB/s][A
+Downloading (…)l-00014-of-00033.bin:  88%|████████▊ | 357M/405M [00:02<00:00, 229MB/s][A
+Downloading (…)l-00014-of-00033.bin:  96%|█████████▌| 388M/405M [00:02<00:00, 225MB/s][ADownloading (…)l-00014-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 159MB/s]
+Downloading shards:  42%|████▏     | 14/33 [00:36<00:49,  2.59s/it]Downloading shards:  42%|████▏     | 14/33 [00:36<00:49,  2.60s/it]
+Downloading (…)l-00015-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00015-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:26, 14.9MB/s][A
+Downloading (…)l-00015-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:16, 23.7MB/s][A
+Downloading (…)l-00015-of-00033.bin:   8%|▊         | 31.5M/405M [00:01<00:10, 34.0MB/s][A
+Downloading (…)l-00015-of-00033.bin:  10%|█         | 41.9M/405M [00:01<00:08, 45.0MB/s][A
+Downloading (…)l-00015-of-00033.bin:  16%|█▌        | 62.9M/405M [00:01<00:04, 68.8MB/s][A
+Downloading (…)l-00015-of-00033.bin:  21%|██        | 83.9M/405M [00:01<00:03, 94.7MB/s][A
+Downloading (…)l-00015-of-00033.bin:  28%|██▊       | 115M/405M [00:01<00:02, 130MB/s]  [A
+Downloading (…)l-00015-of-00033.bin:  36%|███▋      | 147M/405M [00:01<00:01, 160MB/s][A
+Downloading (…)l-00015-of-00033.bin:  44%|████▍     | 178M/405M [00:01<00:01, 183MB/s][A
+Downloading (…)l-00015-of-00033.bin:  52%|█████▏    | 210M/405M [00:02<00:00, 203MB/s][A
+Downloading (…)l-00015-of-00033.bin:  60%|█████▉    | 241M/405M [00:02<00:00, 191MB/s][A
+Downloading (…)l-00015-of-00033.bin:  67%|██████▋   | 273M/405M [00:02<00:00, 214MB/s][A
+Downloading (…)l-00015-of-00033.bin:  75%|███████▌  | 304M/405M [00:02<00:00, 219MB/s][A
+Downloading (…)l-00015-of-00033.bin:  83%|████████▎ | 336M/405M [00:02<00:00, 230MB/s][A
+Downloading (…)l-00015-of-00033.bin:  91%|█████████ | 367M/405M [00:02<00:00, 234MB/s][A
+Downloading (…)l-00015-of-00033.bin:  98%|█████████▊| 398M/405M [00:02<00:00, 233MB/s][ADownloading (…)l-00015-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 141MB/s]
+Downloading shards:  45%|████▌     | 15/33 [00:39<00:49,  2.74s/it]Downloading shards:  45%|████▌     | 15/33 [00:39<00:49,  2.73s/it]
+Downloading (…)l-00016-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00016-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:10, 38.8MB/s][A
+Downloading (…)l-00016-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:07, 51.2MB/s][A
+Downloading (…)l-00016-of-00033.bin:   8%|▊         | 31.5M/405M [00:00<00:05, 65.7MB/s][A
+Downloading (…)l-00016-of-00033.bin:  13%|█▎        | 52.4M/405M [00:00<00:04, 87.4MB/s][A
+Downloading (…)l-00016-of-00033.bin:  18%|█▊        | 73.4M/405M [00:00<00:02, 114MB/s] [A
+Downloading (…)l-00016-of-00033.bin:  23%|██▎       | 94.4M/405M [00:01<00:03, 88.0MB/s][A
+Downloading (…)l-00016-of-00033.bin:  31%|███       | 126M/405M [00:01<00:02, 122MB/s]  [A
+Downloading (…)l-00016-of-00033.bin:  39%|███▉      | 157M/405M [00:01<00:01, 151MB/s][A
+Downloading (…)l-00016-of-00033.bin:  47%|████▋     | 189M/405M [00:01<00:01, 174MB/s][A
+Downloading (…)l-00016-of-00033.bin:  54%|█████▍    | 220M/405M [00:01<00:00, 190MB/s][A
+Downloading (…)l-00016-of-00033.bin:  60%|█████▉    | 241M/405M [00:01<00:00, 191MB/s][A
+Downloading (…)l-00016-of-00033.bin:  67%|██████▋   | 273M/405M [00:01<00:00, 202MB/s][A
+Downloading (…)l-00016-of-00033.bin:  75%|███████▌  | 304M/405M [00:02<00:00, 213MB/s][A
+Downloading (…)l-00016-of-00033.bin:  83%|████████▎ | 336M/405M [00:02<00:00, 209MB/s][A
+Downloading (…)l-00016-of-00033.bin:  91%|█████████ | 367M/405M [00:02<00:00, 219MB/s][A
+Downloading (…)l-00016-of-00033.bin:  98%|█████████▊| 398M/405M [00:02<00:00, 224MB/s][ADownloading (…)l-00016-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 161MB/s]
+Downloading shards:  48%|████▊     | 16/33 [00:41<00:46,  2.73s/it]Downloading shards:  48%|████▊     | 16/33 [00:41<00:46,  2.73s/it]
+Downloading (…)l-00017-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00017-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:05, 67.7MB/s][A
+Downloading (…)l-00017-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:04, 77.4MB/s][A
+Downloading (…)l-00017-of-00033.bin:  10%|█         | 41.9M/405M [00:00<00:03, 104MB/s] [A
+Downloading (…)l-00017-of-00033.bin:  16%|█▌        | 62.9M/405M [00:00<00:02, 128MB/s][A
+Downloading (…)l-00017-of-00033.bin:  23%|██▎       | 94.4M/405M [00:00<00:01, 164MB/s][A
+Downloading (…)l-00017-of-00033.bin:  31%|███       | 126M/405M [00:00<00:01, 195MB/s] [A
+Downloading (…)l-00017-of-00033.bin:  39%|███▉      | 157M/405M [00:00<00:01, 197MB/s][A
+Downloading (…)l-00017-of-00033.bin:  47%|████▋     | 189M/405M [00:01<00:01, 204MB/s][A
+Downloading (…)l-00017-of-00033.bin:  54%|█████▍    | 220M/405M [00:01<00:00, 212MB/s][A
+Downloading (…)l-00017-of-00033.bin:  62%|██████▏   | 252M/405M [00:01<00:00, 212MB/s][A
+Downloading (…)l-00017-of-00033.bin:  70%|██████▉   | 283M/405M [00:01<00:00, 218MB/s][A
+Downloading (…)l-00017-of-00033.bin:  78%|███████▊  | 315M/405M [00:01<00:00, 224MB/s][A
+Downloading (…)l-00017-of-00033.bin:  85%|████████▌ | 346M/405M [00:01<00:00, 233MB/s][A
+Downloading (…)l-00017-of-00033.bin:  93%|█████████▎| 377M/405M [00:01<00:00, 233MB/s][A
+Downloading (…)l-00017-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 238MB/s][ADownloading (…)l-00017-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 199MB/s]
+Downloading shards:  52%|█████▏    | 17/33 [00:44<00:42,  2.67s/it]Downloading shards:  52%|█████▏    | 17/33 [00:44<00:42,  2.67s/it]
+Downloading (…)l-00018-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00018-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:11, 32.9MB/s][A
+Downloading (…)l-00018-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:07, 48.0MB/s][A
+Downloading (…)l-00018-of-00033.bin:   8%|▊         | 31.5M/405M [00:00<00:06, 59.2MB/s][A
+Downloading (…)l-00018-of-00033.bin:  13%|█▎        | 52.4M/405M [00:00<00:04, 84.3MB/s][A
+Downloading (…)l-00018-of-00033.bin:  18%|█▊        | 73.4M/405M [00:00<00:03, 109MB/s] [A
+Downloading (…)l-00018-of-00033.bin:  26%|██▌       | 105M/405M [00:01<00:02, 146MB/s] [A
+Downloading (…)l-00018-of-00033.bin:  34%|███▎      | 136M/405M [00:01<00:01, 176MB/s][A
+Downloading (…)l-00018-of-00033.bin:  41%|████▏     | 168M/405M [00:01<00:01, 195MB/s][A
+Downloading (…)l-00018-of-00033.bin:  49%|████▉     | 199M/405M [00:01<00:00, 207MB/s][A
+Downloading (…)l-00018-of-00033.bin:  57%|█████▋    | 231M/405M [00:01<00:00, 216MB/s][A
+Downloading (…)l-00018-of-00033.bin:  65%|██████▍   | 262M/405M [00:01<00:00, 212MB/s][A
+Downloading (…)l-00018-of-00033.bin:  73%|███████▎  | 294M/405M [00:01<00:00, 208MB/s][A
+Downloading (…)l-00018-of-00033.bin:  80%|████████  | 325M/405M [00:01<00:00, 222MB/s][A
+Downloading (…)l-00018-of-00033.bin:  88%|████████▊ | 357M/405M [00:02<00:00, 220MB/s][A
+Downloading (…)l-00018-of-00033.bin:  96%|█████████▌| 388M/405M [00:02<00:00, 224MB/s][ADownloading (…)l-00018-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 173MB/s]
+Downloading shards:  55%|█████▍    | 18/33 [00:46<00:39,  2.64s/it]Downloading shards:  55%|█████▍    | 18/33 [00:47<00:39,  2.65s/it]
+Downloading (…)l-00019-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00019-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:13, 28.9MB/s][A
+Downloading (…)l-00019-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:09, 40.9MB/s][A
+Downloading (…)l-00019-of-00033.bin:   8%|▊         | 31.5M/405M [00:00<00:06, 54.6MB/s][A
+Downloading (…)l-00019-of-00033.bin:  13%|█▎        | 52.4M/405M [00:00<00:04, 79.0MB/s][A
+Downloading (…)l-00019-of-00033.bin:  18%|█▊        | 73.4M/405M [00:00<00:03, 102MB/s] [A
+Downloading (…)l-00019-of-00033.bin:  23%|██▎       | 94.4M/405M [00:01<00:02, 125MB/s][A
+Downloading (…)l-00019-of-00033.bin:  31%|███       | 126M/405M [00:01<00:01, 158MB/s] [A
+Downloading (…)l-00019-of-00033.bin:  39%|███▉      | 157M/405M [00:01<00:01, 185MB/s][A
+Downloading (…)l-00019-of-00033.bin:  47%|████▋     | 189M/405M [00:01<00:01, 204MB/s][A
+Downloading (…)l-00019-of-00033.bin:  54%|█████▍    | 220M/405M [00:01<00:00, 217MB/s][A
+Downloading (…)l-00019-of-00033.bin:  62%|██████▏   | 252M/405M [00:01<00:00, 224MB/s][A
+Downloading (…)l-00019-of-00033.bin:  70%|██████▉   | 283M/405M [00:01<00:00, 219MB/s][A
+Downloading (…)l-00019-of-00033.bin:  78%|███████▊  | 315M/405M [00:01<00:00, 227MB/s][A
+Downloading (…)l-00019-of-00033.bin:  85%|████████▌ | 346M/405M [00:02<00:00, 231MB/s][A
+Downloading (…)l-00019-of-00033.bin:  93%|█████████▎| 377M/405M [00:02<00:00, 236MB/s][A
+Downloading (…)l-00019-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 238MB/s][ADownloading (…)l-00019-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 171MB/s]
+Downloading shards:  58%|█████▊    | 19/33 [00:49<00:36,  2.63s/it]Downloading shards:  58%|█████▊    | 19/33 [00:49<00:36,  2.63s/it]
+Downloading (…)l-00020-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00020-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:08, 48.8MB/s][A
+Downloading (…)l-00020-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:05, 70.9MB/s][A
+Downloading (…)l-00020-of-00033.bin:  10%|█         | 41.9M/405M [00:00<00:03, 92.3MB/s][A
+Downloading (…)l-00020-of-00033.bin:  16%|█▌        | 62.9M/405M [00:00<00:02, 119MB/s] [A
+Downloading (…)l-00020-of-00033.bin:  23%|██▎       | 94.4M/405M [00:00<00:01, 156MB/s][A
+Downloading (…)l-00020-of-00033.bin:  31%|███       | 126M/405M [00:00<00:01, 186MB/s] [A
+Downloading (…)l-00020-of-00033.bin:  39%|███▉      | 157M/405M [00:01<00:01, 202MB/s][A
+Downloading (…)l-00020-of-00033.bin:  47%|████▋     | 189M/405M [00:01<00:01, 211MB/s][A
+Downloading (…)l-00020-of-00033.bin:  54%|█████▍    | 220M/405M [00:01<00:00, 217MB/s][A
+Downloading (…)l-00020-of-00033.bin:  62%|██████▏   | 252M/405M [00:01<00:00, 218MB/s][A
+Downloading (…)l-00020-of-00033.bin:  70%|██████▉   | 283M/405M [00:01<00:00, 231MB/s][A
+Downloading (…)l-00020-of-00033.bin:  78%|███████▊  | 315M/405M [00:01<00:00, 235MB/s][A
+Downloading (…)l-00020-of-00033.bin:  85%|████████▌ | 346M/405M [00:01<00:00, 238MB/s][A
+Downloading (…)l-00020-of-00033.bin:  93%|█████████▎| 377M/405M [00:01<00:00, 217MB/s][ADownloading (…)l-00020-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 196MB/s]
+Downloading shards:  61%|██████    | 20/33 [00:51<00:32,  2.53s/it]Downloading shards:  61%|██████    | 20/33 [00:51<00:32,  2.53s/it]
+Downloading (…)l-00021-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00021-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:05, 71.4MB/s][A
+Downloading (…)l-00021-of-00033.bin:   8%|▊         | 31.5M/405M [00:00<00:03, 106MB/s] [A
+Downloading (…)l-00021-of-00033.bin:  16%|█▌        | 62.9M/405M [00:00<00:02, 162MB/s][A
+Downloading (…)l-00021-of-00033.bin:  23%|██▎       | 94.4M/405M [00:00<00:01, 192MB/s][A
+Downloading (…)l-00021-of-00033.bin:  31%|███       | 126M/405M [00:00<00:01, 208MB/s] [A
+Downloading (…)l-00021-of-00033.bin:  39%|███▉      | 157M/405M [00:00<00:01, 217MB/s][A
+Downloading (…)l-00021-of-00033.bin:  47%|████▋     | 189M/405M [00:00<00:01, 215MB/s][A
+Downloading (…)l-00021-of-00033.bin:  54%|█████▍    | 220M/405M [00:01<00:00, 204MB/s][A
+Downloading (…)l-00021-of-00033.bin:  62%|██████▏   | 252M/405M [00:01<00:00, 209MB/s][A
+Downloading (…)l-00021-of-00033.bin:  70%|██████▉   | 283M/405M [00:01<00:00, 150MB/s][A
+Downloading (…)l-00021-of-00033.bin:  75%|███████▌  | 304M/405M [00:01<00:00, 154MB/s][A
+Downloading (…)l-00021-of-00033.bin:  83%|████████▎ | 336M/405M [00:01<00:00, 180MB/s][A
+Downloading (…)l-00021-of-00033.bin:  91%|█████████ | 367M/405M [00:02<00:00, 198MB/s][A
+Downloading (…)l-00021-of-00033.bin:  98%|█████████▊| 398M/405M [00:02<00:00, 212MB/s][ADownloading (…)l-00021-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 187MB/s]
+Downloading shards:  64%|██████▎   | 21/33 [00:54<00:29,  2.48s/it]Downloading shards:  64%|██████▎   | 21/33 [00:54<00:29,  2.48s/it]
+Downloading (…)l-00022-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00022-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:05, 73.1MB/s][A
+Downloading (…)l-00022-of-00033.bin:   8%|▊         | 31.5M/405M [00:00<00:03, 106MB/s] [A
+Downloading (…)l-00022-of-00033.bin:  13%|█▎        | 52.4M/405M [00:00<00:02, 136MB/s][A
+Downloading (…)l-00022-of-00033.bin:  21%|██        | 83.9M/405M [00:00<00:01, 172MB/s][A
+Downloading (…)l-00022-of-00033.bin:  28%|██▊       | 115M/405M [00:00<00:01, 199MB/s] [A
+Downloading (…)l-00022-of-00033.bin:  36%|███▋      | 147M/405M [00:00<00:01, 211MB/s][A
+Downloading (…)l-00022-of-00033.bin:  44%|████▍     | 178M/405M [00:00<00:01, 222MB/s][A
+Downloading (…)l-00022-of-00033.bin:  52%|█████▏    | 210M/405M [00:01<00:00, 226MB/s][A
+Downloading (…)l-00022-of-00033.bin:  60%|█████▉    | 241M/405M [00:01<00:00, 227MB/s][A
+Downloading (…)l-00022-of-00033.bin:  67%|██████▋   | 273M/405M [00:01<00:00, 234MB/s][A
+Downloading (…)l-00022-of-00033.bin:  75%|███████▌  | 304M/405M [00:01<00:00, 235MB/s][A
+Downloading (…)l-00022-of-00033.bin:  83%|████████▎ | 336M/405M [00:01<00:00, 226MB/s][A
+Downloading (…)l-00022-of-00033.bin:  91%|█████████ | 367M/405M [00:01<00:00, 231MB/s][A
+Downloading (…)l-00022-of-00033.bin:  98%|█████████▊| 398M/405M [00:01<00:00, 224MB/s][ADownloading (…)l-00022-of-00033.bin: 100%|██████████| 405M/405M [00:01<00:00, 209MB/s]
+Downloading shards:  67%|██████▋   | 22/33 [00:56<00:26,  2.38s/it]Downloading shards:  67%|██████▋   | 22/33 [00:56<00:26,  2.38s/it]
+Downloading (…)l-00023-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00023-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:04, 94.1MB/s][A
+Downloading (…)l-00023-of-00033.bin:   8%|▊         | 31.5M/405M [00:00<00:02, 126MB/s] [A
+Downloading (…)l-00023-of-00033.bin:  13%|█▎        | 52.4M/405M [00:00<00:02, 141MB/s][A
+Downloading (…)l-00023-of-00033.bin:  21%|██        | 83.9M/405M [00:00<00:01, 178MB/s][A
+Downloading (…)l-00023-of-00033.bin:  28%|██▊       | 115M/405M [00:00<00:01, 201MB/s] [A
+Downloading (…)l-00023-of-00033.bin:  36%|███▋      | 147M/405M [00:00<00:01, 216MB/s][A
+Downloading (…)l-00023-of-00033.bin:  44%|████▍     | 178M/405M [00:00<00:01, 224MB/s][A
+Downloading (…)l-00023-of-00033.bin:  52%|█████▏    | 210M/405M [00:01<00:00, 231MB/s][A
+Downloading (…)l-00023-of-00033.bin:  60%|█████▉    | 241M/405M [00:01<00:00, 236MB/s][A
+Downloading (…)l-00023-of-00033.bin:  67%|██████▋   | 273M/405M [00:01<00:00, 239MB/s][A
+Downloading (…)l-00023-of-00033.bin:  75%|███████▌  | 304M/405M [00:01<00:00, 242MB/s][A
+Downloading (…)l-00023-of-00033.bin:  83%|████████▎ | 336M/405M [00:01<00:00, 229MB/s][A
+Downloading (…)l-00023-of-00033.bin:  91%|█████████ | 367M/405M [00:01<00:00, 233MB/s][A
+Downloading (…)l-00023-of-00033.bin:  98%|█████████▊| 398M/405M [00:01<00:00, 234MB/s][ADownloading (…)l-00023-of-00033.bin: 100%|██████████| 405M/405M [00:01<00:00, 216MB/s]
+Downloading shards:  70%|██████▉   | 23/33 [00:58<00:22,  2.28s/it]Downloading shards:  70%|██████▉   | 23/33 [00:58<00:22,  2.29s/it]
+Downloading (…)l-00024-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00024-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:10, 37.5MB/s][A
+Downloading (…)l-00024-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:07, 48.9MB/s][A
+Downloading (…)l-00024-of-00033.bin:   8%|▊         | 31.5M/405M [00:00<00:06, 60.7MB/s][A
+Downloading (…)l-00024-of-00033.bin:  10%|█         | 41.9M/405M [00:00<00:04, 72.6MB/s][A
+Downloading (…)l-00024-of-00033.bin:  16%|█▌        | 62.9M/405M [00:00<00:03, 101MB/s] [A
+Downloading (…)l-00024-of-00033.bin:  21%|██        | 83.9M/405M [00:00<00:02, 125MB/s][A
+Downloading (…)l-00024-of-00033.bin:  28%|██▊       | 115M/405M [00:01<00:01, 162MB/s] [A
+Downloading (…)l-00024-of-00033.bin:  36%|███▋      | 147M/405M [00:01<00:01, 183MB/s][A
+Downloading (…)l-00024-of-00033.bin:  44%|████▍     | 178M/405M [00:01<00:01, 198MB/s][A
+Downloading (…)l-00024-of-00033.bin:  52%|█████▏    | 210M/405M [00:01<00:00, 212MB/s][A
+Downloading (…)l-00024-of-00033.bin:  60%|█████▉    | 241M/405M [00:01<00:00, 221MB/s][A
+Downloading (…)l-00024-of-00033.bin:  67%|██████▋   | 273M/405M [00:01<00:00, 224MB/s][A
+Downloading (…)l-00024-of-00033.bin:  75%|███████▌  | 304M/405M [00:01<00:00, 226MB/s][A
+Downloading (…)l-00024-of-00033.bin:  83%|████████▎ | 336M/405M [00:01<00:00, 229MB/s][A
+Downloading (…)l-00024-of-00033.bin:  91%|█████████ | 367M/405M [00:02<00:00, 225MB/s][A
+Downloading (…)l-00024-of-00033.bin:  98%|█████████▊| 398M/405M [00:02<00:00, 225MB/s][ADownloading (…)l-00024-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 175MB/s]
+Downloading shards:  73%|███████▎  | 24/33 [01:00<00:21,  2.35s/it]Downloading shards:  73%|███████▎  | 24/33 [01:00<00:21,  2.34s/it]
+Downloading (…)l-00025-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00025-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:07, 51.1MB/s][A
+Downloading (…)l-00025-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:05, 66.5MB/s][A
+Downloading (…)l-00025-of-00033.bin:   8%|▊         | 31.5M/405M [00:00<00:04, 78.9MB/s][A
+Downloading (…)l-00025-of-00033.bin:  13%|█▎        | 52.4M/405M [00:00<00:03, 102MB/s] [A
+Downloading (…)l-00025-of-00033.bin:  18%|█▊        | 73.4M/405M [00:00<00:02, 128MB/s][A
+Downloading (…)l-00025-of-00033.bin:  26%|██▌       | 105M/405M [00:00<00:01, 167MB/s] [A
+Downloading (…)l-00025-of-00033.bin:  34%|███▎      | 136M/405M [00:00<00:01, 194MB/s][A
+Downloading (…)l-00025-of-00033.bin:  41%|████▏     | 168M/405M [00:01<00:01, 212MB/s][A
+Downloading (…)l-00025-of-00033.bin:  49%|████▉     | 199M/405M [00:01<00:00, 221MB/s][A
+Downloading (…)l-00025-of-00033.bin:  57%|█████▋    | 231M/405M [00:01<00:00, 223MB/s][A
+Downloading (…)l-00025-of-00033.bin:  65%|██████▍   | 262M/405M [00:01<00:00, 230MB/s][A
+Downloading (…)l-00025-of-00033.bin:  73%|███████▎  | 294M/405M [00:01<00:00, 236MB/s][A
+Downloading (…)l-00025-of-00033.bin:  80%|████████  | 325M/405M [00:01<00:00, 216MB/s][A
+Downloading (…)l-00025-of-00033.bin:  88%|████████▊ | 357M/405M [00:01<00:00, 231MB/s][A
+Downloading (…)l-00025-of-00033.bin:  96%|█████████▌| 388M/405M [00:02<00:00, 230MB/s][ADownloading (…)l-00025-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 189MB/s]
+Downloading shards:  76%|███████▌  | 25/33 [01:03<00:18,  2.35s/it]Downloading shards:  76%|███████▌  | 25/33 [01:03<00:18,  2.34s/it]
+Downloading (…)l-00026-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00026-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:11, 33.0MB/s][A
+Downloading (…)l-00026-of-00033.bin:   8%|▊         | 31.5M/405M [00:00<00:05, 74.5MB/s][A
+Downloading (…)l-00026-of-00033.bin:  10%|█         | 41.9M/405M [00:00<00:04, 82.7MB/s][A
+Downloading (…)l-00026-of-00033.bin:  16%|█▌        | 62.9M/405M [00:00<00:03, 106MB/s] [A
+Downloading (…)l-00026-of-00033.bin:  21%|██        | 83.9M/405M [00:00<00:02, 129MB/s][A
+Downloading (…)l-00026-of-00033.bin:  28%|██▊       | 115M/405M [00:00<00:01, 153MB/s] [A
+Downloading (…)l-00026-of-00033.bin:  36%|███▋      | 147M/405M [00:01<00:01, 174MB/s][A
+Downloading (…)l-00026-of-00033.bin:  41%|████▏     | 168M/405M [00:01<00:01, 177MB/s][A
+Downloading (…)l-00026-of-00033.bin:  47%|████▋     | 189M/405M [00:01<00:01, 185MB/s][A
+Downloading (…)l-00026-of-00033.bin:  54%|█████▍    | 220M/405M [00:01<00:00, 195MB/s][A
+Downloading (…)l-00026-of-00033.bin:  60%|█████▉    | 241M/405M [00:01<00:00, 197MB/s][A
+Downloading (…)l-00026-of-00033.bin:  65%|██████▍   | 262M/405M [00:01<00:00, 198MB/s][A
+Downloading (…)l-00026-of-00033.bin:  73%|███████▎  | 294M/405M [00:01<00:00, 204MB/s][A
+Downloading (…)l-00026-of-00033.bin:  78%|███████▊  | 315M/405M [00:01<00:00, 205MB/s][A
+Downloading (…)l-00026-of-00033.bin:  85%|████████▌ | 346M/405M [00:02<00:00, 208MB/s][A
+Downloading (…)l-00026-of-00033.bin:  91%|█████████ | 367M/405M [00:02<00:00, 208MB/s][A
+Downloading (…)l-00026-of-00033.bin:  98%|█████████▊| 398M/405M [00:02<00:00, 205MB/s][ADownloading (…)l-00026-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 170MB/s]
+Downloading shards:  79%|███████▉  | 26/33 [01:05<00:16,  2.41s/it]Downloading shards:  79%|███████▉  | 26/33 [01:05<00:16,  2.43s/it]
+Downloading (…)l-00027-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00027-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:05, 67.2MB/s][A
+Downloading (…)l-00027-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:05, 72.0MB/s][A
+Downloading (…)l-00027-of-00033.bin:  10%|█         | 41.9M/405M [00:00<00:03, 96.3MB/s][A
+Downloading (…)l-00027-of-00033.bin:  16%|█▌        | 62.9M/405M [00:00<00:02, 117MB/s] [A
+Downloading (…)l-00027-of-00033.bin:  21%|██        | 83.9M/405M [00:00<00:02, 141MB/s][A
+Downloading (…)l-00027-of-00033.bin:  28%|██▊       | 115M/405M [00:00<00:01, 167MB/s] [A
+Downloading (…)l-00027-of-00033.bin:  34%|███▎      | 136M/405M [00:00<00:01, 172MB/s][A
+Downloading (…)l-00027-of-00033.bin:  41%|████▏     | 168M/405M [00:01<00:01, 189MB/s][A
+Downloading (…)l-00027-of-00033.bin:  49%|████▉     | 199M/405M [00:01<00:01, 191MB/s][A
+Downloading (…)l-00027-of-00033.bin:  54%|█████▍    | 220M/405M [00:01<00:00, 192MB/s][A
+Downloading (…)l-00027-of-00033.bin:  60%|█████▉    | 241M/405M [00:01<00:00, 191MB/s][A
+Downloading (…)l-00027-of-00033.bin:  65%|██████▍   | 262M/405M [00:01<00:00, 182MB/s][A
+Downloading (…)l-00027-of-00033.bin:  73%|███████▎  | 294M/405M [00:01<00:00, 210MB/s][A
+Downloading (…)l-00027-of-00033.bin:  80%|████████  | 325M/405M [00:01<00:00, 203MB/s][A
+Downloading (…)l-00027-of-00033.bin:  85%|████████▌ | 346M/405M [00:02<00:00, 195MB/s][A
+Downloading (…)l-00027-of-00033.bin:  91%|█████████ | 367M/405M [00:02<00:00, 192MB/s][A
+Downloading (…)l-00027-of-00033.bin:  98%|█████████▊| 398M/405M [00:02<00:00, 220MB/s][ADownloading (…)l-00027-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 177MB/s]
+Downloading shards:  82%|████████▏ | 27/33 [01:08<00:14,  2.43s/it]Downloading shards:  82%|████████▏ | 27/33 [01:08<00:14,  2.45s/it]
+Downloading (…)l-00028-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00028-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:12, 31.7MB/s][A
+Downloading (…)l-00028-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:09, 42.3MB/s][A
+Downloading (…)l-00028-of-00033.bin:   8%|▊         | 31.5M/405M [00:00<00:07, 52.6MB/s][A
+Downloading (…)l-00028-of-00033.bin:  10%|█         | 41.9M/405M [00:00<00:05, 64.3MB/s][A
+Downloading (…)l-00028-of-00033.bin:  16%|█▌        | 62.9M/405M [00:00<00:03, 89.8MB/s][A
+Downloading (…)l-00028-of-00033.bin:  21%|██        | 83.9M/405M [00:01<00:02, 112MB/s] [A
+Downloading (…)l-00028-of-00033.bin:  28%|██▊       | 115M/405M [00:01<00:02, 144MB/s] [A
+Downloading (…)l-00028-of-00033.bin:  36%|███▋      | 147M/405M [00:01<00:01, 167MB/s][A
+Downloading (…)l-00028-of-00033.bin:  44%|████▍     | 178M/405M [00:01<00:01, 181MB/s][A
+Downloading (…)l-00028-of-00033.bin:  52%|█████▏    | 210M/405M [00:01<00:01, 192MB/s][A
+Downloading (…)l-00028-of-00033.bin:  57%|█████▋    | 231M/405M [00:01<00:00, 194MB/s][A
+Downloading (…)l-00028-of-00033.bin:  65%|██████▍   | 262M/405M [00:01<00:00, 201MB/s][A
+Downloading (…)l-00028-of-00033.bin:  70%|██████▉   | 283M/405M [00:02<00:00, 196MB/s][A
+Downloading (…)l-00028-of-00033.bin:  75%|███████▌  | 304M/405M [00:02<00:00, 196MB/s][A
+Downloading (…)l-00028-of-00033.bin:  83%|████████▎ | 336M/405M [00:02<00:00, 204MB/s][A
+Downloading (…)l-00028-of-00033.bin:  91%|█████████ | 367M/405M [00:02<00:00, 208MB/s][A
+Downloading (…)l-00028-of-00033.bin:  96%|█████████▌| 388M/405M [00:02<00:00, 204MB/s][ADownloading (…)l-00028-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 157MB/s]
+Downloading shards:  85%|████████▍ | 28/33 [01:11<00:12,  2.54s/it]Downloading shards:  85%|████████▍ | 28/33 [01:11<00:12,  2.54s/it]
+Downloading (…)l-00029-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00029-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:11, 33.6MB/s][A
+Downloading (…)l-00029-of-00033.bin:   8%|▊         | 31.5M/405M [00:00<00:04, 78.8MB/s][A
+Downloading (…)l-00029-of-00033.bin:  13%|█▎        | 52.4M/405M [00:00<00:03, 103MB/s] [A
+Downloading (…)l-00029-of-00033.bin:  18%|█▊        | 73.4M/405M [00:00<00:02, 130MB/s][A
+Downloading (…)l-00029-of-00033.bin:  26%|██▌       | 105M/405M [00:00<00:01, 172MB/s] [A
+Downloading (…)l-00029-of-00033.bin:  31%|███       | 126M/405M [00:00<00:01, 171MB/s][A
+Downloading (…)l-00029-of-00033.bin:  36%|███▋      | 147M/405M [00:01<00:01, 180MB/s][A
+Downloading (…)l-00029-of-00033.bin:  47%|████▋     | 189M/405M [00:01<00:00, 226MB/s][A
+Downloading (…)l-00029-of-00033.bin:  54%|█████▍    | 220M/405M [00:01<00:00, 220MB/s][A
+Downloading (…)l-00029-of-00033.bin:  62%|██████▏   | 252M/405M [00:01<00:00, 234MB/s][A
+Downloading (…)l-00029-of-00033.bin:  70%|██████▉   | 283M/405M [00:01<00:00, 239MB/s][A
+Downloading (…)l-00029-of-00033.bin:  78%|███████▊  | 315M/405M [00:01<00:00, 239MB/s][A
+Downloading (…)l-00029-of-00033.bin:  85%|████████▌ | 346M/405M [00:01<00:00, 237MB/s][A
+Downloading (…)l-00029-of-00033.bin:  93%|█████████▎| 377M/405M [00:01<00:00, 240MB/s][A
+Downloading (…)l-00029-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 217MB/s][ADownloading (…)l-00029-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 191MB/s]
+Downloading shards:  88%|████████▊ | 29/33 [01:13<00:10,  2.56s/it]Downloading shards:  88%|████████▊ | 29/33 [01:13<00:10,  2.56s/it]
+Downloading (…)l-00030-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00030-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:10, 37.4MB/s][A
+Downloading (…)l-00030-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:08, 45.0MB/s][A
+Downloading (…)l-00030-of-00033.bin:   8%|▊         | 31.5M/405M [00:00<00:06, 59.5MB/s][A
+Downloading (…)l-00030-of-00033.bin:  10%|█         | 41.9M/405M [00:00<00:05, 70.5MB/s][A
+Downloading (…)l-00030-of-00033.bin:  16%|█▌        | 62.9M/405M [00:00<00:03, 94.4MB/s][A
+Downloading (…)l-00030-of-00033.bin:  21%|██        | 83.9M/405M [00:00<00:02, 115MB/s] [A
+Downloading (…)l-00030-of-00033.bin:  28%|██▊       | 115M/405M [00:01<00:01, 147MB/s] [A
+Downloading (…)l-00030-of-00033.bin:  34%|███▎      | 136M/405M [00:01<00:01, 161MB/s][A
+Downloading (…)l-00030-of-00033.bin:  39%|███▉      | 157M/405M [00:01<00:01, 170MB/s][A
+Downloading (…)l-00030-of-00033.bin:  44%|████▍     | 178M/405M [00:01<00:01, 178MB/s][A
+Downloading (…)l-00030-of-00033.bin:  52%|█████▏    | 210M/405M [00:01<00:01, 186MB/s][A
+Downloading (…)l-00030-of-00033.bin:  57%|█████▋    | 231M/405M [00:01<00:00, 182MB/s][A
+Downloading (…)l-00030-of-00033.bin:  62%|██████▏   | 252M/405M [00:01<00:00, 186MB/s][A
+Downloading (…)l-00030-of-00033.bin:  67%|██████▋   | 273M/405M [00:01<00:00, 189MB/s][A
+Downloading (…)l-00030-of-00033.bin:  73%|███████▎  | 294M/405M [00:02<00:00, 194MB/s][A
+Downloading (…)l-00030-of-00033.bin:  78%|███████▊  | 315M/405M [00:02<00:00, 197MB/s][A
+Downloading (…)l-00030-of-00033.bin:  85%|████████▌ | 346M/405M [00:02<00:00, 199MB/s][A
+Downloading (…)l-00030-of-00033.bin:  91%|█████████ | 367M/405M [00:02<00:00, 193MB/s][A
+Downloading (…)l-00030-of-00033.bin:  98%|█████████▊| 398M/405M [00:02<00:00, 211MB/s][ADownloading (…)l-00030-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 157MB/s]
+Downloading shards:  91%|█████████ | 30/33 [01:16<00:07,  2.62s/it]Downloading shards:  91%|█████████ | 30/33 [01:16<00:07,  2.63s/it]
+Downloading (…)l-00031-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00031-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:05, 69.1MB/s][A
+Downloading (…)l-00031-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:04, 77.7MB/s][A
+Downloading (…)l-00031-of-00033.bin:  10%|█         | 41.9M/405M [00:00<00:03, 102MB/s] [A
+Downloading (…)l-00031-of-00033.bin:  16%|█▌        | 62.9M/405M [00:00<00:02, 125MB/s][A
+Downloading (…)l-00031-of-00033.bin:  21%|██        | 83.9M/405M [00:00<00:02, 148MB/s][A
+Downloading (…)l-00031-of-00033.bin:  26%|██▌       | 105M/405M [00:00<00:01, 156MB/s] [A
+Downloading (…)l-00031-of-00033.bin:  31%|███       | 126M/405M [00:00<00:01, 171MB/s][A
+Downloading (…)l-00031-of-00033.bin:  39%|███▉      | 157M/405M [00:01<00:01, 186MB/s][A
+Downloading (…)l-00031-of-00033.bin:  44%|████▍     | 178M/405M [00:01<00:01, 192MB/s][A
+Downloading (…)l-00031-of-00033.bin:  52%|█████▏    | 210M/405M [00:01<00:00, 200MB/s][A
+Downloading (…)l-00031-of-00033.bin:  60%|█████▉    | 241M/405M [00:01<00:00, 204MB/s][A
+Downloading (…)l-00031-of-00033.bin:  67%|██████▋   | 273M/405M [00:01<00:00, 207MB/s][A
+Downloading (…)l-00031-of-00033.bin:  73%|███████▎  | 294M/405M [00:01<00:00, 206MB/s][A
+Downloading (…)l-00031-of-00033.bin:  78%|███████▊  | 315M/405M [00:01<00:00, 207MB/s][A
+Downloading (…)l-00031-of-00033.bin:  85%|████████▌ | 346M/405M [00:01<00:00, 210MB/s][A
+Downloading (…)l-00031-of-00033.bin:  93%|█████████▎| 377M/405M [00:02<00:00, 207MB/s][A
+Downloading (…)l-00031-of-00033.bin:  98%|█████████▊| 398M/405M [00:02<00:00, 206MB/s][ADownloading (…)l-00031-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 183MB/s]
+Downloading shards:  94%|█████████▍| 31/33 [01:18<00:05,  2.56s/it]Downloading shards:  94%|█████████▍| 31/33 [01:18<00:05,  2.56s/it]
+Downloading (…)l-00032-of-00033.bin:   0%|          | 0.00/405M [00:00<?, ?B/s][A
+Downloading (…)l-00032-of-00033.bin:   3%|▎         | 10.5M/405M [00:00<00:05, 73.4MB/s][A
+Downloading (…)l-00032-of-00033.bin:   5%|▌         | 21.0M/405M [00:00<00:04, 81.8MB/s][A
+Downloading (…)l-00032-of-00033.bin:  10%|█         | 41.9M/405M [00:00<00:03, 98.7MB/s][A
+Downloading (…)l-00032-of-00033.bin:  16%|█▌        | 62.9M/405M [00:00<00:02, 120MB/s] [A
+Downloading (…)l-00032-of-00033.bin:  23%|██▎       | 94.4M/405M [00:00<00:01, 156MB/s][A
+Downloading (…)l-00032-of-00033.bin:  28%|██▊       | 115M/405M [00:00<00:01, 169MB/s] [A
+Downloading (…)l-00032-of-00033.bin:  36%|███▋      | 147M/405M [00:00<00:01, 189MB/s][A
+Downloading (…)l-00032-of-00033.bin:  44%|████▍     | 178M/405M [00:01<00:01, 199MB/s][A
+Downloading (…)l-00032-of-00033.bin:  49%|████▉     | 199M/405M [00:01<00:01, 200MB/s][A
+Downloading (…)l-00032-of-00033.bin:  57%|█████▋    | 231M/405M [00:01<00:00, 207MB/s][A
+Downloading (…)l-00032-of-00033.bin:  62%|██████▏   | 252M/405M [00:01<00:00, 202MB/s][A
+Downloading (…)l-00032-of-00033.bin:  70%|██████▉   | 283M/405M [00:01<00:00, 204MB/s][A
+Downloading (…)l-00032-of-00033.bin:  75%|███████▌  | 304M/405M [00:01<00:00, 197MB/s][A
+Downloading (…)l-00032-of-00033.bin:  80%|████████  | 325M/405M [00:01<00:00, 195MB/s][A
+Downloading (…)l-00032-of-00033.bin:  88%|████████▊ | 357M/405M [00:01<00:00, 201MB/s][A
+Downloading (…)l-00032-of-00033.bin:  96%|█████████▌| 388M/405M [00:02<00:00, 206MB/s][ADownloading (…)l-00032-of-00033.bin: 100%|██████████| 405M/405M [00:02<00:00, 182MB/s]
+Downloading shards:  97%|█████████▋| 32/33 [01:21<00:02,  2.52s/it]Downloading shards:  97%|█████████▋| 32/33 [01:21<00:02,  2.52s/it]
+Downloading (…)l-00033-of-00033.bin:   0%|          | 0.00/524M [00:00<?, ?B/s][A
+Downloading (…)l-00033-of-00033.bin:   2%|▏         | 10.5M/524M [00:00<00:08, 59.9MB/s][A
+Downloading (…)l-00033-of-00033.bin:   4%|▍         | 21.0M/524M [00:00<00:07, 67.0MB/s][A
+Downloading (…)l-00033-of-00033.bin:   8%|▊         | 41.9M/524M [00:00<00:05, 88.7MB/s][A
+Downloading (…)l-00033-of-00033.bin:  12%|█▏        | 62.9M/524M [00:00<00:04, 113MB/s] [A
+Downloading (…)l-00033-of-00033.bin:  16%|█▌        | 83.9M/524M [00:00<00:03, 129MB/s][A
+Downloading (…)l-00033-of-00033.bin:  20%|█▉        | 105M/524M [00:00<00:02, 149MB/s] [A
+Downloading (…)l-00033-of-00033.bin:  24%|██▍       | 126M/524M [00:00<00:02, 165MB/s][A
+Downloading (…)l-00033-of-00033.bin:  28%|██▊       | 147M/524M [00:01<00:02, 177MB/s][A
+Downloading (…)l-00033-of-00033.bin:  34%|███▍      | 178M/524M [00:01<00:01, 189MB/s][A
+Downloading (…)l-00033-of-00033.bin:  40%|███▉      | 210M/524M [00:01<00:01, 193MB/s][A
+Downloading (…)l-00033-of-00033.bin:  46%|████▌     | 241M/524M [00:01<00:01, 202MB/s][A
+Downloading (…)l-00033-of-00033.bin:  52%|█████▏    | 273M/524M [00:01<00:01, 203MB/s][A
+Downloading (…)l-00033-of-00033.bin:  56%|█████▌    | 294M/524M [00:01<00:01, 199MB/s][A
+Downloading (…)l-00033-of-00033.bin:  62%|██████▏   | 325M/524M [00:01<00:00, 209MB/s][A
+Downloading (…)l-00033-of-00033.bin:  68%|██████▊   | 357M/524M [00:02<00:00, 209MB/s][A
+Downloading (…)l-00033-of-00033.bin:  72%|███████▏  | 377M/524M [00:02<00:00, 209MB/s][A
+Downloading (…)l-00033-of-00033.bin:  78%|███████▊  | 409M/524M [00:02<00:00, 210MB/s][A
+Downloading (…)l-00033-of-00033.bin:  84%|████████▍ | 440M/524M [00:02<00:00, 209MB/s][A
+Downloading (…)l-00033-of-00033.bin:  90%|████████▉ | 472M/524M [00:02<00:00, 213MB/s][A
+Downloading (…)l-00033-of-00033.bin:  96%|█████████▌| 503M/524M [00:02<00:00, 213MB/s][ADownloading (…)l-00033-of-00033.bin: 100%|██████████| 524M/524M [00:02<00:00, 182MB/s]
+Downloading shards: 100%|██████████| 33/33 [01:24<00:00,  2.69s/it]Downloading shards: 100%|██████████| 33/33 [01:24<00:00,  2.56s/it]
+Downloading shards: 100%|██████████| 33/33 [01:24<00:00,  2.69s/it]Downloading shards: 100%|██████████| 33/33 [01:24<00:00,  2.56s/it]
+[INFO|configuration_utils.py:770] 2023-11-14 22:49:10,891 >> Generate config GenerationConfig {
+  "bos_token_id": 0,
+  "eos_token_id": 1,
+  "output_hidden_states": true,
+  "pad_token_id": -1,
+  "use_cache": false
+}
+
+Loading checkpoint shards:   0%|          | 0/33 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/33 [00:00<?, ?it/s]Loading checkpoint shards:   3%|▎         | 1/33 [00:00<00:14,  2.23it/s]Loading checkpoint shards:   3%|▎         | 1/33 [00:00<00:12,  2.48it/s]Loading checkpoint shards:   6%|▌         | 2/33 [00:00<00:11,  2.74it/s]Loading checkpoint shards:   6%|▌         | 2/33 [00:00<00:13,  2.34it/s]Loading checkpoint shards:   9%|▉         | 3/33 [00:00<00:08,  3.35it/s]Loading checkpoint shards:  12%|█▏        | 4/33 [00:01<00:07,  3.72it/s]Loading checkpoint shards:   9%|▉         | 3/33 [00:01<00:12,  2.35it/s]Loading checkpoint shards:  15%|█▌        | 5/33 [00:01<00:07,  3.91it/s]Loading checkpoint shards:  12%|█▏        | 4/33 [00:01<00:12,  2.40it/s]Loading checkpoint shards:  18%|█▊        | 6/33 [00:01<00:06,  4.09it/s]Loading checkpoint shards:  21%|██        | 7/33 [00:01<00:06,  4.21it/s]Loading checkpoint shards:  15%|█▌        | 5/33 [00:02<00:11,  2.40it/s]Loading checkpoint shards:  24%|██▍       | 8/33 [00:02<00:05,  4.34it/s]Loading checkpoint shards:  27%|██▋       | 9/33 [00:02<00:05,  4.40it/s]Loading checkpoint shards:  18%|█▊        | 6/33 [00:02<00:11,  2.45it/s]Loading checkpoint shards:  30%|███       | 10/33 [00:02<00:05,  4.50it/s]Loading checkpoint shards:  33%|███▎      | 11/33 [00:02<00:04,  4.53it/s]Loading checkpoint shards:  21%|██        | 7/33 [00:02<00:10,  2.47it/s]Loading checkpoint shards:  36%|███▋      | 12/33 [00:02<00:04,  4.57it/s]Loading checkpoint shards:  39%|███▉      | 13/33 [00:03<00:04,  4.55it/s]Loading checkpoint shards:  24%|██▍       | 8/33 [00:03<00:10,  2.48it/s]Loading checkpoint shards:  42%|████▏     | 14/33 [00:03<00:04,  4.55it/s]Loading checkpoint shards:  45%|████▌     | 15/33 [00:03<00:03,  4.53it/s]Loading checkpoint shards:  27%|██▋       | 9/33 [00:03<00:09,  2.45it/s]Loading checkpoint shards:  48%|████▊     | 16/33 [00:03<00:03,  4.51it/s]Loading checkpoint shards:  30%|███       | 10/33 [00:04<00:09,  2.45it/s]Loading checkpoint shards:  52%|█████▏    | 17/33 [00:04<00:03,  4.46it/s]Loading checkpoint shards:  55%|█████▍    | 18/33 [00:04<00:03,  4.48it/s]Loading checkpoint shards:  33%|███▎      | 11/33 [00:04<00:09,  2.43it/s]Loading checkpoint shards:  58%|█████▊    | 19/33 [00:04<00:03,  4.50it/s]Loading checkpoint shards:  61%|██████    | 20/33 [00:04<00:02,  4.52it/s]Loading checkpoint shards:  36%|███▋      | 12/33 [00:04<00:08,  2.46it/s]Loading checkpoint shards:  64%|██████▎   | 21/33 [00:04<00:02,  4.55it/s]Loading checkpoint shards:  67%|██████▋   | 22/33 [00:05<00:02,  4.56it/s]Loading checkpoint shards:  39%|███▉      | 13/33 [00:05<00:08,  2.47it/s]Loading checkpoint shards:  70%|██████▉   | 23/33 [00:05<00:02,  4.59it/s]Loading checkpoint shards:  73%|███████▎  | 24/33 [00:05<00:01,  4.58it/s]Loading checkpoint shards:  42%|████▏     | 14/33 [00:05<00:07,  2.44it/s]Loading checkpoint shards:  76%|███████▌  | 25/33 [00:05<00:01,  4.60it/s]Loading checkpoint shards:  79%|███████▉  | 26/33 [00:06<00:01,  4.60it/s]Loading checkpoint shards:  45%|████▌     | 15/33 [00:06<00:07,  2.44it/s]Loading checkpoint shards:  82%|████████▏ | 27/33 [00:06<00:01,  4.52it/s]Loading checkpoint shards:  85%|████████▍ | 28/33 [00:06<00:01,  4.53it/s]Loading checkpoint shards:  48%|████▊     | 16/33 [00:06<00:07,  2.28it/s]Loading checkpoint shards:  88%|████████▊ | 29/33 [00:06<00:00,  4.57it/s]Loading checkpoint shards:  91%|█████████ | 30/33 [00:06<00:00,  4.30it/s]Loading checkpoint shards:  52%|█████▏    | 17/33 [00:07<00:06,  2.33it/s]Loading checkpoint shards:  94%|█████████▍| 31/33 [00:07<00:00,  4.36it/s]Loading checkpoint shards:  97%|█████████▋| 32/33 [00:07<00:00,  4.30it/s]Loading checkpoint shards:  55%|█████▍    | 18/33 [00:07<00:06,  2.30it/s]Loading checkpoint shards: 100%|██████████| 33/33 [00:07<00:00,  4.08it/s]Loading checkpoint shards: 100%|██████████| 33/33 [00:07<00:00,  4.29it/s]
+Loading checkpoint shards:  58%|█████▊    | 19/33 [00:07<00:06,  2.25it/s]Downloading (…)neration_config.json:   0%|          | 0.00/124 [00:00<?, ?B/s]Downloading (…)neration_config.json: 100%|██████████| 124/124 [00:00<00:00, 58.8kB/s]
+[ERROR|tokenization_utils_base.py:1091] 2023-11-14 22:49:19,193 >> Using pad_token, but it is not set yet.
+Loading checkpoint shards:  61%|██████    | 20/33 [00:08<00:05,  2.35it/s]Loading checkpoint shards:  64%|██████▎   | 21/33 [00:08<00:04,  2.43it/s]Loading checkpoint shards:  67%|██████▋   | 22/33 [00:09<00:04,  2.51it/s]Loading checkpoint shards:  70%|██████▉   | 23/33 [00:09<00:04,  2.39it/s]Loading checkpoint shards:  73%|███████▎  | 24/33 [00:11<00:08,  1.10it/s]Downloading builder script:   0%|          | 0.00/5.36k [00:00<?, ?B/s]Downloading builder script: 100%|██████████| 5.36k/5.36k [00:00<00:00, 41.5MB/s]
+Downloading metadata:   0%|          | 0.00/2.99k [00:00<?, ?B/s]Downloading metadata: 100%|██████████| 2.99k/2.99k [00:00<00:00, 31.4MB/s]
+Downloading readme:   0%|          | 0.00/8.41k [00:00<?, ?B/s]Downloading readme: 100%|██████████| 8.41k/8.41k [00:00<00:00, 52.0MB/s]
+Downloading data files:   0%|          | 0/2 [00:00<?, ?it/s]
+Downloading data:   0%|          | 0.00/1.82M [00:00<?, ?B/s][A
+Downloading data:   2%|▏         | 38.9k/1.82M [00:00<00:04, 374kB/s][A
+Downloading data:   6%|▌         | 101k/1.82M [00:00<00:03, 506kB/s] [A
+Downloading data:  15%|█▌        | 280k/1.82M [00:00<00:01, 1.07MB/s][ALoading checkpoint shards:  76%|███████▌  | 25/33 [00:14<00:11,  1.46s/it]
+Downloading data:  41%|████      | 744k/1.82M [00:00<00:00, 2.46MB/s][ADownloading data: 100%|██████████| 1.82M/1.82M [00:00<00:00, 3.65MB/s]
+Downloading data files:  50%|█████     | 1/2 [00:01<00:01,  1.38s/it]Loading checkpoint shards:  79%|███████▉  | 26/33 [00:14<00:08,  1.18s/it]
+Downloading data:   0%|          | 0.00/815k [00:00<?, ?B/s][ADownloading data: 100%|██████████| 815k/815k [00:00<00:00, 11.9MB/s]
+Downloading data files: 100%|██████████| 2/2 [00:01<00:00,  1.11it/s]Downloading data files: 100%|██████████| 2/2 [00:01<00:00,  1.03it/s]
+Extracting data files:   0%|          | 0/2 [00:00<?, ?it/s]Extracting data files: 100%|██████████| 2/2 [00:00<00:00, 85.21it/s]
+Generating train split:   0%|          | 0/16113 [00:00<?, ? examples/s]Generating train split:  23%|██▎       | 3663/16113 [00:00<00:00, 36569.26 examples/s]Generating train split:  50%|████▉     | 8000/16113 [00:00<00:00, 40502.84 examples/s]Generating train split:  76%|███████▌  | 12274/16113 [00:00<00:00, 41518.85 examples/s]Generating train split: 100%|██████████| 16113/16113 [00:00<00:00, 40997.43 examples/s]
+Generating test split:   0%|          | 0/3084 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 3084/3084 [00:00<00:00, 43784.43 examples/s]
+Generating validation split:   0%|          | 0/1838 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 1838/1838 [00:00<00:00, 40163.44 examples/s]
+Loading checkpoint shards:  82%|████████▏ | 27/33 [00:16<00:07,  1.17s/it]Loading checkpoint shards:  85%|████████▍ | 28/33 [00:17<00:06,  1.22s/it]Loading checkpoint shards:  88%|████████▊ | 29/33 [00:18<00:04,  1.23s/it]Loading checkpoint shards:  91%|█████████ | 30/33 [00:20<00:04,  1.39s/it]Loading checkpoint shards:  94%|█████████▍| 31/33 [00:21<00:02,  1.38s/it]Loading checkpoint shards:  97%|█████████▋| 32/33 [00:22<00:01,  1.31s/it]Loading checkpoint shards: 100%|██████████| 33/33 [00:24<00:00,  1.44s/it]Loading checkpoint shards: 100%|██████████| 33/33 [00:24<00:00,  1.34it/s]
+[INFO|modeling_utils.py:3775] 2023-11-14 22:49:35,827 >> All model checkpoint weights were used when initializing LlamaForCausalLM.
+
+[INFO|modeling_utils.py:3783] 2023-11-14 22:49:35,827 >> All the weights of LlamaForCausalLM were initialized from the model checkpoint at baffo32/decapoda-research-llama-7B-hf.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use LlamaForCausalLM for predictions without further training.
+[INFO|configuration_utils.py:730] 2023-11-14 22:49:35,980 >> loading configuration file generation_config.json from cache at /root/.cache/huggingface/hub/models--baffo32--decapoda-research-llama-7B-hf/snapshots/aa18b48a1330572a6dd5f5d5619ed19838ca285c/generation_config.json
+[INFO|configuration_utils.py:770] 2023-11-14 22:49:35,981 >> Generate config GenerationConfig {
+  "bos_token_id": 0,
+  "eos_token_id": 1,
+  "pad_token_id": 0
+}
+
+11/14/2023 22:49:35 - INFO - __main__ - LlamaForCausalLM(
+  (model): LlamaModel(
+    (embed_tokens): Embedding(32000, 4096, padding_idx=31999)
+    (layers): ModuleList(
+      (0-31): 32 x LlamaDecoderLayer(
+        (self_attn): LlamaAttention(
+          (q_proj): Linear(in_features=4096, out_features=4096, bias=False)
+          (k_proj): Linear(in_features=4096, out_features=4096, bias=False)
+          (v_proj): Linear(in_features=4096, out_features=4096, bias=False)
+          (o_proj): Linear(in_features=4096, out_features=4096, bias=False)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): LlamaMLP(
+          (gate_proj): Linear(in_features=4096, out_features=11008, bias=False)
+          (up_proj): Linear(in_features=4096, out_features=11008, bias=False)
+          (down_proj): Linear(in_features=11008, out_features=4096, bias=False)
+          (act_fn): SiLUActivation()
+        )
+        (input_layernorm): LlamaRMSNorm()
+        (post_attention_layernorm): LlamaRMSNorm()
+      )
+    )
+    (norm): LlamaRMSNorm()
+  )
+  (lm_head): Linear(in_features=4096, out_features=32000, bias=False)
+)
+11/14/2023 22:49:35 - INFO - __main__ - model.embed_tokens.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.0.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.0.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.0.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.0.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.0.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.0.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.0.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.0.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.0.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.1.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.1.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.1.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.1.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.1.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.1.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.1.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.1.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.1.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.2.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.2.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.2.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.2.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.2.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.2.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.2.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.2.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.2.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.3.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.3.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.3.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.3.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.3.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.3.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.3.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.3.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.3.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.4.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.4.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.4.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.4.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.4.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.4.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.4.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.4.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.4.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.5.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.5.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.5.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.5.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.5.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.5.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.5.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.5.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.5.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.6.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.6.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.6.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.6.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.6.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.6.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.6.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.6.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.6.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.7.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.7.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.7.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.7.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.7.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.7.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.7.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.7.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.7.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.8.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.8.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.8.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.8.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.8.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.8.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.8.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.8.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.8.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.9.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.9.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.9.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.9.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.9.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.9.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.9.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.9.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.9.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.10.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.10.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.10.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.10.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.10.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.10.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.10.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.10.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.10.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.11.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.11.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.11.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.11.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.11.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.11.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.11.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.11.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.11.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.12.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.12.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.12.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.12.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.12.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.12.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.12.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.12.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.12.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.13.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.13.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.13.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.13.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.13.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.13.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.13.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.13.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.13.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.14.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.14.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.14.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.14.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.14.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.14.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.14.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.14.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.14.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.15.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.15.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.15.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.15.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.15.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.15.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.15.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.15.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.15.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.16.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.16.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.16.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.16.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.16.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.16.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.16.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.16.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.16.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.17.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.17.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.17.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.17.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.17.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.17.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.17.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.17.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.17.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.18.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.18.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.18.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.18.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.18.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.18.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.18.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.18.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.18.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.19.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.19.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.19.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.19.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.19.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.19.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.19.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.19.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.19.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.20.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.20.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.20.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.20.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.20.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.20.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.20.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.20.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.20.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.21.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.21.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.21.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.21.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.21.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.21.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.21.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.21.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.21.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.22.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.22.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.22.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.22.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.22.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.22.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.22.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.22.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.22.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.23.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.23.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.23.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.23.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.23.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.23.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.23.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.23.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.23.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.24.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.24.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.24.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.24.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.24.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.24.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.24.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.24.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.24.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.25.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.25.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.25.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.25.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.25.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.25.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.25.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.25.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.25.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.26.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.26.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.26.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.26.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.26.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.26.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.26.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.26.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.26.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.27.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.27.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.27.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.27.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.27.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.27.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.27.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.27.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.27.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.28.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.28.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.28.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.28.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.28.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.28.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.28.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.28.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.28.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.29.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.29.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.29.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.29.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.29.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.29.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.29.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.29.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.29.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.30.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.30.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.30.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.30.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.30.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.30.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.30.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.30.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.30.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.31.self_attn.q_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.31.self_attn.k_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.31.self_attn.v_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.31.self_attn.o_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.31.mlp.gate_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.31.mlp.up_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.31.mlp.down_proj.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.31.input_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.layers.31.post_attention_layernorm.weight
+11/14/2023 22:49:35 - INFO - __main__ - model.norm.weight
+11/14/2023 22:49:35 - INFO - __main__ - lm_head.weight
+[ERROR|tokenization_utils_base.py:1091] 2023-11-14 22:49:35,991 >> Using pad_token, but it is not set yet.
+[INFO|tokenization_utils_base.py:952] 2023-11-14 22:49:35,991 >> Assigning [PAD] to the pad_token key of the tokenizer
+[INFO|tokenization_utils.py:493] 2023-11-14 22:49:36,038 >> Adding [PAD] to the vocabulary
+[INFO|modeling_utils.py:1617] 2023-11-14 22:49:36,087 >> You are resizing the embedding layer without providing a `pad_to_multiple_of` parameter. This means that the new embedding dimension will be 32001. This might induce some performance reduction as *Tensor Cores* will not be available. For more details about this, or help on choosing the correct value for resizing, refer to this guide: https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html#requirements-tc
+[INFO|tokenization_utils_base.py:952] 2023-11-14 22:49:38,383 >> Assigning </s> to the eos_token key of the tokenizer
+[INFO|tokenization_utils_base.py:952] 2023-11-14 22:49:38,383 >> Assigning </s> to the bos_token key of the tokenizer
+[INFO|tokenization_utils_base.py:952] 2023-11-14 22:49:38,383 >> Assigning </s> to the unk_token key of the tokenizer
+[INFO|tokenization_utils.py:493] 2023-11-14 22:49:38,414 >> Adding </s> to the vocabulary
+No config specified, defaulting to the single config: piqa/plain_text
+11/14/2023 22:49:40 - INFO - datasets.builder - No config specified, defaulting to the single config: piqa/plain_text
+Loading Dataset Infos from /root/.cache/huggingface/modules/datasets_modules/datasets/piqa/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011
+11/14/2023 22:49:40 - INFO - datasets.info - Loading Dataset Infos from /root/.cache/huggingface/modules/datasets_modules/datasets/piqa/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011
+Overwrite dataset info from restored data version if exists.
+11/14/2023 22:49:40 - INFO - datasets.builder - Overwrite dataset info from restored data version if exists.
+Loading Dataset info from /root/.cache/huggingface/datasets/piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011
+11/14/2023 22:49:40 - INFO - datasets.info - Loading Dataset info from /root/.cache/huggingface/datasets/piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011
+Found cached dataset piqa (/root/.cache/huggingface/datasets/piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011)
+11/14/2023 22:49:40 - INFO - datasets.builder - Found cached dataset piqa (/root/.cache/huggingface/datasets/piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011)
+Loading Dataset info from /root/.cache/huggingface/datasets/piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011
+11/14/2023 22:49:40 - INFO - datasets.info - Loading Dataset info from /root/.cache/huggingface/datasets/piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011
+Running tokenizer on dataset:   0%|          | 0/16113 [00:00<?, ? examples/s]Caching processed dataset at /root/.cache/huggingface/datasets/piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011/cache-2d6e018f772b1b5b.arrow
+11/14/2023 22:49:40 - INFO - datasets.arrow_dataset - Caching processed dataset at /root/.cache/huggingface/datasets/piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011/cache-2d6e018f772b1b5b.arrow
+Running tokenizer on dataset:   6%|▌         | 1000/16113 [00:00<00:02, 6273.01 examples/s]Running tokenizer on dataset:  12%|█▏        | 2000/16113 [00:00<00:02, 6633.49 examples/s]Running tokenizer on dataset:  19%|█▊        | 3000/16113 [00:00<00:01, 6622.62 examples/s]Running tokenizer on dataset:  25%|██▍       | 4000/16113 [00:00<00:01, 6585.97 examples/s]Running tokenizer on dataset:  31%|███       | 5000/16113 [00:00<00:01, 6555.78 examples/s]Running tokenizer on dataset:  37%|███▋      | 6000/16113 [00:00<00:01, 6572.05 examples/s]Running tokenizer on dataset:  43%|████▎     | 7000/16113 [00:01<00:01, 6679.78 examples/s]Running tokenizer on dataset:  50%|████▉     | 8000/16113 [00:01<00:01, 6700.95 examples/s]Running tokenizer on dataset:  56%|█████▌    | 9000/16113 [00:01<00:01, 6698.05 examples/s]Running tokenizer on dataset:  62%|██████▏   | 10000/16113 [00:01<00:00, 6739.83 examples/s]Running tokenizer on dataset:  68%|██████▊   | 11000/16113 [00:01<00:00, 6786.90 examples/s]Running tokenizer on dataset:  74%|███████▍  | 12000/16113 [00:01<00:00, 6650.11 examples/s]Running tokenizer on dataset:  81%|████████  | 13000/16113 [00:01<00:00, 6722.83 examples/s]Running tokenizer on dataset:  87%|████████▋ | 14000/16113 [00:02<00:00, 6580.50 examples/s]Running tokenizer on dataset:  93%|█████████▎| 15000/16113 [00:02<00:00, 6498.12 examples/s]Running tokenizer on dataset:  99%|█████████▉| 16000/16113 [00:02<00:00, 6493.53 examples/s]Running tokenizer on dataset: 100%|██████████| 16113/16113 [00:02<00:00, 6598.37 examples/s]
+Running tokenizer on dataset:   0%|          | 0/3084 [00:00<?, ? examples/s]Caching processed dataset at /root/.cache/huggingface/datasets/piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011/cache-6040a1120a900fc0.arrow
+11/14/2023 22:49:42 - INFO - datasets.arrow_dataset - Caching processed dataset at /root/.cache/huggingface/datasets/piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011/cache-6040a1120a900fc0.arrow
+Running tokenizer on dataset:  65%|██████▍   | 2000/3084 [00:00<00:00, 14539.37 examples/s]Running tokenizer on dataset: 100%|██████████| 3084/3084 [00:00<00:00, 9821.11 examples/s] 
+Running tokenizer on dataset:   0%|          | 0/1838 [00:00<?, ? examples/s]Caching processed dataset at /root/.cache/huggingface/datasets/piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011/cache-b8e5d229564daf7a.arrow
+11/14/2023 22:49:42 - INFO - datasets.arrow_dataset - Caching processed dataset at /root/.cache/huggingface/datasets/piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011/cache-b8e5d229564daf7a.arrow
+Running tokenizer on dataset:  54%|█████▍    | 1000/1838 [00:00<00:00, 6519.93 examples/s]Running tokenizer on dataset: 100%|██████████| 1838/1838 [00:00<00:00, 6679.32 examples/s]Running tokenizer on dataset: 100%|██████████| 1838/1838 [00:00<00:00, 6625.24 examples/s]
+Running tokenizer on dataset:   0%|          | 0/16113 [00:00<?, ? examples/s]Running tokenizer on dataset:   6%|▌         | 1000/16113 [00:00<00:02, 6407.64 examples/s]Running tokenizer on dataset:  12%|█▏        | 2000/16113 [00:00<00:02, 6699.91 examples/s]Running tokenizer on dataset:  19%|█▊        | 3000/16113 [00:00<00:01, 6600.48 examples/s]Running tokenizer on dataset:  25%|██▍       | 4000/16113 [00:00<00:01, 6555.13 examples/s]Running tokenizer on dataset:  31%|███       | 5000/16113 [00:00<00:01, 6477.05 examples/s]Running tokenizer on dataset:  37%|███▋      | 6000/16113 [00:00<00:01, 6432.72 examples/s]11/14/2023 22:49:45 - WARNING - data - The tokenizer picked seems to have a very large `model_max_length` (1000000000000000019884624838656). Picking 1024 instead. You can change that default value by passing --block_size xxx.
+Padding dataset to max length 664:   0%|          | 0/16113 [00:00<?, ? examples/s]Running tokenizer on dataset:  43%|████▎     | 7000/16113 [00:01<00:01, 6487.61 examples/s]Caching processed dataset at /root/.cache/huggingface/datasets/piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011/cache-1a22915bccd902b1.arrow
+11/14/2023 22:49:45 - INFO - datasets.arrow_dataset - Caching processed dataset at /root/.cache/huggingface/datasets/piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011/cache-1a22915bccd902b1.arrow
+Running tokenizer on dataset:  50%|████▉     | 8000/16113 [00:01<00:01, 6498.82 examples/s]Padding dataset to max length 664:   6%|▌         | 1000/16113 [00:00<00:02, 5265.52 examples/s]Running tokenizer on dataset:  56%|█████▌    | 9000/16113 [00:01<00:01, 6459.07 examples/s]Padding dataset to max length 664:  12%|█▏        | 2000/16113 [00:00<00:02, 5380.00 examples/s]Running tokenizer on dataset:  62%|██████▏   | 10000/16113 [00:01<00:00, 6491.13 examples/s]Padding dataset to max length 664:  19%|█▊        | 3000/16113 [00:00<00:02, 5319.39 examples/s]Running tokenizer on dataset:  68%|██████▊   | 11000/16113 [00:01<00:00, 6503.22 examples/s]Padding dataset to max length 664:  25%|██▍       | 4000/16113 [00:00<00:02, 5237.20 examples/s]Running tokenizer on dataset:  74%|███████▍  | 12000/16113 [00:01<00:00, 6437.60 examples/s]Padding dataset to max length 664:  31%|███       | 5000/16113 [00:00<00:02, 5255.13 examples/s]Running tokenizer on dataset:  81%|████████  | 13000/16113 [00:02<00:00, 6415.53 examples/s]Running tokenizer on dataset:  87%|████████▋ | 14000/16113 [00:02<00:00, 6402.13 examples/s]Padding dataset to max length 664:  37%|███▋      | 6000/16113 [00:01<00:01, 5314.00 examples/s]Running tokenizer on dataset:  93%|█████████▎| 15000/16113 [00:02<00:00, 6390.13 examples/s]Padding dataset to max length 664:  43%|████▎     | 7000/16113 [00:01<00:01, 5352.75 examples/s]Padding dataset to max length 664:  50%|████▉     | 8000/16113 [00:01<00:01, 5394.56 examples/s]Running tokenizer on dataset:  99%|█████████▉| 16000/16113 [00:02<00:00, 5335.45 examples/s]Running tokenizer on dataset: 100%|██████████| 16113/16113 [00:02<00:00, 6189.31 examples/s]
+Running tokenizer on dataset:   0%|          | 0/3084 [00:00<?, ? examples/s]Padding dataset to max length 664:  56%|█████▌    | 9000/16113 [00:01<00:01, 5416.10 examples/s]Running tokenizer on dataset:  65%|██████▍   | 2000/3084 [00:00<00:00, 14191.54 examples/s]Running tokenizer on dataset: 100%|██████████| 3084/3084 [00:00<00:00, 13936.14 examples/s]
+Running tokenizer on dataset:   0%|          | 0/1838 [00:00<?, ? examples/s]Padding dataset to max length 664:  62%|██████▏   | 10000/16113 [00:01<00:01, 5458.27 examples/s]Running tokenizer on dataset:  54%|█████▍    | 1000/1838 [00:00<00:00, 6348.30 examples/s]Padding dataset to max length 664:  68%|██████▊   | 11000/16113 [00:02<00:00, 5446.40 examples/s]Running tokenizer on dataset: 100%|██████████| 1838/1838 [00:00<00:00, 6496.46 examples/s]Running tokenizer on dataset: 100%|██████████| 1838/1838 [00:00<00:00, 6441.48 examples/s]
+Padding dataset to max length 664:  74%|███████▍  | 12000/16113 [00:02<00:00, 5471.40 examples/s]Padding dataset to max length 664:  81%|████████  | 13000/16113 [00:02<00:00, 5511.84 examples/s]Padding dataset to max length 664:  87%|████████▋ | 14000/16113 [00:02<00:00, 5241.35 examples/s]Padding dataset to max length 664:  93%|█████████▎| 15000/16113 [00:02<00:00, 4997.76 examples/s]Padding dataset to max length 664:  99%|█████████▉| 16000/16113 [00:03<00:00, 4657.27 examples/s]Padding dataset to max length 664: 100%|██████████| 16113/16113 [00:03<00:00, 5179.11 examples/s]
+Padding dataset to max length 664:   0%|          | 0/3084 [00:00<?, ? examples/s]Caching processed dataset at /root/.cache/huggingface/datasets/piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011/cache-44d71b7d65cf773f.arrow
+11/14/2023 22:49:48 - INFO - datasets.arrow_dataset - Caching processed dataset at /root/.cache/huggingface/datasets/piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011/cache-44d71b7d65cf773f.arrow
+Padding dataset to max length 664:  32%|███▏      | 1000/3084 [00:00<00:00, 6139.26 examples/s]11/14/2023 22:49:48 - WARNING - data - The tokenizer picked seems to have a very large `model_max_length` (1000000000000000019884624838656). Picking 1024 instead. You can change that default value by passing --block_size xxx.
+Padding dataset to max length 664:  65%|██████▍   | 2000/3084 [00:00<00:00, 6128.16 examples/s]Padding dataset to max length 664:  97%|█████████▋| 3000/3084 [00:00<00:00, 6054.35 examples/s]Padding dataset to max length 664: 100%|██████████| 3084/3084 [00:00<00:00, 6050.90 examples/s]
+Padding dataset to max length 664:   0%|          | 0/1838 [00:00<?, ? examples/s]Caching processed dataset at /root/.cache/huggingface/datasets/piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011/cache-5d7e27f95707ea93.arrow
+11/14/2023 22:49:48 - INFO - datasets.arrow_dataset - Caching processed dataset at /root/.cache/huggingface/datasets/piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011/cache-5d7e27f95707ea93.arrow
+Padding dataset to max length 664:  54%|█████▍    | 1000/1838 [00:00<00:00, 5273.87 examples/s]Padding dataset to max length 664: 100%|██████████| 1838/1838 [00:00<00:00, 5420.25 examples/s]Padding dataset to max length 664: 100%|██████████| 1838/1838 [00:00<00:00, 5353.89 examples/s]
+Padding dataset to max length 664:   0%|          | 0/16113 [00:00<?, ? examples/s]Padding dataset to max length 664:   6%|▌         | 1000/16113 [00:00<00:02, 5198.70 examples/s]Padding dataset to max length 664:  12%|█▏        | 2000/16113 [00:00<00:02, 5383.00 examples/s]Padding dataset to max length 664:  19%|█▊        | 3000/16113 [00:00<00:02, 5413.20 examples/s]Padding dataset to max length 664:  25%|██▍       | 4000/16113 [00:00<00:02, 5411.79 examples/s]Padding dataset to max length 664:  31%|███       | 5000/16113 [00:00<00:02, 5467.58 examples/s]Padding dataset to max length 664:  37%|███▋      | 6000/16113 [00:01<00:01, 5439.41 examples/s]Downloading builder script:   0%|          | 0.00/4.20k [00:00<?, ?B/s]Downloading builder script: 100%|██████████| 4.20k/4.20k [00:00<00:00, 25.7MB/s]
+11/14/2023 22:49:50 - INFO - __main__ - calculating zero-shot accuracy...
+Padding dataset to max length 664:  43%|████▎     | 7000/16113 [00:01<00:01, 5430.73 examples/s]Padding dataset to max length 664:  50%|████▉     | 8000/16113 [00:01<00:01, 5427.13 examples/s]Padding dataset to max length 664:  56%|█████▌    | 9000/16113 [00:01<00:01, 5384.19 examples/s]Padding dataset to max length 664:  62%|██████▏   | 10000/16113 [00:01<00:01, 5425.72 examples/s]Padding dataset to max length 664:  68%|██████▊   | 11000/16113 [00:02<00:00, 5422.92 examples/s]Padding dataset to max length 664:  74%|███████▍  | 12000/16113 [00:02<00:00, 5389.71 examples/s]Padding dataset to max length 664:  81%|████████  | 13000/16113 [00:02<00:00, 5452.33 examples/s]Padding dataset to max length 664:  87%|████████▋ | 14000/16113 [00:02<00:00, 5477.52 examples/s]Padding dataset to max length 664:  93%|█████████▎| 15000/16113 [00:02<00:00, 5443.67 examples/s]Padding dataset to max length 664:  99%|█████████▉| 16000/16113 [00:02<00:00, 5388.84 examples/s]Padding dataset to max length 664: 100%|██████████| 16113/16113 [00:02<00:00, 5411.36 examples/s]
+Padding dataset to max length 664:   0%|          | 0/3084 [00:00<?, ? examples/s]Padding dataset to max length 664:  32%|███▏      | 1000/3084 [00:00<00:00, 6291.11 examples/s]11/14/2023 22:49:52 - INFO - __main__ -  ------------------- zero-shot accuracy reported above! -------------------
+static mask string matches:
+[]
+creating directory...
+Traceback (most recent call last):
+  File "run_clm_llama_lwcd_static_sparse.py", line 707, in <module>
+    main()
+  File "run_clm_llama_lwcd_static_sparse.py", line 639, in main
+    train_result = trainer.train(resume_from_checkpoint=checkpoint)
+  File "/home/hedgehog/Sapling/scripts/condensation_trainer.py", line 1850, in train
+    return inner_training_loop(
+  File "/home/hedgehog/Sapling/scripts/condensation_trainer.py", line 1937, in _inner_training_loop
+    model = self._wrap_model(self.model_wrapped)
+  File "/home/hedgehog/Sapling/scripts/condensation_trainer.py", line 1675, in _wrap_model
+    self.model = model = FSDP(
+  File "/usr/local/lib/python3.8/dist-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 487, in __init__
+    _init_param_handle_from_module(
+  File "/usr/local/lib/python3.8/dist-packages/torch/distributed/fsdp/_init_utils.py", line 519, in _init_param_handle_from_module
+    _init_param_handle_from_params(state, managed_params, fully_sharded_module)
+  File "/usr/local/lib/python3.8/dist-packages/torch/distributed/fsdp/_init_utils.py", line 531, in _init_param_handle_from_params
+    handle = FlatParamHandle(
+  File "/usr/local/lib/python3.8/dist-packages/torch/distributed/fsdp/flat_param.py", line 537, in __init__
+    self._init_flat_param_and_metadata(
+  File "/usr/local/lib/python3.8/dist-packages/torch/distributed/fsdp/flat_param.py", line 687, in _init_flat_param_and_metadata
+    self.flat_param: FlatParameter = self.flatten_tensors_into_flat_param(
+  File "/usr/local/lib/python3.8/dist-packages/torch/distributed/fsdp/flat_param.py", line 800, in flatten_tensors_into_flat_param
+    flat_param_data = self.flatten_tensors(tensors, aligned_numel)
+  File "/usr/local/lib/python3.8/dist-packages/torch/distributed/fsdp/flat_param.py", line 792, in flatten_tensors
+    return torch.cat(flat_tensors, dim=0)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 25.10 GiB. GPU 0 has a total capacty of 47.54 GiB of which 21.47 GiB is free. Process 820161 has 26.07 GiB memory in use. Of the allocated memory 25.17 GiB is allocated by PyTorch, and 4.94 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+Padding dataset to max length 664:  65%|██████▍   | 2000/3084 [00:00<00:00, 6264.38 examples/s]Padding dataset to max length 664:  97%|█████████▋| 3000/3084 [00:00<00:00, 6262.56 examples/s]Padding dataset to max length 664: 100%|██████████| 3084/3084 [00:00<00:00, 6235.89 examples/s]
+Padding dataset to max length 664:   0%|          | 0/1838 [00:00<?, ? examples/s]Padding dataset to max length 664:  54%|█████▍    | 1000/1838 [00:00<00:00, 5373.90 examples/s]Padding dataset to max length 664: 100%|██████████| 1838/1838 [00:00<00:00, 5160.42 examples/s]Padding dataset to max length 664: 100%|██████████| 1838/1838 [00:00<00:00, 5154.54 examples/s]
+[2023-11-14 22:49:56,037] torch.distributed.elastic.multiprocessing.api: [WARNING] Sending process 127 closing signal SIGTERM
+[2023-11-14 22:49:56,416] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 1) local_rank: 0 (pid: 126) of binary: /usr/bin/python3
+Traceback (most recent call last):
+  File "/usr/local/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.8/dist-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 346, in wrapper
+    return f(*args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/torch/distributed/run.py", line 806, in main
+    run(args)
+  File "/usr/local/lib/python3.8/dist-packages/torch/distributed/run.py", line 797, in run
+    elastic_launch(
+  File "/usr/local/lib/python3.8/dist-packages/torch/distributed/launcher/api.py", line 134, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/usr/local/lib/python3.8/dist-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+run_clm_llama_lwcd_static_sparse.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2023-11-14_22:49:56
+  host      : llama-container-2a6000
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 126)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

@@ -21,7 +21,7 @@ torchrun --nproc_per_node=8 \
     --per_device_train_batch_size $bs \
     --per_device_eval_batch_size $bs \
     --learning_rate 2e-5 \
-    --num_train_epochs 49 \
+    --num_train_epochs 41 \
     --sparsity_ratio $sr \
     --condense_epoch 1 \
     --evaluation_strategy "epoch" \
