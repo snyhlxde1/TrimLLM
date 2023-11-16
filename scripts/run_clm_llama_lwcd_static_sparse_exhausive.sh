@@ -4,6 +4,7 @@ bs=$3                 # 8
 sr=$4                 # sparsity ratio for frozen parameters, default 0.5
 trial=$5              # trial number: 1, 2, 3, ... etc.
 
+export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export WANDB_DISABLED=true
 #export NCCL_P2P_LEVEL=NVL
 
