@@ -612,7 +612,7 @@ def main():
         model=model,
         eval_model=lm_eval_model,
         task_names=task_names,
-        sparse_update=None,
+        sparse_update='static',
         sparse_update_threshold=sparsity_ratio,
         condense_epoch=condense_epoch,
         max_budget=max_budget,
