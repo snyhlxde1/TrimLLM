@@ -145,7 +145,7 @@ class MedMCQA:
             return targets
 
 # legal benchmarks
-class LEX_GLUE_casehold:
+class LEXGLUE_casehold:
     def get_context(self, examples):
         return examples['question']
     def get_targets(self, examples):
@@ -173,6 +173,20 @@ class FiQA:
         for a in answers:
             targets.append(a[0])
         return targets
+    
+class FianceAlpaca:
+    def __init__(self):
+        self._template = "Question: {}\nAnswer: "
+    def get_context(self, examples):
+        ctx = examples['instruction']
+        return [self._template.format(c) for c in ctx]
+    def get_targets(self, examples):
+        answers = examples['output']
+
+        targets = []
+        for a in answers:
+            targets.append(a[0])
+        return targets
 
 
 task_dict = {
@@ -185,6 +199,8 @@ task_dict = {
     "web_questions": WebQs(),
     "race": RACE(),
     "medmcqa": MedMCQA(),
+    "lexglue_casehold": LEXGLUE_casehold(),
+    "financeqa": FinanceAlpaca(),
 }
 
 
@@ -199,6 +215,11 @@ def map_dataset_name_and_config(args):
         dataset_config_name = 'ARC-Challenge'
     elif args.dataset_name == 'race':
         dataset_config_name = 'high'
+    elif args.dataset_name == 'lexglue_casehold':
+        dataset_name == 'lex_glue'
+        dataset_config_name == 'case_hold'
+    elif args.dataset_name == 'financeqa':
+        dataset_name == 'gbharti/finance-alpaca'
 
 
     return dataset_name, dataset_config_name

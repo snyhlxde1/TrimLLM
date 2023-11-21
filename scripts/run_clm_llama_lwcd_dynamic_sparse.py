@@ -558,6 +558,19 @@ def main():
 
     task_names = [LM_EVAL_TASK_NAME_MAPPING.get(t, t) for t in task_names]
 
+    task_eval_conversion_table = {
+        'financeqa': 'hendrycksTest-high_school_microeconomics',
+        'lexglue_casehold': 'hendrycksTest-professional_law',
+    }
+    def train_to_eval_mapping(s):
+        if s in task_eval_conversion_table.keys():
+            return task_eval_conversion_table[s]
+        else:
+            return s
+
+    # replace fine-tuning dataset names with evaluation dataset names
+    task_names = [train_to_eval_mapping(s) for s in task_names]
+
     #results = evaluator.simple_evaluate(
     #    model=lm_eval_model,
     #    tasks=task_names,
