@@ -2127,7 +2127,7 @@ class Condensation_Trainer:
             for i in range(self.total_layer_count):
                 if self.fsdp_wrapped:
                     # Pytorch FSDP wrapped model is supported
-                    b = model._fsdp_wrapped_module.model.layers[i]._fsdp_wrapped_module
+                    b = model._fsdp_wrapped_module.model.layers[i]._fsdp_wrapped_module._fpw_module
                 else:
                     b = model.model.layers[i]
                 b = self.model.model.layers[i]
@@ -2520,7 +2520,7 @@ class Condensation_Trainer:
                         logger.info('removing attn...')
                         if self.args.local_rank == 0:
                             print('removing attn...')
-                        b = model._fsdp_wrapped_module.model.layers[removed_layer]._fsdp_wrapped_module
+                        b = model._fsdp_wrapped_module.model.layers[removed_layer]._fsdp_wrapped_module._fpw_module
                         b_modules = b._modules
                         b_modules['self_attn'] = torch.nn.Identity()
                         b_modules['post_attention_layernorm'] = torch.nn.Identity()
@@ -2542,7 +2542,7 @@ class Condensation_Trainer:
                         logger.info('removing ffn...')
                         if self.args.local_rank == 0:
                             print('removing ffn...')
-                        b = model._fsdp_wrapped_module.model.layers[removed_layer]._fsdp_wrapped_module
+                        b = model._fsdp_wrapped_module.model.layers[removed_layer]._fsdp_wrapped_module._fpw_module
                         b_modules = b._modules
                         b_modules['mlp'] = torch.nn.Identity()
                         if removed_layer in attn_removed_lst:
@@ -3960,7 +3960,7 @@ class Condensation_Trainer:
             for i in range(total_layer_count):
                 if self.fsdp_wrapped:
                     # Pytorch FSDP wrapped model is supported
-                    b = model._fsdp_wrapped_module.model.layers[i]._fsdp_wrapped_module
+                    b = model._fsdp_wrapped_module.model.layers[i]._fsdp_wrapped_module._fpw_module
                 else:
                     b = model.model.layers[i]
 
@@ -4297,7 +4297,7 @@ class Condensation_Trainer:
 
                         if self.fsdp_wrapped:
                             # Pytorch FSDP wrapped model is supported
-                            b = model._fsdp_wrapped_module.model.layers[i]._fsdp_wrapped_module
+                            b = model._fsdp_wrapped_module.model.layers[i]._fsdp_wrapped_module._fpw_module
                         else:
                             b = model.model.layers[i]
                         b_modules = b._modules
@@ -4355,7 +4355,7 @@ class Condensation_Trainer:
 
                         if self.fsdp_wrapped:
                             # Pytorch FSDP wrapped model is supported
-                            b = model._fsdp_wrapped_module.model.layers[i]._fsdp_wrapped_module
+                            b = model._fsdp_wrapped_module.model.layers[i]._fsdp_wrapped_module._fpw_module
                         else:
                             b = model.model.layers[i]
 
