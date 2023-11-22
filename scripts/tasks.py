@@ -154,7 +154,6 @@ class LEXGLUE_casehold:
 
         targets = []
         for idx, label in enumerate(labels):
-            label = ord(label) - ord('0')
             correct_choice = choices[idx][label]
             targets.append(correct_choice)
         return targets
