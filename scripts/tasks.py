@@ -174,7 +174,7 @@ class FiQA:
             targets.append(a[0])
         return targets
     
-class FianceAlpaca:
+class FinanceAlpaca:
     def __init__(self):
         self._template = "Question: {}\nAnswer: "
     def get_context(self, examples):
