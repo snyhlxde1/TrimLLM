@@ -148,7 +148,7 @@ class MedMCQA:
 class LEXGLUE_casehold:
     def get_context(self, examples):
         return examples['context']
-    def get_targets(self, examples):
+    def get_target(self, examples):
         choices = examples['endings']
         labels = examples['label']
 
@@ -166,7 +166,7 @@ class FiQA:
     def get_context(self, examples):
         ctx = examples['question']
         return [self._template.format(c) for c in ctx]
-    def get_targets(self, examples):
+    def get_target(self, examples):
         answers = examples['ground_truths']
 
         targets = []
@@ -180,7 +180,7 @@ class FinanceAlpaca:
     def get_context(self, examples):
         ctx = examples['instruction']
         return [self._template.format(c) for c in ctx]
-    def get_targets(self, examples):
+    def get_target(self, examples):
         answers = examples['output']
 
         targets = []
