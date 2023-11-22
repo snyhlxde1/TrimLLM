@@ -184,7 +184,7 @@ class FinanceAlpaca:
 
         targets = []
         for a in answers:
-            targets.append(a[0])
+            targets.append(a)
         return targets
 
 
