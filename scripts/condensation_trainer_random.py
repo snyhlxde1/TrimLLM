@@ -3957,7 +3957,6 @@ class Condensation_Trainer:
             all_activation_names = set()
             all_removed_names = set()
 
-            print(model)
             for i in range(total_layer_count):
                 if self.fsdp_wrapped:
                     # Pytorch FSDP wrapped model is supported
