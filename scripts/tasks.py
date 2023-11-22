@@ -216,10 +216,10 @@ def map_dataset_name_and_config(args):
     elif args.dataset_name == 'race':
         dataset_config_name = 'high'
     elif args.dataset_name == 'lexglue_casehold':
-        dataset_name == 'lex_glue'
-        dataset_config_name == 'case_hold'
+        dataset_name = 'lex_glue'
+        dataset_config_name = 'case_hold'
     elif args.dataset_name == 'financeqa':
-        dataset_name == 'gbharti/finance-alpaca'
+        dataset_name = 'gbharti/finance-alpaca'
 
 
     return dataset_name, dataset_config_name
