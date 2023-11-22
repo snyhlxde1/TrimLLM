@@ -147,7 +147,7 @@ class MedMCQA:
 # legal benchmarks
 class LEXGLUE_casehold:
     def get_context(self, examples):
-        return examples['question']
+        return examples['context']
     def get_targets(self, examples):
         choices = examples['endings']
         labels = examples['label']
