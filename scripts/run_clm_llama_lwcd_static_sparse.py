@@ -25,6 +25,10 @@ import logging
 import math
 import os
 import sys
+
+os.environ["CUDA_VISIBLE_DEVICES"] = '0, 1'
+
+
 from dataclasses import dataclass, field
 from itertools import chain
 from typing import Optional, Dict, Sequence
