@@ -2333,7 +2333,7 @@ class Condensation_Trainer:
             attn_flag = False
             ffn_removed_lst = []
             attn_removed_lst = []
-            removed_layer = None
+            removed_layers = []
         # ----------------------------------------------- ending sparse update setup ----------------------------------------------- #
 
         for epoch in range(epochs_trained, num_train_epochs):
@@ -2363,7 +2363,7 @@ class Condensation_Trainer:
                     print('setting up dynamic policy for sparse update (only train important layers):')
                 self.control = self.callback_handler.on_epoch_end(args, self.state, self.control)
                 # dummy variables added here to run evaluation        
-                ffn_flag, attn_flag, ffn_removed_lst, attn_removed_lst, removed_layer, attn_ffn_acc_lst_tuple = self._maybe_log_save_evaluate(tr_loss, self.model, trial, epoch, ignore_keys_for_eval,
+                ffn_flag, attn_flag, ffn_removed_lst, attn_removed_lst, removed_layers, attn_ffn_acc_lst_tuple = self._maybe_log_save_evaluate(tr_loss, self.model, trial, epoch, ignore_keys_for_eval,
                                                     ffn_removed_lst=ffn_removed_lst,
                                                     attn_removed_lst=attn_removed_lst,
                                                     update_counter=update_counter,
@@ -2510,52 +2510,53 @@ class Condensation_Trainer:
                     print('layerwise condensation initiated....')
                     print('layer removing...')
                 
-                if removed_layer != None:
-                    # layer removing
-                    logger.info('layer removed: {}'.format(removed_layer))
-                    if self.args.local_rank == 0:
-                        print('layer removed: {}'.format(removed_layer))
-                    if attn_flag:
-                        # remove attn
-                        logger.info('removing attn...')
+                if len(removed_layers) != 0:
+                    for removed_layer in removed_layers:
+                        # layer removing
+                        logger.info('layer removed: {}'.format(removed_layer))
                         if self.args.local_rank == 0:
-                            print('removing attn...')
-                        b = model._fsdp_wrapped_module.model.layers[removed_layer]
-                        b_modules = b._modules
-                        b_modules['self_attn'] = torch.nn.Identity()
-                        b_modules['post_attention_layernorm'] = torch.nn.Identity()
-                        if removed_layer in ffn_removed_lst:
-                            b_modules['input_layernorm'] = torch.nn.Identity()
-                        
-                        # update state_dict for saving
-                        for key in b.state_dict():
-                            if str(removed_layer) in key and 'self_attn' in key:
-                                b.state_dict.pop(key)
-                            if str(removed_layer) in key and 'post_attention_layernorm' in key:
-                                b.state_dict.pop(key)
-                            if str(removed_layer) in key and 'input_layernorm' in key and removed_layer in ffn_removed_lst:
-                                b.state_dict.pop(key)
-                        b._modules = b_modules
+                            print('layer removed: {}'.format(removed_layer))
+                        if attn_flag:
+                            # remove attn
+                            logger.info('removing attn...')
+                            if self.args.local_rank == 0:
+                                print('removing attn...')
+                            b = model._fsdp_wrapped_module.model.layers[removed_layer]
+                            b_modules = b._modules
+                            b_modules['self_attn'] = torch.nn.Identity()
+                            b_modules['post_attention_layernorm'] = torch.nn.Identity()
+                            if removed_layer in ffn_removed_lst:
+                                b_modules['input_layernorm'] = torch.nn.Identity()
+                            
+                            # update state_dict for saving
+                            for key in b.state_dict():
+                                if str(removed_layer) in key and 'self_attn' in key:
+                                    b.state_dict.pop(key)
+                                if str(removed_layer) in key and 'post_attention_layernorm' in key:
+                                    b.state_dict.pop(key)
+                                if str(removed_layer) in key and 'input_layernorm' in key and removed_layer in ffn_removed_lst:
+                                    b.state_dict.pop(key)
+                            b._modules = b_modules
 
-                    if ffn_flag:
-                        # remove ffn
-                        logger.info('removing ffn...')
-                        if self.args.local_rank == 0:
-                            print('removing ffn...')
-                        b = model._fsdp_wrapped_module.model.layers[removed_layer]
-                        b_modules = b._modules
-                        b_modules['mlp'] = torch.nn.Identity()
-                        if removed_layer in attn_removed_lst:
-                            b_modules['input_layernorm'] = torch.nn.Identity()
-                        
-                        # update state_dict for saving
-                        for key in b.state_dict():
-                            if str(removed_layer) in key and 'mlp' in key:
-                                b.state_dict.pop(key)
-                            if str(removed_layer) in key and 'input_layernorm' in key and removed_layer in attn_removed_lst:
-                                b.state_dict.pop(key)
+                        if ffn_flag:
+                            # remove ffn
+                            logger.info('removing ffn...')
+                            if self.args.local_rank == 0:
+                                print('removing ffn...')
+                            b = model._fsdp_wrapped_module.model.layers[removed_layer]
+                            b_modules = b._modules
+                            b_modules['mlp'] = torch.nn.Identity()
+                            if removed_layer in attn_removed_lst:
+                                b_modules['input_layernorm'] = torch.nn.Identity()
+                            
+                            # update state_dict for saving
+                            for key in b.state_dict():
+                                if str(removed_layer) in key and 'mlp' in key:
+                                    b.state_dict.pop(key)
+                                if str(removed_layer) in key and 'input_layernorm' in key and removed_layer in attn_removed_lst:
+                                    b.state_dict.pop(key)
 
-                        b._modules = b_modules
+                            b._modules = b_modules
                     
                     # fixing FSDP states
                     model = self._wrap_model(model)
