@@ -2077,11 +2077,16 @@ class Condensation_Trainer:
 
         quota = self.condense_epoch
 
-        ffn_flag = False
-        attn_flag = False
+        # ffn_flag = False
+        # attn_flag = False
+        # ffn_removed_lst = []
+        # attn_removed_lst = []
+        # removed_layer = None
+        ffn_flags = []
+        attn_flags = []
         ffn_removed_lst = []
         attn_removed_lst = []
-        removed_layer = None
+        removed_layers = []
 
         # ------------------------------------------------------------------ #
         # --------- resume from checkpoint related, recover states --------- #
@@ -2181,7 +2186,7 @@ class Condensation_Trainer:
             epoch = 0
             self.state.epoch = 0
             self.control = self.callback_handler.on_epoch_end(args, self.state, self.control)
-            ffn_flag, attn_flag, ffn_removed_lst, attn_removed_lst, removed_layer, attn_ffn_acc_lst_tuple = self._maybe_log_save_evaluate(tr_loss, self.model, trial, epoch, ignore_keys_for_eval,
+            ffn_flags, attn_flags, ffn_removed_lst, attn_removed_lst, removed_layers, attn_ffn_acc_lst_tuple = self._maybe_log_save_evaluate(tr_loss, self.model, trial, epoch, ignore_keys_for_eval,
                                                 ffn_removed_lst=ffn_removed_lst,
                                                 attn_removed_lst=attn_removed_lst,
                                                 update_counter=update_counter,
@@ -2329,8 +2334,14 @@ class Condensation_Trainer:
             #model = self._wrap_model(self.model)
 
             # reset layerwise condensation trackers
-            ffn_flag = False
-            attn_flag = False
+            # ffn_flag = False
+            # attn_flag = False
+            # ffn_removed_lst = []
+            # attn_removed_lst = []
+            # removed_layers = None
+            
+            ffn_flags = []
+            attn_flags = []
             ffn_removed_lst = []
             attn_removed_lst = []
             removed_layers = []
@@ -2363,7 +2374,7 @@ class Condensation_Trainer:
                     print('setting up dynamic policy for sparse update (only train important layers):')
                 self.control = self.callback_handler.on_epoch_end(args, self.state, self.control)
                 # dummy variables added here to run evaluation        
-                ffn_flag, attn_flag, ffn_removed_lst, attn_removed_lst, removed_layers, attn_ffn_acc_lst_tuple = self._maybe_log_save_evaluate(tr_loss, self.model, trial, epoch, ignore_keys_for_eval,
+                ffn_flags, attn_flags, ffn_removed_lst, attn_removed_lst, removed_layers, attn_ffn_acc_lst_tuple = self._maybe_log_save_evaluate(tr_loss, self.model, trial, epoch, ignore_keys_for_eval,
                                                     ffn_removed_lst=ffn_removed_lst,
                                                     attn_removed_lst=attn_removed_lst,
                                                     update_counter=update_counter,
@@ -2511,7 +2522,10 @@ class Condensation_Trainer:
                     print('layer removing...')
                 
                 if len(removed_layers) != 0:
-                    for removed_layer in removed_layers:
+                    for removed_layer_idx, removed_layer in enumerate(removed_layers):
+                        attn_flag = attn_flags[removed_layer_idx]
+                        ffn_flag = ffn_flags[removed_layer_idx]
+                        
                         # layer removing
                         logger.info('layer removed: {}'.format(removed_layer))
                         if self.args.local_rank == 0:
@@ -2725,7 +2739,7 @@ class Condensation_Trainer:
             # here completes one epoch
             # iterate over possible candidates and prepare for layerwise condensation
             self.control = self.callback_handler.on_epoch_end(args, self.state, self.control)
-            ffn_flag, attn_flag, ffn_removed_lst, attn_removed_lst, removed_layer, attn_ffn_acc_lst_tuple = self._maybe_log_save_evaluate(tr_loss, model, trial, epoch, ignore_keys_for_eval,
+            ffn_flags, attn_flags, ffn_removed_lst, attn_removed_lst, removed_layers, attn_ffn_acc_lst_tuple = self._maybe_log_save_evaluate(tr_loss, model, trial, epoch, ignore_keys_for_eval,
                                                 ffn_removed_lst=ffn_removed_lst,
                                                 attn_removed_lst=attn_removed_lst,
                                                 update_counter=update_counter,
@@ -2978,9 +2992,13 @@ class Condensation_Trainer:
 
             self.log(logs)
 
-        removed_layer = None
-        ffn_flag = False
-        attn_flag = False
+        # removed_layer = None
+        # ffn_flag = False
+        # attn_flag = False
+        
+        removed_layers = []
+        ffn_flags = []
+        attn_flags = []
 
         attn_ffn_acc_lst_tuple = None
         
@@ -2988,7 +3006,7 @@ class Condensation_Trainer:
         if self.control.should_evaluate:
             if isinstance(self.eval_dataset, dict):
                 for eval_dataset_name, eval_dataset in self.eval_dataset.items():
-                    ffn_flag, attn_flag, ffn_removed_lst, attn_removed_lst, removed_layer, attn_ffn_acc_lst_tuple, metrics = self.evaluate(
+                    ffn_flags, attn_flags, ffn_removed_lst, attn_removed_lst, removed_layers, attn_ffn_acc_lst_tuple, metrics = self.evaluate(
                         eval_dataset=eval_dataset,
                         ignore_keys=ignore_keys_for_eval,
                         metric_key_prefix=f"eval_{eval_dataset_name}",
@@ -3002,7 +3020,7 @@ class Condensation_Trainer:
                         eval_limit=eval_limit,
                     )
             else:
-                ffn_flag, attn_flag, ffn_removed_lst, attn_removed_lst, removed_layer, attn_ffn_acc_lst_tuple, metrics = self.evaluate(ignore_keys=ignore_keys_for_eval,
+                ffn_flags, attn_flags, ffn_removed_lst, attn_removed_lst, removed_layers, attn_ffn_acc_lst_tuple, metrics = self.evaluate(ignore_keys=ignore_keys_for_eval,
                         ffn_removed_lst=ffn_removed_lst,
                         attn_removed_lst=attn_removed_lst,
                         update_counter=update_counter,
@@ -3018,7 +3036,7 @@ class Condensation_Trainer:
             self._save_checkpoint(model, trial, metrics=metrics)
             self.control = self.callback_handler.on_save(self.args, self.state, self.control)
         
-        return ffn_flag, attn_flag, ffn_removed_lst, attn_removed_lst, removed_layer, attn_ffn_acc_lst_tuple
+        return ffn_flags, attn_flags, ffn_removed_lst, attn_removed_lst, removed_layers, attn_ffn_acc_lst_tuple
 
     def _load_rng_state(self, checkpoint):
         # Load RNG states from `checkpoint`
@@ -3701,12 +3719,14 @@ class Condensation_Trainer:
         eval_dataloader = self.get_eval_dataloader(eval_dataset)
         start_time = time.time()
 
-        ffn_flag = False
-        attn_flag = False
+        # ffn_flag = False
+        # attn_flag = False
+        ffn_flags = []
+        attn_flags = []
 
         attn_ffn_acc_lst_tuple = None
 
-        removed_layer = None
+        removed_layers = []
         eval_loop = self.prediction_loop if self.args.use_legacy_prediction_loop else self.evaluation_loop
         logger.info('initiating evaluation loop...')
         if self.args.local_rank == 0:
@@ -3729,7 +3749,7 @@ class Condensation_Trainer:
             logger.info('evaluation loop.')
             if self.args.local_rank == 0:
                 print('evaluation loop.')
-            ffn_flag, attn_flag, ffn_removed_lst, attn_removed_lst, removed_layer, attn_ffn_acc_lst_tuple, output = eval_loop(
+            ffn_flags, attn_flags, ffn_removed_lst, attn_removed_lst, removed_layers, attn_ffn_acc_lst_tuple, output = eval_loop(
                 eval_dataloader,
                 description="Evaluation",
                 # No point gathering the predictions if there are no metrics, otherwise we defer to
@@ -3769,7 +3789,7 @@ class Condensation_Trainer:
 
         self._memory_tracker.stop_and_update_metrics(output.metrics)
 
-        return ffn_flag, attn_flag, ffn_removed_lst, attn_removed_lst, removed_layer, attn_ffn_acc_lst_tuple, output.metrics
+        return ffn_flags, attn_flags, ffn_removed_lst, attn_removed_lst, removed_layers, attn_ffn_acc_lst_tuple, output.metrics
 
     def predict(
         self, test_dataset: Dataset, ignore_keys: Optional[List[str]] = None, metric_key_prefix: str = "test",
@@ -4270,9 +4290,13 @@ class Condensation_Trainer:
             if not key.startswith(f"{metric_key_prefix}_"):
                 metrics[f"{metric_key_prefix}_{key}"] = metrics.pop(key)
 
-        removed_layer = None
-        ffn_flag = False
-        attn_flag = False
+        # removed_layer = None
+        # ffn_flag = False
+        # attn_flag = False
+        removed_layers = []
+        ffn_flags = []
+        attn_flags = []
+        
         # ---------------------------------------- layerwise condensation, removal candidate scanning ---------------------------------------- #
         attn_removed_eval = None
         ffn_removed_eval = None
@@ -4408,108 +4432,115 @@ class Condensation_Trainer:
                             result.append(i)
                     return result
                 
-                # ----------------------------- attn removal ----------------------------- #
-                logger.info("attn removal results: {}".format(attn_removed_eval))
-                if self.args.local_rank == 0:
-                    print("attn removal results: {}".format(attn_removed_eval))
-                attn_max_metric = max(attn_removed_eval)
-                attn_optimal_layers = find_indices(attn_removed_eval, attn_max_metric)
-                logger.info("attn candidate layers: {}".format(attn_optimal_layers))
-                if self.args.local_rank == 0:
-                    print("attn candidate layers: {}".format(attn_optimal_layers))
-                #attn_optimal_layer = attn_trial_lst[attn_removed_eval.index(attn_max_metric)]
-                if len(attn_optimal_layers) == 1:
-                    attn_optimal_layer = attn_optimal_layers[0]
-                else:
-                    # multiple elements exist, a tie scenario has occured
-                    if self.tie_breaker_strategy == 'naive':
+                layers_per_removal = 2
+                attn_removed_eval_return_copy = attn_removed_eval.copy()
+                ffn_removed_eval_return_copy = attn_removed_eval.copy()
+                
+                for _ in range(layers_per_removal):
+                    # ----------------------------- attn removal ----------------------------- #
+                    logger.info("attn removal results: {}".format(attn_removed_eval))
+                    if self.args.local_rank == 0:
+                        print("attn removal results: {}".format(attn_removed_eval))
+                    attn_max_metric = max(attn_removed_eval)
+                    attn_optimal_layers = find_indices(attn_removed_eval, attn_max_metric)
+                    logger.info("attn candidate layers: {}".format(attn_optimal_layers))
+                    if self.args.local_rank == 0:
+                        print("attn candidate layers: {}".format(attn_optimal_layers))
+                    #attn_optimal_layer = attn_trial_lst[attn_removed_eval.index(attn_max_metric)]
+                    if len(attn_optimal_layers) == 1:
                         attn_optimal_layer = attn_optimal_layers[0]
                     else:
-                        # use Frobenius norm by default
-                        attn_fro_metric = []
-                        for layer in attn_optimal_layers:
-                            index = 2 * layer
-                            fro_metric = all_fro_norm[index]
-                            attn_fro_metric.append(fro_metric)
-                        # find the layer with max Frobenius norm to drop
-                        # assume fro metric is unique
-                        optimal_layer_index = int(attn_fro_metric.index(max(attn_fro_metric)))
-                        logger.info("attn optimal layer index: {}".format(optimal_layer_index))
-                        attn_optimal_layer = attn_optimal_layers[optimal_layer_index]
-                        if self.args.local_rank == 0:
-                            print("attn optimal layer index: {}".format(optimal_layer_index))
-                logger.info("attn optimal layer: {}".format(attn_optimal_layer))
-                if self.args.local_rank == 0:
-                    print("attn optimal layer: {}".format(attn_optimal_layer))
-                
-                # ----------------------------- ffn removal ----------------------------- #
-                logger.info("ffn removal results: {}".format(ffn_removed_eval))
-                ffn_max_metric = max(ffn_removed_eval)
-                ffn_optimal_layers = find_indices(ffn_removed_eval, ffn_max_metric)
-                logger.info("ffn candidate layers: {}".format(ffn_optimal_layers))
-                if self.args.local_rank == 0:
-                    print("ffn removal results: {}".format(ffn_removed_eval))
-                    print("ffn candidate layers: {}".format(ffn_optimal_layers))
+                        # multiple elements exist, a tie scenario has occured
+                        if self.tie_breaker_strategy == 'naive':
+                            attn_optimal_layer = attn_optimal_layers[0]
+                        else:
+                            # use Frobenius norm by default
+                            attn_fro_metric = []
+                            for layer in attn_optimal_layers:
+                                index = 2 * layer
+                                fro_metric = all_fro_norm[index]
+                                attn_fro_metric.append(fro_metric)
+                            # find the layer with max Frobenius norm to drop
+                            # assume fro metric is unique
+                            optimal_layer_index = int(attn_fro_metric.index(max(attn_fro_metric)))
+                            logger.info("attn optimal layer index: {}".format(optimal_layer_index))
+                            attn_optimal_layer = attn_optimal_layers[optimal_layer_index]
+                            if self.args.local_rank == 0:
+                                print("attn optimal layer index: {}".format(optimal_layer_index))
+                    logger.info("attn optimal layer: {}".format(attn_optimal_layer))
+                    if self.args.local_rank == 0:
+                        print("attn optimal layer: {}".format(attn_optimal_layer))
+                    
+                    # ----------------------------- ffn removal ----------------------------- #
+                    logger.info("ffn removal results: {}".format(ffn_removed_eval))
+                    ffn_max_metric = max(ffn_removed_eval)
+                    ffn_optimal_layers = find_indices(ffn_removed_eval, ffn_max_metric)
+                    logger.info("ffn candidate layers: {}".format(ffn_optimal_layers))
+                    if self.args.local_rank == 0:
+                        print("ffn removal results: {}".format(ffn_removed_eval))
+                        print("ffn candidate layers: {}".format(ffn_optimal_layers))
 
-                if len(ffn_optimal_layers) == 1:
-                    ffn_optimal_layer = ffn_optimal_layers[0]
-                else:
-                    # multiple elements exist, a tie scenario has occured
-                    if self.tie_breaker_strategy == 'naive':
+                    if len(ffn_optimal_layers) == 1:
                         ffn_optimal_layer = ffn_optimal_layers[0]
                     else:
-                        # use Frobenius norm by default
-                        ffn_fro_metric = []
-                        for layer in ffn_optimal_layers:
-                            index = 1 + 2 * layer
-                            fro_metric = all_fro_norm[index]
-                            ffn_fro_metric.append(fro_metric)
-                        # find the layer with max Frobenius norm to drop
-                        # assume fro metric is unique
-                        optimal_layer_index = int((ffn_fro_metric.index(max(ffn_fro_metric))))
-                        logger.info("ffn optimal layer index: {}".format(optimal_layer_index))
-                        if self.args.local_rank == 0:
-                            print("ffn optimal layer index: {}".format(optimal_layer_index))
-                        ffn_optimal_layer = ffn_optimal_layers[optimal_layer_index]
-                logger.info("ffn optimal layer: {}".format(ffn_optimal_layer))
-                if self.args.local_rank == 0:
-                    print("ffn optimal layer: {}".format(ffn_optimal_layer))
+                        # multiple elements exist, a tie scenario has occured
+                        if self.tie_breaker_strategy == 'naive':
+                            ffn_optimal_layer = ffn_optimal_layers[0]
+                        else:
+                            # use Frobenius norm by default
+                            ffn_fro_metric = []
+                            for layer in ffn_optimal_layers:
+                                index = 1 + 2 * layer
+                                fro_metric = all_fro_norm[index]
+                                ffn_fro_metric.append(fro_metric)
+                            # find the layer with max Frobenius norm to drop
+                            # assume fro metric is unique
+                            optimal_layer_index = int((ffn_fro_metric.index(max(ffn_fro_metric))))
+                            logger.info("ffn optimal layer index: {}".format(optimal_layer_index))
+                            if self.args.local_rank == 0:
+                                print("ffn optimal layer index: {}".format(optimal_layer_index))
+                            ffn_optimal_layer = ffn_optimal_layers[optimal_layer_index]
+                    logger.info("ffn optimal layer: {}".format(ffn_optimal_layer))
+                    if self.args.local_rank == 0:
+                        print("ffn optimal layer: {}".format(ffn_optimal_layer))
 
-                # # ----------------------------- choose which layer to drop ----------------------------- #
-                if attn_max_metric > ffn_max_metric:
-                    attn_removed_lst.append(attn_optimal_layer)
-                    removed_layer =attn_optimal_layer
-                    attn_flag = True
-                    ffn_flag = False
-                    logger.info("attn layer {} to be removed.".format(attn_optimal_layer))
-                    logger.info("removed layer metric: {}".format(attn_max_metric))
+                    # # ----------------------------- choose which layer to drop ----------------------------- #
+                    if attn_max_metric > ffn_max_metric:
+                        attn_removed_lst.append(attn_optimal_layer)
+                        removed_layers.append(attn_optimal_layer)
+                        attn_flags.append(True)
+                        ffn_flags.append(False)
+                        logger.info("attn layer {} to be removed.".format(attn_optimal_layer))
+                        logger.info("removed layer metric: {}".format(attn_max_metric))
+                        if self.args.local_rank == 0:
+                            print("attn layer {} to be removed.".format(attn_optimal_layer))
+                            print("removed layer metric: {}".format(attn_max_metric))
+                        attn_removed_eval = [val for val in attn_removed_eval if val != attn_max_metric]
+                    else:
+                        ffn_removed_lst.append(ffn_optimal_layer)
+                        removed_layers.append(ffn_optimal_layer)
+                        attn_flags.append(False)
+                        ffn_flags.append(True)
+                        logger.info("ffn layer {} to be removed.".format(ffn_optimal_layer))
+                        logger.info("removed layer metric: {}".format(ffn_max_metric))
+                        if self.args.local_rank == 0:
+                            print("ffn layer {} to be removed.".format(ffn_optimal_layer))
+                            print("removed layer metric: {}".format(ffn_max_metric))
+                        ffn_removed_eval = [val for val in ffn_removed_eval if val != ffn_max_metric]
+                        
+                    logger.info("attn layer removal list: {}".format(attn_removed_lst))
+                    logger.info("ffn layer removal list: {}".format(ffn_removed_lst))
+                    logger.info('ending candidate scanning for layer drop.')
                     if self.args.local_rank == 0:
-                        print("attn layer {} to be removed.".format(attn_optimal_layer))
-                        print("removed layer metric: {}".format(attn_max_metric))
-                else:
-                    ffn_removed_lst.append(ffn_optimal_layer)
-                    removed_layer = ffn_optimal_layer
-                    attn_flag = False
-                    ffn_flag = True
-                    logger.info("ffn layer {} to be removed.".format(ffn_optimal_layer))
-                    logger.info("removed layer metric: {}".format(ffn_max_metric))
-                    if self.args.local_rank == 0:
-                        print("ffn layer {} to be removed.".format(ffn_optimal_layer))
-                        print("removed layer metric: {}".format(ffn_max_metric))
-                    
-                logger.info("attn layer removal list: {}".format(attn_removed_lst))
-                logger.info("ffn layer removal list: {}".format(ffn_removed_lst))
-                logger.info('ending candidate scanning for layer drop.')
-                if self.args.local_rank == 0:
-                    print("attn layer removal list: {}".format(attn_removed_lst))
-                    print("ffn layer removal list: {}".format(ffn_removed_lst))
-                    print('ending candidate scanning for layer drop.')
+                        print("attn layer removal list: {}".format(attn_removed_lst))
+                        print("ffn layer removal list: {}".format(ffn_removed_lst))
+                        print('ending candidate scanning for layer drop.')
         
-        self.layer_dropping_iter += 1
+        self.layer_dropping_iter += layers_per_removal
         # ---------------------------------------- layerwise condensation, removal candidate scanning ---------------------------------------- #
 
-        attn_ffn_acc_lst_tuple = (attn_removed_eval, ffn_removed_eval)
-        return (ffn_flag, attn_flag, ffn_removed_lst, attn_removed_lst, removed_layer, attn_ffn_acc_lst_tuple, EvalLoopOutput(predictions=all_preds, label_ids=all_labels, metrics=metrics, num_samples=num_samples))
+        attn_ffn_acc_lst_tuple = (attn_removed_eval_return_copy, ffn_removed_eval_return_copy)
+        return (ffn_flags, attn_flags, ffn_removed_lst, attn_removed_lst, removed_layers, attn_ffn_acc_lst_tuple, EvalLoopOutput(predictions=all_preds, label_ids=all_labels, metrics=metrics, num_samples=num_samples))
 
     def _nested_gather(self, tensors, name=None):
         """
