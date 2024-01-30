@@ -10,7 +10,7 @@ export WANDB_DISABLED=true
 mkdir -p logs/train/
 
 ### baseline ft
-torchrun --nproc_per_node=8 \
+torchrun --nproc_per_node=4 \
     --master_port 20688 \
     run_clm_llama_lwcd_static_sparse.py \
     --bf16 True \

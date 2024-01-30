@@ -26,7 +26,7 @@ import math
 import os
 import sys
 
-os.environ["CUDA_VISIBLE_DEVICES"] = '0, 1'
+# os.environ["CUDA_VISIBLE_DEVICES"] = '0, 1'
 
 
 from dataclasses import dataclass, field
