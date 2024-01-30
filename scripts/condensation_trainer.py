@@ -2600,7 +2600,7 @@ class Condensation_Trainer:
 
 
                 if not (block_counter == block_count - 1):
-                    block_counter += 1
+                    block_counter += 2
                 
                 # reset model update counter
                 update_counter = 0
