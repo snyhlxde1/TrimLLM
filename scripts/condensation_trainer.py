@@ -2544,12 +2544,16 @@ class Condensation_Trainer:
                             
                             # update state_dict for saving
                             for key in b.state_dict():
+                                print(f"attn_flag key in b.state_dict(): {key}")
                                 if str(removed_layer) in key and 'self_attn' in key:
                                     b.state_dict.pop(key)
+                                    print(f"popped {key}")
                                 if str(removed_layer) in key and 'post_attention_layernorm' in key:
                                     b.state_dict.pop(key)
+                                    print(f"popped {key}")
                                 if str(removed_layer) in key and 'input_layernorm' in key and removed_layer in ffn_removed_lst:
                                     b.state_dict.pop(key)
+                                    print(f"popped {key}")
                             b._modules = b_modules
 
                         if ffn_flag:
@@ -2565,10 +2569,13 @@ class Condensation_Trainer:
                             
                             # update state_dict for saving
                             for key in b.state_dict():
+                                print(f"ffn_flag key in b.state_dict(): {key}")
                                 if str(removed_layer) in key and 'mlp' in key:
                                     b.state_dict.pop(key)
+                                    print(f"popped {key}")
                                 if str(removed_layer) in key and 'input_layernorm' in key and removed_layer in attn_removed_lst:
                                     b.state_dict.pop(key)
+                                    print(f"popped {key}")
 
                             b._modules = b_modules
                         
@@ -4434,10 +4441,11 @@ class Condensation_Trainer:
                 layers_per_removal = 2
                 attn_removed_eval_return_copy = attn_removed_eval.copy()
                 ffn_removed_eval_return_copy = attn_removed_eval.copy()
+                # attn_optimal_layer_idx = None
+                # ffn_optimal_layer_idx = None
                 
-                # ----------------------------- attn removal ----------------------------- #
                 for _ in range(layers_per_removal):
-                
+                    # ----------------------------- attn removal ----------------------------- #
                     logger.info("attn removal results: {}".format(attn_removed_eval))
                     if self.args.local_rank == 0:
                         print("attn removal results: {}".format(attn_removed_eval))
@@ -4496,6 +4504,7 @@ class Condensation_Trainer:
                             # find the layer with max Frobenius norm to drop
                             # assume fro metric is unique
                             optimal_layer_index = int((ffn_fro_metric.index(max(ffn_fro_metric))))
+                            
                             logger.info("ffn optimal layer index: {}".format(optimal_layer_index))
                             if self.args.local_rank == 0:
                                 print("ffn optimal layer index: {}".format(optimal_layer_index))
@@ -4515,7 +4524,7 @@ class Condensation_Trainer:
                         if self.args.local_rank == 0:
                             print("attn layer {} to be removed.".format(attn_optimal_layer))
                             print("removed layer metric: {}".format(attn_max_metric))
-                        attn_removed_eval = [val for val in attn_removed_eval if val != attn_max_metric]
+                        attn_removed_eval[attn_optimal_layer] = -1
                     else:
                         ffn_removed_lst.append(ffn_optimal_layer)
                         removed_layers.append(ffn_optimal_layer)
@@ -4526,7 +4535,7 @@ class Condensation_Trainer:
                         if self.args.local_rank == 0:
                             print("ffn layer {} to be removed.".format(ffn_optimal_layer))
                             print("removed layer metric: {}".format(ffn_max_metric))
-                        ffn_removed_eval = [val for val in ffn_removed_eval if val != ffn_max_metric]
+                        ffn_removed_eval[ffn_optimal_layer] = -1
                         
                     logger.info("attn layer removal list: {}".format(attn_removed_lst))
                     logger.info("ffn layer removal list: {}".format(ffn_removed_lst))

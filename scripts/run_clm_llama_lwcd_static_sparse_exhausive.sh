@@ -1,7 +1,7 @@
 TASK=$1               # "hellaswag"
 MODEL=$2              # "decapoda-research/llama-7b-hf"
-bs=$3                 # 8
-sr=$4                 # sparsity ratio for frozen parameters, default 0.5
+bs=$3                 # 8    2
+sr=$4                 # sparsity ratio for frozen parameters, default 0.5    0.625
 trial=$5              # trial number: 1, 2, 3, ... etc.
 
 export WANDB_DISABLED=true
@@ -21,7 +21,7 @@ torchrun --nproc_per_node=4 \
     --per_device_train_batch_size $bs \
     --per_device_eval_batch_size $bs \
     --learning_rate 2e-5 \
-    --num_train_epochs 49 \
+    --num_train_epochs 21 \
     --sparsity_ratio $sr \
     --condense_epoch 1 \
     --evaluation_strategy "epoch" \
@@ -29,7 +29,7 @@ torchrun --nproc_per_node=4 \
     --seed 42 \
     --do_train \
     --do_eval \
-    --save_steps 50000 \
+    --save_steps 4000 \
     --save_total_limit 1 \
     --low_cpu_mem_usage \
     --fsdp "full_shard auto_wrap" \
