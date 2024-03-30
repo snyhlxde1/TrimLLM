@@ -1,7 +1,5 @@
 # Sapling
 
-# Sapling
-
 STEP 1: model compression for domain-specific LLMs — TrimLLaMA
 
 run LLaMA full fine-tuning:
