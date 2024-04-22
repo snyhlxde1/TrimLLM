@@ -1,5 +1,25 @@
 # Sapling
 
+## Setup
+
+install dependencies:
+
+```bash
+conda create -n sapling python==3.9
+conda activate ssapling
+pip install -r requirements.txt
+```
+
+patches:
+```
+cd Sapling
+cp -rv trainer_pt_utils.py ~/anaconda3/envs/peft/lib/python3.9/site-packages/transformers/
+cp -rv modeling_llama.py ~/anaconda3/envs/peft/lib/python3.9/site-packages/transformers/models/llama
+cp -rv fully_sharded_data_parallel.py ~/anaconda3/envs/peft/lib/python3.9/site-packages/torch/distributed/fsdp/
+```
+
+## Usage
+
 STEP 1: model compression for domain-specific LLMs — TrimLLaMA
 
 run LLaMA full fine-tuning:

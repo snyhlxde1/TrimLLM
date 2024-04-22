@@ -2326,7 +2326,7 @@ class Condensation_Trainer:
                 print(to_train_bkt)
         
             # update FSDP states
-            #model = self._wrap_model(self.model)
+            model = self._wrap_model(self.model)
 
             # reset layerwise condensation trackers
             ffn_flag = False
@@ -2485,7 +2485,7 @@ class Condensation_Trainer:
                     print(to_train_bkt)
             
                 # update FSDP states
-                #model = self._wrap_model(self.model)
+                # model = self._wrap_model(self.model)
             # ----------------------------------------------- ending dynamic sparse update setup ----------------------------------------------- #
 
             self.control = self.callback_handler.on_epoch_begin(args, self.state, self.control)
@@ -2536,7 +2536,7 @@ class Condensation_Trainer:
                             if str(removed_layer) in key and 'input_layernorm' in key and removed_layer in ffn_removed_lst:
                                 b.state_dict.pop(key)
                         b._modules = b_modules
-
+                    
                     if ffn_flag:
                         # remove ffn
                         logger.info('removing ffn...')
@@ -2558,6 +2558,11 @@ class Condensation_Trainer:
                         b._modules = b_modules
                     
                     # fixing FSDP states
+                    print('state_dict:')
+                    logger.info('state_dict:')
+                    for key in model.state_dict():
+                        print(key)
+                        logger.info(key)
                     model = self._wrap_model(model)
                             
                     logger.info('new model architecture:')

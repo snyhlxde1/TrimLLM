@@ -10,12 +10,12 @@ export WANDB_DISABLED=true
 mkdir -p logs/train/
 
 ### baseline ft
-torchrun --nproc_per_node=2 \
+torchrun --nproc_per_node=1 \
     --master_port 20688 \
     run_clm_llama_lwcd_static_sparse.py \
     --bf16 True \
     --model_name_or_path $MODEL \
-    --total_layer_count 32 \
+    --total_layer_count 12 \
     --tie_breaker_strategy "activation" \
     --dataset_name ${TASK} \
     --per_device_train_batch_size $bs \
@@ -29,7 +29,7 @@ torchrun --nproc_per_node=2 \
     --seed 42 \
     --do_train \
     --do_eval \
-    --save_steps 50000 \
+    --save_steps 3000 \
     --save_total_limit 1 \
     --low_cpu_mem_usage \
     --fsdp "full_shard auto_wrap" \
