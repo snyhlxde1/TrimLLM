@@ -707,7 +707,9 @@ class ShardSampler(Sampler):
         self.total_batch_size = total_batch_size = batch_size * num_processes
 
         num_batches = len(dataset) // total_batch_size if drop_last else math.ceil(len(dataset) / total_batch_size)
+        
         self.total_num_samples = num_batches * total_batch_size
+        print('TOTAL NUM SAMPLES', self.total_num_samples)
 
     def __iter__(self):
         indices = list(range(len(self.dataset)))

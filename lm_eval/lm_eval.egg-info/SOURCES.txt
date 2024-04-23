@@ -71,9 +71,11 @@ lm_eval/tasks/json.py
 lm_eval/tasks/lambada.py
 lm_eval/tasks/lambada_cloze.py
 lm_eval/tasks/lambada_multilingual.py
+lm_eval/tasks/lexglue_casehold.py
 lm_eval/tasks/logiqa.py
 lm_eval/tasks/mathqa.py
 lm_eval/tasks/mc_taco.py
+lm_eval/tasks/medmcqa.py
 lm_eval/tasks/mgsm.py
 lm_eval/tasks/mutual.py
 lm_eval/tasks/naturalqs.py

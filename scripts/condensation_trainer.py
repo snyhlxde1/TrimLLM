@@ -165,7 +165,7 @@ from transformers.utils import (
     logging,
 )
 from transformers.utils.generic import ContextManagers
-
+import peft
 
 _is_native_cpu_amp_available = is_torch_greater_or_equal_than_1_11
 
@@ -221,6 +221,7 @@ if TYPE_CHECKING:
     import optuna
 
 logger = logging.get_logger(__name__)
+
 
 
 # Name of the files used for checkpointing
@@ -574,6 +575,8 @@ class Condensation_Trainer:
         self.data_collator = data_collator if data_collator is not None else default_collator
         self.train_dataset = train_dataset
         self.eval_dataset = eval_dataset
+        print('eval dataset', type(eval_dataset))
+        print(len(eval_dataset))
         self.tokenizer = tokenizer
 
         if self.place_model_on_device and not getattr(model, "is_loaded_in_8bit", False):
@@ -1166,7 +1169,6 @@ class Condensation_Trainer:
                 num_workers=self.args.dataloader_num_workers,
                 pin_memory=self.args.dataloader_pin_memory,
             )
-
         eval_sampler = self._get_eval_sampler(eval_dataset)
 
         return DataLoader(
@@ -1628,10 +1630,13 @@ class Condensation_Trainer:
                     reshard_after_forward=zero_3,
                     cpu_offload=cpu_offload,
                 ).to(self.args.device)
+
         # Distributed training using PyTorch FSDP
         elif self.fsdp is not None:
+            print('Wrapping in fsdp')
             self.fsdp_wrapped = True
             if not self.args.fsdp_config["xla"]:
+                print('IF')
                 # PyTorch FSDP!
                 from torch.distributed.fsdp.fully_sharded_data_parallel import CPUOffload, MixedPrecision
                 from torch.distributed.fsdp.fully_sharded_data_parallel import FullyShardedDataParallel as FSDP
@@ -1657,11 +1662,12 @@ class Condensation_Trainer:
                                 raise Exception("Could not find the transformer layer class to wrap in the model.")
                             else:
                                 transformer_cls_to_wrap.add(transformer_cls)
-                        auto_wrap_policy = functools.partial(
-                            transformer_auto_wrap_policy,
-                            # Transformer layer class to wrap
-                            transformer_layer_cls=transformer_cls_to_wrap,
-                        )
+                        auto_wrap_policy = peft.utils.other.fsdp_auto_wrap_policy(model)
+                        #auto_wrap_policy = functools.partial(
+                        #    transformer_auto_wrap_policy,
+                        #    # Transformer layer class to wrap
+                        #    transformer_layer_cls=transformer_cls_to_wrap,
+                        #)
                 mixed_precision_policy = None
                 dtype = None
                 if self.args.fp16:
@@ -2127,10 +2133,10 @@ class Condensation_Trainer:
             for i in range(self.total_layer_count):
                 if self.fsdp_wrapped:
                     # Pytorch FSDP wrapped model is supported
-                    b = model._fsdp_wrapped_module.model.layers[i]._fsdp_wrapped_module._fpw_module
+                    b = model._fsdp_wrapped_module.model.base_model.layers[i]._fsdp_wrapped_module._fpw_module
                 else:
-                    b = model.model.layers[i]
-                b = self.model.model.layers[i]
+                    b = model.model.base_model.layers[i]
+                b = self.model.model.base_model.layers[i] #NOTE: CHANGED FOR LORA was 
                 
                 attn_name = str(i) + '.' + 'self_attn'
                 ffn_name = str(i) + '.' + 'mlp'
@@ -2189,7 +2195,7 @@ class Condensation_Trainer:
                                                 block_counter=block_counter,
                                                 block_count=block_count,
                                                 total_layer_count=total_layer_count,
-                                                eval_limit=50)
+                                                eval_limit=5)
         
             # analyze attn and ffn layer importance scores
             attn_layers_scores = attn_ffn_acc_lst_tuple[0]
@@ -2371,7 +2377,7 @@ class Condensation_Trainer:
                                                     block_counter=block_counter,
                                                     block_count=block_count,
                                                     total_layer_count=total_layer_count,
-                                                    eval_limit=50)
+                                                    eval_limit=5)
             
                 # analyze attn and ffn layer importance scores
                 attn_layers_scores = attn_ffn_acc_lst_tuple[0]
@@ -2520,7 +2526,7 @@ class Condensation_Trainer:
                         logger.info('removing attn...')
                         if self.args.local_rank == 0:
                             print('removing attn...')
-                        b = model._fsdp_wrapped_module.model.layers[removed_layer]._fsdp_wrapped_module._fpw_module
+                        b = model._fsdp_wrapped_module.model.base_model.layers[removed_layer]._fsdp_wrapped_module._fpw_module #NOTE: CHANGED FOR LORA was model._fsdp_wrapped_module.model.layers[removed_layer]._fsdp_wrapped_module._fpw_module
                         b_modules = b._modules
                         b_modules['self_attn'] = torch.nn.Identity()
                         b_modules['post_attention_layernorm'] = torch.nn.Identity()
@@ -2542,7 +2548,7 @@ class Condensation_Trainer:
                         logger.info('removing ffn...')
                         if self.args.local_rank == 0:
                             print('removing ffn...')
-                        b = model._fsdp_wrapped_module.model.layers[removed_layer]._fsdp_wrapped_module._fpw_module
+                        b = model._fsdp_wrapped_module.model.base_model.layers[removed_layer]._fsdp_wrapped_module._fpw_module #NOTE: CHANGE FOR LORA was model._fsdp_wrapped_module.model.layers[removed_layer]._fsdp_wrapped_module._fpw_module
                         b_modules = b._modules
                         b_modules['mlp'] = torch.nn.Identity()
                         if removed_layer in attn_removed_lst:
@@ -2732,7 +2738,7 @@ class Condensation_Trainer:
                                                 block_counter=block_counter,
                                                 block_count=block_count,
                                                 total_layer_count=total_layer_count,
-                                                eval_limit=50)
+                                                eval_limit=5)
             
             if DebugOption.TPU_METRICS_DEBUG in self.args.debug:
                 if is_torch_tpu_available():
@@ -2954,7 +2960,7 @@ class Condensation_Trainer:
                                 block_counter: int = None,
                                 block_count: int = None,
                                 total_layer_count: int = None,
-                                eval_limit: int = 50,
+                                eval_limit: int = 5,
                                 ):
         if self.control.should_log:
             if is_torch_tpu_available():
@@ -2987,6 +2993,7 @@ class Condensation_Trainer:
         if self.control.should_evaluate:
             if isinstance(self.eval_dataset, dict):
                 for eval_dataset_name, eval_dataset in self.eval_dataset.items():
+                    print('self.eval dataset is a dictionary')
                     ffn_flag, attn_flag, ffn_removed_lst, attn_removed_lst, removed_layer, attn_ffn_acc_lst_tuple, metrics = self.evaluate(
                         eval_dataset=eval_dataset,
                         ignore_keys=ignore_keys_for_eval,
@@ -3001,6 +3008,7 @@ class Condensation_Trainer:
                         eval_limit=eval_limit,
                     )
             else:
+                print('maybe else')
                 ffn_flag, attn_flag, ffn_removed_lst, attn_removed_lst, removed_layer, attn_ffn_acc_lst_tuple, metrics = self.evaluate(ignore_keys=ignore_keys_for_eval,
                         ffn_removed_lst=ffn_removed_lst,
                         attn_removed_lst=attn_removed_lst,
@@ -3872,7 +3880,6 @@ class Condensation_Trainer:
         Works both with or without labels.
         """
         args = self.args
-
         prediction_loss_only = prediction_loss_only if prediction_loss_only is not None else args.prediction_loss_only
 
         # if eval is called w/o train init deepspeed here
@@ -3943,6 +3950,7 @@ class Condensation_Trainer:
         #               register hook for activation-aware scanning                  #
         ##############################################################################
         # make sure activation-profiling is necessary (exclude last evaluation loop after training)
+
         if total_layer_count:
             activation_profiler = dict()
             
@@ -3957,12 +3965,13 @@ class Condensation_Trainer:
             all_activation_names = set()
             all_removed_names = set()
 
+            print('total layer count', total_layer_count)
             for i in range(total_layer_count):
                 if self.fsdp_wrapped:
                     # Pytorch FSDP wrapped model is supported
-                    b = model._fsdp_wrapped_module.model.layers[i]._fsdp_wrapped_module._fpw_module
+                    b = model._fsdp_wrapped_module.model.base_model.layers[i]._fsdp_wrapped_module._fpw_module #model._fsdp_wrapped_module.model.base_model.layers[i]._fsdp_wrapped_module._fpw_module #NOTE: CHANGED FOR LORA LAYERS, was 
                 else:
-                    b = model.model.layers[i]
+                    b = model.model.base_model.layers[i] #NOTE: CHANGED FOR LORA was model.model.layers[i]
 
                 b_modules = b._modules
                 attn = b_modules['self_attn']
@@ -3982,6 +3991,7 @@ class Condensation_Trainer:
                     activation_profiler[mlp_name] = -1
                     all_removed_names.add(mlp_name)
             ##############################################################################
+
 
             observed_num_examples = 0
             # Main evaluation loop
@@ -4297,9 +4307,9 @@ class Condensation_Trainer:
 
                         if self.fsdp_wrapped:
                             # Pytorch FSDP wrapped model is supported
-                            b = model._fsdp_wrapped_module.model.layers[i]._fsdp_wrapped_module._fpw_module
+                            b = model._fsdp_wrapped_module.model.base_model.layers[i]._fsdp_wrapped_module._fpw_module #NOTE: CHANGED FOR LORA was model._fsdp_wrapped_module.model.layers[i]._fsdp_wrapped_module._fpw_module
                         else:
-                            b = model.model.layers[i]
+                            b = model.model.base_model.layers[i] #NOTE: CHANGED FOR LORA was model.model.layers[i]
                         b_modules = b._modules
                         backup_attn = b_modules['self_attn']
                         backup_attn_layernorm = b_modules['post_attention_layernorm']
@@ -4355,9 +4365,9 @@ class Condensation_Trainer:
 
                         if self.fsdp_wrapped:
                             # Pytorch FSDP wrapped model is supported
-                            b = model._fsdp_wrapped_module.model.layers[i]._fsdp_wrapped_module._fpw_module
+                            b = model._fsdp_wrapped_module.model.base_model.layers[i]._fsdp_wrapped_module._fpw_module
                         else:
-                            b = model.model.layers[i]
+                            b = model.model.base_model.layers[i]
 
                         b_modules = b._modules
                         backup_mlp = b_modules['mlp']

@@ -11,12 +11,41 @@ Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
 Requires-Python: >=3.9
 Description-Content-Type: text/markdown
-Provides-Extra: dev
-Provides-Extra: multilingual
-Provides-Extra: sentencepiece
-Provides-Extra: auto-gptq
-Provides-Extra: anthropic
 License-File: LICENSE.md
+Requires-Dist: datasets>=2.0.0
+Requires-Dist: jsonlines
+Requires-Dist: numexpr
+Requires-Dist: openai>=0.6.4
+Requires-Dist: omegaconf>=2.2
+Requires-Dist: peft>=0.2.0
+Requires-Dist: pybind11>=2.6.2
+Requires-Dist: pycountry
+Requires-Dist: pytablewriter
+Requires-Dist: rouge-score>=0.0.4
+Requires-Dist: sacrebleu==1.5.0
+Requires-Dist: scikit-learn>=0.24.1
+Requires-Dist: sqlitedict
+Requires-Dist: torch>=1.7
+Requires-Dist: tqdm-multiprocess
+Requires-Dist: transformers>=4.1
+Requires-Dist: zstandard
+Requires-Dist: accelerate>=0.17.1
+Provides-Extra: dev
+Requires-Dist: black; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+Requires-Dist: pre-commit; extra == "dev"
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-cov; extra == "dev"
+Provides-Extra: multilingual
+Requires-Dist: nagisa>=0.2.7; extra == "multilingual"
+Requires-Dist: jieba>=0.42.1; extra == "multilingual"
+Provides-Extra: sentencepiece
+Requires-Dist: sentencepiece>=0.1.98; extra == "sentencepiece"
+Requires-Dist: protobuf>=4.22.1; extra == "sentencepiece"
+Provides-Extra: auto-gptq
+Requires-Dist: auto-gptq[triton]@ git+https://github.com/PanQiWei/AutoGPTQ ; extra == "auto-gptq"
+Provides-Extra: anthropic
+Requires-Dist: anthropic; extra == "anthropic"
 
 # Language Model Evaluation Harness
 
