@@ -41,6 +41,8 @@ import evaluate
 import torch
 from datasets import load_dataset
 
+import random
+
 import transformers
 from transformers import (
     CONFIG_MAPPING,
@@ -565,6 +567,11 @@ def main():
 
     if training_args.do_train:
         train_dataset = lm_datasets["train"]
+        
+        # reduce trainset size for csn_python to 5%
+        if 'python' in data_args.dataset_name:
+            random_indices = random.choices(range(len(train_dataset)), k=len(train_dataset)//20)
+            train_dataset = train_dataset.select(random_indices)
 
     if training_args.do_eval:
         eval_dataset = lm_datasets["validation"]
