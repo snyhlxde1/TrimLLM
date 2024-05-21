@@ -31,6 +31,7 @@ torchrun --nproc_per_node=4 \
     --do_eval \
     --save_steps 3000 \
     --save_total_limit 1 \
+    --gradient_checkpointing True \
     --low_cpu_mem_usage \
     --fsdp "full_shard auto_wrap" \
     --fsdp_transformer_layer_cls_to_wrap 'LlamaDecoderLayer' \
