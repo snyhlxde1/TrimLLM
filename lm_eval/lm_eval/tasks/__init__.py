@@ -63,6 +63,7 @@ from . import mgsm
 
 from . import medmcqa
 from . import lexglue_casehold
+from . import python_test
 
 ########################################
 # Translation tasks
@@ -133,6 +134,7 @@ TASK_REGISTRY = {
     # ---------------------------- customized ----------------------- # 
     "medmcqa": medmcqa.MedMCQA,
     "lexglue_casehold": lexglue_casehold.LEX_GLUE_casehold,
+    "python_prelexity_test": python_test.PythonPreplexityTask,
     # --------------------------------------------------------------- #
     "pubmedqa": pubmedqa.Pubmed_QA,
     "sciq": sciq.SciQ,
