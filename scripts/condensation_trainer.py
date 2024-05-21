@@ -4328,8 +4328,15 @@ class Condensation_Trainer:
                         )
 
                         task_name = self.task_names[0]
+                        print(results['results'][task_name])
                         if 'wikitext' in task_name:
                             eval_metric_attn = results['results'][task_name]['preplexity']
+                            eval_metric_attn = 1/eval_metric_attn
+                        elif 'python' in task_name:
+                            # preplexity --> lower the better
+                            # in contrary, acc --> higher the better
+                            eval_metric_attn = results['results'][task_name]['byte_perplexity']
+                            eval_metric_attn = 1/eval_metric_attn
                         else:
                             eval_metric_attn = results['results'][task_name]['acc']
                         logger.info("eval result: {}".format(eval_metric_attn))
@@ -4388,6 +4395,10 @@ class Condensation_Trainer:
                         task_name = self.task_names[0]
                         if 'wikitext' in task_name:
                             eval_metric_ffn = results['results'][task_name]['preplexity']
+                            eval_metric_ffn = 1/eval_metric_ffn
+                        elif 'python' in task_name:
+                            eval_metric_ffn = results['results'][task_name]['byte_perplexity']
+                            eval_metric_ffn = 1/eval_metric_ffn
                         else:
                             eval_metric_ffn = results['results'][task_name]['acc']
                         logger.info("eval result: {}".format(eval_metric_ffn))

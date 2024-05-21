@@ -2,6 +2,8 @@ from datasets import load_dataset
 import logging
 from itertools import chain
 from tasks import task_dict, map_dataset_name_and_config
+from typing import Optional, Dict, Sequence
+import transformers
 
 logger = logging.getLogger(__name__)
 
@@ -62,6 +64,56 @@ def get_raw_datasets(args):
             )
     return raw_datasets
 
+# -------------- deepseek coder related -------------- #
+IGNORE_INDEX = -100
+EOT_TOKEN = "<|EOT|>"
+def build_deepseek_instruction_prompt(instruction: str):
+    return '''
+You are an AI programming assistant, utilizing the DeepSeek Coder model, developed by DeepSeek Company, and you only answer questions related to computer science. For politically sensitive questions, security and privacy issues, and other non-computer science questions, you will refuse to answer.
+### Instruction:
+{}
+### Response:
+'''.format(instruction.strip()).lstrip()
+
+def _tokenize_fn(strings: Sequence[str], tokenizer: transformers.PreTrainedTokenizer) -> Dict:
+    """Tokenize a list of strings."""
+    tokenized_list = [
+        tokenizer(
+            text,
+            return_tensors="pt",
+            padding="longest",
+            max_length=tokenizer.model_max_length,
+            truncation=True,
+        )
+        for text in strings
+    ]
+
+    input_ids = labels = [tokenized.input_ids[0] for tokenized in tokenized_list]
+    input_ids_lens = labels_lens = [
+        tokenized.input_ids.ne(tokenizer.pad_token_id).sum().item() for tokenized in tokenized_list
+    ]
+
+    return dict(
+        input_ids=input_ids,
+        labels=labels,
+        input_ids_lens=input_ids_lens,
+        labels_lens=labels_lens,
+    )
+    
+def preprocess(
+    sources: Sequence[str],
+    targets: Sequence[str],
+    tokenizer: transformers.PreTrainedTokenizer,
+) -> Dict:
+    """Preprocess the data by tokenizing."""
+    examples = [s + t for s, t in zip(sources, targets)]
+    examples_tokenized, sources_tokenized = [_tokenize_fn(strings, tokenizer) for strings in (examples, sources)]
+    input_ids = examples_tokenized["input_ids"]
+
+    labels = copy.deepcopy(input_ids)
+    for label, source_len in zip(labels, sources_tokenized["input_ids_lens"]):
+        label[:source_len] = IGNORE_INDEX
+    return dict(input_ids=input_ids, labels=labels)
 
 def get_tokenized_datasets(raw_datasets, args, training_args, tokenizer, lm_type='clm'):
     # Preprocessing the datasets.
@@ -69,19 +121,40 @@ def get_tokenized_datasets(raw_datasets, args, training_args, tokenizer, lm_type
     column_names = raw_datasets["train"].column_names
     text_column_name = "text" if "text" in column_names else column_names[0]
 
-    def tokenize_function(examples):
+    def conv_tokenize_function(examples):
         if lm_type == 'clm':
             return tokenizer(examples[text_column_name])
         elif lm_type == 'mlm':
             return tokenizer(examples[text_column_name], return_special_tokens_mask=True)
         else:
             raise ValueError(f'lm_type {lm_type} not supported')
+    
+    def deepseek_tokenize_function(examples):
+        # this set of key words is dataset-specific
+        # now, this is supporting code-search-net: python
+        # TODO: make this configurable
+        instruction_key = 'func_documentation_string'
+        output_key = 'func_code_string'
+        
+        sources = [
+            build_deepseek_instruction_prompt(instruction)
+            for instruction in examples[instruction_key]
+        ]
+        targets = [f"{output}\n{EOT_TOKEN}" for output in examples[output_key]]
+        data_dict = preprocess(sources, targets, tokenizer)
+        return data_dict
 
     with training_args.main_process_first(desc="dataset map tokenization"):
+        if lm_type == 'deepseek_clm':
+            tokenize_function = deepseek_tokenize_function
+        else:
+            tokenize_function = conv_tokenize_function
+        
         if not args.streaming:
             tokenized_datasets = raw_datasets.map(
                 tokenize_function,
                 batched=True,
+                batch_size=3000,
                 num_proc=args.preprocessing_num_workers,
                 remove_columns=column_names,
                 load_from_cache_file=not args.overwrite_cache,
@@ -95,7 +168,7 @@ def get_tokenized_datasets(raw_datasets, args, training_args, tokenizer, lm_type
             )
 
     return tokenized_datasets
-
+# -------------- deepseek coder related -------------- #
 
 def _get_block_size(args, tokenizer):
     if args.block_size is None:
@@ -114,7 +187,6 @@ def _get_block_size(args, tokenizer):
             )
         block_size = min(args.block_size, tokenizer.model_max_length)
     return block_size
-
 
 def get_lm_datasets(tokenized_datasets, args, training_args, tokenizer, lm_type='clm'):
     block_size = _get_block_size(args, tokenizer)

@@ -187,6 +187,29 @@ class FinanceAlpaca:
             targets.append(a)
         return targets
 
+# python coding
+deepseek_instruct_template = '''
+You are an AI programming assistant, utilizing the DeepSeek Coder model, developed by DeepSeek Company, and you only answer questions related to computer science. For politically sensitive questions, security and privacy issues, and other non-computer science questions, you will refuse to answer.
+### Instruction:
+{}
+### Response:
+'''
+def build_deepseek_instruction_prompt(instruction: str):
+    return deepseek_instruct_template.format(instruction.strip()).lstrip()
+class CodeSearchNet_Python:
+    def __init__(self):
+        self._template = deepseek_instruct_template
+    def get_context(self, examples):
+        ctx = examples['func_documentation_string']
+        return [self._template.format(c) for c in ctx]
+    def get_target(self, examples):
+        answers = examples['func_code_string']
+
+        targets = []
+        for a in answers:
+            targets.append(a)
+        return targets
+
 
 task_dict = {
     "piqa": PIQA(),
@@ -200,6 +223,7 @@ task_dict = {
     "medmcqa": MedMCQA(),
     "lexglue_casehold": LEXGLUE_casehold(),
     "financeqa": FinanceAlpaca(),
+    "csn_python": CodeSearchNet_Python(),
 }
 
 
@@ -219,6 +243,11 @@ def map_dataset_name_and_config(args):
         dataset_config_name = 'case_hold'
     elif args.dataset_name == 'financeqa':
         dataset_name = 'gbharti/finance-alpaca'
+    elif args.dataset_name == 'csn_python':
+        dataset_name = 'code_search_net'
+        dataset_config_name = 'python'
+    else:
+        raise NotImplementedError(f"dataset: {args.dataset_name} not supported")
 
 
     return dataset_name, dataset_config_name

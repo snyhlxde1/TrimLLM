@@ -480,7 +480,7 @@ def main():
     if model_args.tokenizer_name:
         tokenizer = AutoTokenizer.from_pretrained(model_args.tokenizer_name, **tokenizer_kwargs)
     elif model_args.model_name_or_path:
-        tokenizer = transformers.LlamaTokenizer.from_pretrained(model_args.model_name_or_path, **tokenizer_kwargs)
+        tokenizer = transformers.AutoTokenizer.from_pretrained(model_args.model_name_or_path, **tokenizer_kwargs)
     else:
         raise ValueError(
             "You are instantiating a new tokenizer from scratch. This is not supported by this script."
@@ -600,6 +600,7 @@ def main():
     task_eval_conversion_table = {
         'financeqa': 'hendrycksTest-high_school_microeconomics',
         'lexglue_casehold': 'hendrycksTest-professional_law',
+        'csn_python': "python_prelexity_test",
     }
     def train_to_eval_mapping(s):
         if s in task_eval_conversion_table.keys():
@@ -610,12 +611,12 @@ def main():
     # replace fine-tuning dataset names with evaluation dataset names
     task_names = [train_to_eval_mapping(s) for s in task_names]
 
-    #results = evaluator.simple_evaluate(
-    #    model=lm_eval_model,
-    #    tasks=task_names,
-    #    batch_size=128,
-    #    no_cache=True,
-    #)
+    results = evaluator.simple_evaluate(
+        model=lm_eval_model,
+        tasks=task_names,
+        batch_size=128,
+        no_cache=True,
+    )
 
     #logger.info(evaluator.make_table(results))
     logger.info(' ------------------- zero-shot accuracy reported above! -------------------')
