@@ -504,7 +504,7 @@ def main():
             use_auth_token=True if model_args.use_auth_token else None,
             torch_dtype=torch_dtype,
             low_cpu_mem_usage=model_args.low_cpu_mem_usage,
-            device_map='cuda',
+            #device_map='cuda',
         )
     else:
         model = AutoModelForCausalLM.from_config(config)
@@ -589,7 +589,7 @@ def main():
             return metric.compute(predictions=preds, references=labels)
     
 
-    #Add LoRA here!
+    print('Initializing LoRA...')
     lora_dropout = .05
     rank = 512
     initial_alpha = rank #at minumum needs to be == rank
@@ -598,6 +598,28 @@ def main():
     model = get_peft_model(model, peft_config)
     for name, param in model.base_model.named_parameters():
         param.requires_grad = 'lora' in name
+        
+    lora_layers = []
+    for layer in model.base_model.model.model.layers:
+        #lora_layers.append(layer.mlp.gate_proj)
+        #lora_layers.append(layer.mlp.up_proj)
+        #lora_layers.append(layer.mlp.down_proj)
+        lora_layers.append(layer.self_attn.q_proj)
+        lora_layers.append(layer.self_attn.k_proj)
+        #lora_layers.append(layer.self_attn.o_proj)
+    
+    print('Initializing LoRA with SVD...')
+    for layer in lora_layers:
+        A = layer.weight.data.float() 
+        U,S,V = torch.linalg.svd(A, full_matrices = False) #Get decomposition: A = U @ S @ V
+        reconstruction = (U[:, :rank] @ torch.diag_embed(S[:rank]) @ V[:rank, :]) #Low Rank Reconstruction of pretrained weights
+        layer.weight.data = (A - reconstruction)#.bfloat16() #(A * 0).bfloat16() #Remove low rank reconstruction from the pretrained weights
+
+        layer.lora_A['default'].weight.data = ((V[:rank, :]))#.bfloat16() #Add in reconstruction to LoRA adaptor
+        layer.lora_B['default'].weight.data = ((U[:, :rank] @ torch.diag_embed(S[:rank])))#.bfloat16()
+        layer.alpha_rate = alpha_rate #Every n-iters during training, we increase each lora layers alpha by this rate. Normally this is 1, so increasing it for a specific layer will cause that layer to be decomposed.
+
+
 
     logger.info('calculating zero-shot accuracy...')
     model = model.to("cuda")

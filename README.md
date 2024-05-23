@@ -2,23 +2,27 @@
 ### Set up Environment
 Create a conda environment: ``conda create -n trimllama python=3.10 -y``
 
-Load the environment: ``conda activate trimllama``
+## Setup
 
-Install all the requirements from lm_eval: ``cd lm_eval/lm-evaluation-harness`` then ``pip install -e .``
+install dependencies:
 
-Go to scripts in the main directory ``cd ../scripts``
+```bash
+conda create -n sapling python==3.9
+conda activate sapling
+pip install -r requirements.txt
+```
 
-Things to install if no requirements:
-datasets
-matplotlib
-evaluate
-sentencepiece
+patches:
+```
+cd Sapling
+cp -rv trainer_pt_utils.py ~/anaconda3/envs/trimllama/lib/python3.10/site-packages/transformers/
+cp -rv modeling_llama.py ~/anaconda3/envs/trimllama/lib/python3.10/site-packages/transformers/models/llama
+cp -rv fully_sharded_data_parallel.py ~/anaconda3/envs/trimllama/lib/python3.10/site-packages/torch/distributed/fsdp/
+```
 
-Since we are using transformers=4.31.0, I cloned PEFT=0.4.0
+## Standard Usage
 
-bash run_decomposition.sh 'sciq' 'TheBloke/Llama-2-7B-fp16' 3 10
-
-### STEP 1: Model compression for domain-specific LLMs — TrimLLaMA
+STEP 1: model compression for domain-specific LLMs — TrimLLaMA
 
 run LLaMA full fine-tuning:
 ```bash
@@ -37,6 +41,10 @@ other important arguments (optional):
 --sparsity_ratio 0.75 # for example, r = 0.75: ratio of frozen parameters vs. trainable parameters.
 --max_budget: 48 # maximum number of MLP/attention modules that can be removed before exiting.
 ```
+
+## Train the model with LoRA & ramp up alpha scaling
+
+```bash run_decomposition.sh 'sciq' 'TheBloke/Llama-2-7B-fp16' 2 22```
 
 ### STEP 2: Evaluation.
 

@@ -10,7 +10,7 @@ torchrun --nproc_per_node=8 \
     --master_port 20688 \
     run_decomposition.py \
     --bf16 True \
-    --low_cpu_mem_usage True \
+    --low_cpu_mem_usage False \
     --remove_unused_columns False \
     --model_name_or_path $MODEL \
     --total_layer_count 32 \
@@ -25,7 +25,7 @@ torchrun --nproc_per_node=8 \
     --seed 42 \
     --do_train \
     --do_eval \
-    --save_steps 10000000 \
+    --save_steps 2000 \
     --save_total_limit 1 \
     --fsdp "full_shard auto_wrap" \
     --fsdp_transformer_layer_cls_to_wrap 'LlamaDecoderLayer' \

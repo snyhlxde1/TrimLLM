@@ -10,7 +10,7 @@ export WANDB_DISABLED=true
 mkdir -p logs/train/
 
 ### baseline ft
-torchrun --nproc_per_node=2 \
+torchrun --nproc_per_node=8 \
     --master_port 20688 \
     run_clm_llama_lwcd_static_sparse.py \
     --bf16 True \
@@ -21,7 +21,7 @@ torchrun --nproc_per_node=2 \
     --per_device_train_batch_size $bs \
     --per_device_eval_batch_size $bs \
     --learning_rate 2e-5 \
-    --num_train_epochs 49 \
+    --num_train_epochs 32 \
     --sparsity_ratio $sr \
     --condense_epoch 1 \
     --evaluation_strategy "epoch" \
@@ -29,7 +29,7 @@ torchrun --nproc_per_node=2 \
     --seed 42 \
     --do_train \
     --do_eval \
-    --save_steps 50000 \
+    --save_steps 3000 \
     --save_total_limit 1 \
     --low_cpu_mem_usage \
     --fsdp "full_shard auto_wrap" \
