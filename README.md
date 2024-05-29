@@ -5,14 +5,14 @@
 install dependencies:
 
 ```bash
-conda create -n sapling python==3.9
-conda activate ssapling
+conda create -n trimllm python==3.9
+conda activate trimllm
 pip install -r requirements.txt
 ```
 
 patches:
 ```
-cd Sapling
+cd scripts
 cp -rv trainer_pt_utils.py ~/anaconda3/envs/sapling/lib/python3.9/site-packages/transformers/
 cp -rv modeling_llama.py ~/anaconda3/envs/sapling/lib/python3.9/site-packages/transformers/models/llama
 cp -rv fully_sharded_data_parallel.py ~/anaconda3/envs/sapling/lib/python3.9/site-packages/torch/distributed/fsdp/
