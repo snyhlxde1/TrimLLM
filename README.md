@@ -1,4 +1,4 @@
-# Sapling
+# TrimLLM
 
 ## Setup
 
