@@ -1,4 +1,16 @@
-# Sapling
+# TrimLLM
+
+## Setup
+
+install dependencies:
+
+```bash
+conda create -ny trimllm python==3.9
+conda activate trimllm
+pip install -r requirements.txt
+```
+
+## Usage
 
 STEP 1: model compression for domain-specific LLMs — TrimLLaMA
 
