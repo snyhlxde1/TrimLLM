@@ -5,7 +5,7 @@
 install dependencies:
 
 ```bash
-conda create -n trimllm python==3.9
+conda create -ny trimllm python==3.9
 conda activate trimllm
 pip install -r requirements.txt
 ```
