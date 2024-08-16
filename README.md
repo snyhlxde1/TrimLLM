@@ -12,7 +12,7 @@ pip install -r requirements.txt
 
 ## Usage
 
-STEP 1: model compression for domain-specific LLMs — TrimLLaMA
+STEP 1: model compression for domain-specific LLMs — TrimLLaMA.
 
 run LLaMA full fine-tuning:
 ```bash
@@ -39,3 +39,5 @@ build `lm_eval` locally, this is modified from [this repo](https://github.com/El
 cd lm_eval/lm-evaluation-harness
 pip install -e .
 ```
+
+The `lm_eval` version is somewhat outdated and will be updated soon.
