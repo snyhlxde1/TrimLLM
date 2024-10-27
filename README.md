@@ -14,13 +14,13 @@ pip install -r requirements.txt
 
 STEP 1: model compression for domain-specific LLMs — TrimLLM.
 
-run LLaMA full fine-tuning:
+run LLM full fine-tuning:
 ```bash
 cd scripts
 bash run_clm_llama.sh {task} {model_path} {batch_size} {lr}
 ```
 
-run TrimLLaMA:
+run TrimLLM:
 ```bash
 bash run_clm_llama_lwcd_static_sparse_exhausive.sh {task} {model_path} {batch_size} {lr} {trial_number}
 ```
