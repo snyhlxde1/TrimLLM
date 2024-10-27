@@ -12,7 +12,7 @@ pip install -r requirements.txt
 
 ## Usage
 
-STEP 1: model compression for domain-specific LLMs — TrimLLaMA.
+STEP 1: model compression for domain-specific LLMs — TrimLLM.
 
 run LLaMA full fine-tuning:
 ```bash
